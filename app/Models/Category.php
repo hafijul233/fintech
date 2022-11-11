@@ -25,6 +25,11 @@ class Category extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new EnabledScope);
+
+        static::creating(function (Category $category) {
+            $category->user_id = request()->user()->id ?? null;
+            $category->getDirty();
+        });
     }
 
     public function user(): BelongsTo
