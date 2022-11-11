@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Greg0x46\MaskedField\MaskedField;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\Email;
@@ -61,28 +61,53 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Select::make('Phone Code', 'phone_code')
+                ->options(config('fintech.phone_codes'))
+                ->nullable()
+                ->searchable()
+                ->hideFromIndex()
+                ->displayUsingLabels(),
+
+            MaskedField::make('Phone')
+                ->mask('(###) ###-####'),
+
             Password::make('Password')
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
 
             Text::make('Street Address', 'street')
-                ->nullable(),
+                ->nullable()
+                ->sortable()
+                ->hideFromIndex(),
 
             Text::make('City')
-                ->nullable(),
+                ->nullable()
+                ->hideFromIndex(),
 
             Text::make('State')
-                ->nullable(),
+                ->nullable()
+                ->hideFromIndex(),
 
             Text::make('Zipcode')
-                ->nullable(),
+                ->nullable()
+                ->hideFromIndex(),
 
             Country::make('Country')
-                ->nullable(),
+                ->sortable()
+                ->filterable()
+                ->searchable()
+                ->nullable()
+                ->displayUsingLabels(),
 
             Select::make('Timezone')
                 ->options(config('fintech.timezones'))
+                ->searchable()
+                ->sortable()
+                ->filterable()
+                ->required()
+                ->hideFromIndex()
+                ->displayUsingLabels()
                 ->default(function () {
                     return config('app.timezone');
                 }),

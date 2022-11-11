@@ -14,8 +14,12 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->nullable()->constrained('users');
             $table->string('name');
             $table->string('email')->unique();
+            $table->unsignedSmallInteger('phone_code')
+                ->nullable()->default('880');
             $table->string('phone')->nullable();
             $table->string('password');
             $table->string('street')->nullable();

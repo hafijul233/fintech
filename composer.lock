@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1bc175b775006e844dcb517f48f45a9",
+    "content-hash": "444ca6aff345c59254150445ea48db9d",
     "packages": [
         {
             "name": "brick/math",
@@ -961,6 +961,53 @@
                 }
             ],
             "time": "2022-07-30T15:56:11+00:00"
+        },
+        {
+            "name": "greg0x46/masked-field",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/greg0x46/laravel-nova-masked-field.git",
+                "reference": "4768415c8257c86749c3b9d145e1c30c74c3706b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/greg0x46/laravel-nova-masked-field/zipball/4768415c8257c86749c3b9d145e1c30c74c3706b",
+                "reference": "4768415c8257c86749c3b9d145e1c30c74c3706b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Greg0x46\\MaskedField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Greg0x46\\MaskedField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "mask",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/greg0x46/laravel-nova-masked-field/issues",
+                "source": "https://github.com/greg0x46/laravel-nova-masked-field/tree/v1.0.1"
+            },
+            "time": "2022-11-08T01:18:12+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
