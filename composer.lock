@@ -4,8 +4,188 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "efb77fa282286d719a679a11fcdaa612",
+    "content-hash": "2f49bf80a743c872f99394dd6025a25b",
     "packages": [
+        {
+            "name": "alexwenzel/nova-dependency-container",
+            "version": "1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexwenzel/nova-dependency-container.git",
+                "reference": "9d84febb5a3129ae712bb1c57e866daf79bbe81b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexwenzel/nova-dependency-container/zipball/9d84febb5a3129ae712bb1c57e866daf79bbe81b",
+                "reference": "9d84febb5a3129ae712bb1c57e866daf79bbe81b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0|^9.0",
+                "laravel/nova": "^4.0",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alexwenzel\\DependencyContainer\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alexwenzel\\DependencyContainer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "alexwenzel",
+                    "email": "alexander.wenzel.berlin@gmail.com"
+                },
+                {
+                    "name": "Epartment E-commerce",
+                    "email": "support@epartment.nl"
+                }
+            ],
+            "description": "A Laravel Nova 4 form container for grouping fields that depend on other field values.",
+            "keywords": [
+                "field",
+                "laravel",
+                "nova",
+                "nova-4"
+            ],
+            "support": {
+                "issues": "https://github.com/alexwenzel/nova-dependency-container/issues",
+                "source": "https://github.com/alexwenzel/nova-dependency-container/tree/1.7"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate/?hosted_button_id=LHJQRG9FXSYCU",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-11-09T14:47:43+00:00"
+        },
+        {
+            "name": "ardenthq/nova-enhanced-textarea",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ArdentHQ/nova-enhanced-textarea.git",
+                "reference": "b1b29523e436e27d3cddcab324d1c5efb002f6b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ArdentHQ/nova-enhanced-textarea/zipball/b1b29523e436e27d3cddcab324d1c5efb002f6b5",
+                "reference": "b1b29523e436e27d3cddcab324d1c5efb002f6b5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.30",
+                "laravel/nova": "^4.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.10",
+                "orchestra/testbench": "^7.7",
+                "pestphp/pest": "^1.21",
+                "phpstan/phpstan": "^1.8",
+                "rector/rector": "^0.14"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ardenthq\\EnhancedTextarea\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ardenthq\\EnhancedTextarea\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alfonso",
+                    "email": "alfonso@ardenthq.com"
+                }
+            ],
+            "description": "Custom textarea field with character count",
+            "support": {
+                "issues": "https://github.com/ArdentHQ/nova-enhanced-textarea/issues",
+                "source": "https://github.com/ArdentHQ/nova-enhanced-textarea/tree/1.0.2"
+            },
+            "time": "2022-09-22T09:24:26+00:00"
+        },
+        {
+            "name": "badinansoft/nova-language-switch",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/badinansoft/nova-language-switch.git",
+                "reference": "413b79ed52fe7c68ec5cbd727f3916a1c0f9f38f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/badinansoft/nova-language-switch/zipball/413b79ed52fe7c68ec5cbd727f3916a1c0f9f38f",
+                "reference": "413b79ed52fe7c68ec5cbd727f3916a1c0f9f38f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Badinansoft\\LanguageSwitch\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Badinansoft\\LanguageSwitch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shahab Zebari",
+                    "email": "me@shahabzebari.net",
+                    "homepage": "https://shahabzebari.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova package to switch language in your application",
+            "homepage": "https://github.com/badinansoft/nova-language-switch",
+            "keywords": [
+                "i18n",
+                "language",
+                "laravel",
+                "nova",
+                "switch",
+                "translation"
+            ],
+            "support": {
+                "issues": "https://github.com/badinansoft/nova-language-switch/issues",
+                "source": "https://github.com/badinansoft/nova-language-switch/tree/1.0.1"
+            },
+            "time": "2022-10-20T08:04:40+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.10.2",
@@ -119,6 +299,69 @@
                 }
             ],
             "time": "2022-10-05T22:11:12+00:00"
+        },
+        {
+            "name": "coroowicaksono/chart-js-integration",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coroo/nova-chartjs.git",
+                "reference": "536abe58319b5eeae86d0a11a7b08609a209d1d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coroo/nova-chartjs/zipball/536abe58319b5eeae86d0a11a7b08609a209d1d0",
+                "reference": "536abe58319b5eeae86d0a11a7b08609a209d1d0",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Coroowicaksono\\ChartJsIntegration\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Coroowicaksono\\ChartJsIntegration\\": "src/",
+                    "Coroowicaksono\\ChartJsIntegration\\Api\\": "src/api"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kuncoro Wicaksono",
+                    "email": "coroo.wicaksono@gmail.com",
+                    "role": "Software Engineer"
+                }
+            ],
+            "description": "A Simple Dashboard Chart in Laravel Nova using Chart JS. Starting create your own dashboard with Chart JS Integration can save your time and help you maintain consistency across standard elements such as Bar, Stacked, Line, Area, Doughnut and Pie Chart.",
+            "homepage": "https://github.com/coroo",
+            "keywords": [
+                "chart js",
+                "laravel",
+                "nova",
+                "stacked chart"
+            ],
+            "support": {
+                "issues": "https://github.com/coroo/nova-chartjs/issues",
+                "source": "https://github.com/coroo/nova-chartjs/tree/v0.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/coroowicaksono",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-05-15T10:46:32+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -891,6 +1134,105 @@
             "time": "2022-10-25T19:58:02+00:00"
         },
         {
+            "name": "formfeed-uk/nova-breadcrumbs",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Formfeed-UK/nova-breadcrumbs.git",
+                "reference": "11c99f7ecb55a339291e05d7e74d8a82447400a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Formfeed-UK/nova-breadcrumbs/zipball/11c99f7ecb55a339291e05d7e74d8a82447400a5",
+                "reference": "11c99f7ecb55a339291e05d7e74d8a82447400a5",
+                "shasum": ""
+            },
+            "require": {
+                "formfeed-uk/nova-resource-cards": "^1.1.0",
+                "laravel/nova": "^4.0",
+                "php": "^7.4|^8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Formfeed\\Breadcrumbs\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Formfeed\\Breadcrumbs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova package to show breadcrumbs on Nova Resources",
+            "homepage": "https://github.com/formfeed-uk/nova-breadcrumbs",
+            "keywords": [
+                "breadcrumbs",
+                "cards",
+                "laravel",
+                "nova",
+                "resource-cards"
+            ],
+            "support": {
+                "issues": "https://github.com/Formfeed-UK/nova-breadcrumbs/issues",
+                "source": "https://github.com/Formfeed-UK/nova-breadcrumbs/tree/1.1.1"
+            },
+            "time": "2022-10-14T10:43:24+00:00"
+        },
+        {
+            "name": "formfeed-uk/nova-resource-cards",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Formfeed-UK/nova-resource-cards.git",
+                "reference": "889fc735d66ceef2d816f75c641f2036c7c4213a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Formfeed-UK/nova-resource-cards/zipball/889fc735d66ceef2d816f75c641f2036c7c4213a",
+                "reference": "889fc735d66ceef2d816f75c641f2036c7c4213a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.4|^8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Formfeed\\ResourceCards\\AssetServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Formfeed\\ResourceCards\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova package to show cards on all CRUD pages.",
+            "homepage": "https://github.com/formfeed-uk/nova-resource-cards",
+            "keywords": [
+                "cards",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/Formfeed-UK/nova-resource-cards/issues",
+                "source": "https://github.com/Formfeed-UK/nova-resource-cards/tree/1.1.0"
+            },
+            "time": "2022-10-12T16:22:54+00:00"
+        },
+        {
             "name": "fruitcake/php-cors",
             "version": "v1.2.0",
             "source": {
@@ -1471,6 +1813,73 @@
             "time": "2022-11-08T12:44:02+00:00"
         },
         {
+            "name": "james-heinrich/getid3",
+            "version": "v1.9.22",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JamesHeinrich/getID3.git",
+                "reference": "45f20faa0f0a24489740392c5b512ddcc36deccd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JamesHeinrich/getID3/zipball/45f20faa0f0a24489740392c5b512ddcc36deccd",
+                "reference": "45f20faa0f0a24489740392c5b512ddcc36deccd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.0"
+            },
+            "suggest": {
+                "ext-SimpleXML": "SimpleXML extension is required to analyze RIFF/WAV/BWF audio files (also requires `ext-libxml`).",
+                "ext-com_dotnet": "COM extension is required when loading files larger than 2GB on Windows.",
+                "ext-ctype": "ctype extension is required when loading files larger than 2GB on 32-bit PHP (also on 64-bit PHP on Windows) or executing `getid3_lib::CopyTagsToComments`.",
+                "ext-dba": "DBA extension is required to use the DBA database as a cache storage.",
+                "ext-exif": "EXIF extension is required for graphic modules.",
+                "ext-iconv": "iconv extension is required to work with different character sets (when `ext-mbstring` is not available).",
+                "ext-json": "JSON extension is required to analyze Apple Quicktime videos.",
+                "ext-libxml": "libxml extension is required to analyze RIFF/WAV/BWF audio files.",
+                "ext-mbstring": "mbstring extension is required to work with different character sets.",
+                "ext-mysql": "MySQL extension is required to use the MySQL database as a cache storage (deprecated in PHP 5.5, removed in PHP >= 7.0, use `ext-mysqli` instead).",
+                "ext-mysqli": "MySQLi extension is required to use the MySQL database as a cache storage.",
+                "ext-rar": "RAR extension is required for RAR archive module.",
+                "ext-sqlite3": "SQLite3 extension is required to use the SQLite3 database as a cache storage.",
+                "ext-xml": "XML extension is required for graphic modules to analyze the XML metadata.",
+                "ext-zlib": "Zlib extension is required for archive modules and compressed metadata."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.9.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "getid3/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-1.0-or-later",
+                "LGPL-3.0-only",
+                "MPL-2.0"
+            ],
+            "description": "PHP script that extracts useful information from popular multimedia file formats",
+            "homepage": "https://www.getid3.org/",
+            "keywords": [
+                "codecs",
+                "php",
+                "tags"
+            ],
+            "support": {
+                "issues": "https://github.com/JamesHeinrich/getID3/issues",
+                "source": "https://github.com/JamesHeinrich/getID3/tree/v1.9.22"
+            },
+            "time": "2022-09-29T16:41:13+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v9.39.0",
             "source": {
@@ -1766,6 +2175,51 @@
                 "source": "https://github.com/laravel/nova/tree/v4.18.2"
             },
             "time": "2022-11-03T01:55:32+00:00"
+        },
+        {
+            "name": "laravel/nova-log-viewer",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/nova-log-viewer.git",
+                "reference": "58e7a340f7a7d4ba1554085768abe360297d00f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/nova-log-viewer/zipball/58e7a340f7a7d4ba1554085768abe360297d00f1",
+                "reference": "58e7a340f7a7d4ba1554085768abe360297d00f1",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Nova\\LogViewer\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Nova\\LogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for viewing your application logs.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/nova-log-viewer/tree/v0.1.4"
+            },
+            "time": "2022-10-25T14:28:46+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2357,6 +2811,53 @@
             "time": "2022-04-17T13:12:02+00:00"
         },
         {
+            "name": "lonnyx/nova-apex-chart",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LonnyX/nova-apex-chart.git",
+                "reference": "afac6ddfd0bad061fd4a03b06fc988fda9136a8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LonnyX/nova-apex-chart/zipball/afac6ddfd0bad061fd4a03b06fc988fda9136a8a",
+                "reference": "afac6ddfd0bad061fd4a03b06fc988fda9136a8a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "~4.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LonnyX\\NovaApexChart\\CardServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LonnyX\\NovaApexChart\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova Apex Chart Component.",
+            "keywords": [
+                "apex chart",
+                "chart",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/LonnyX/nova-apex-chart/tree/v1.3.0"
+            },
+            "time": "2022-08-21T10:53:25+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.8.0",
             "source": {
@@ -2900,6 +3401,88 @@
             "time": "2022-10-28T22:51:32+00:00"
         },
         {
+            "name": "oneduo/nova-file-manager",
+            "version": "v0.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oneduo/nova-file-manager.git",
+                "reference": "a43f88b0341ace6f74f584acda7938d7f76b37b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oneduo/nova-file-manager/zipball/a43f88b0341ace6f74f584acda7938d7f76b37b9",
+                "reference": "a43f88b0341ace6f74f584acda7938d7f76b37b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "james-heinrich/getid3": "^1.9",
+                "laravel/nova": "^4.0",
+                "nova-kit/nova-packages-tool": "^1.3.1",
+                "php": "^8.0",
+                "pion/laravel-chunk-upload": "^1.5",
+                "spatie/invade": "^1.1"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^7.0.1",
+                "laravel/pint": "^0.1.7",
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^6.0||^7.6",
+                "orchestra/testbench-dusk": "^6.0||^7.6",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.2",
+                "pestphp/pest-plugin-mock": "^1.0",
+                "spatie/laravel-ray": "^1.29"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Oneduo\\NovaFileManager\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Oneduo\\NovaFileManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Charaf Rezrazi",
+                    "email": "charaf@rezrazi.fr"
+                },
+                {
+                    "name": "Mikaël Popowicz",
+                    "email": "mpopowicz@big-boss-studio.com"
+                }
+            ],
+            "description": "A handy file manager tool for Laravel Nova",
+            "homepage": "https://github.com/oneduo/nova-file-manager",
+            "keywords": [
+                "disks",
+                "file",
+                "filesystem",
+                "laravel",
+                "manager",
+                "multiple",
+                "nova",
+                "tool"
+            ],
+            "support": {
+                "issues": "https://github.com/oneduo/nova-file-manager/issues",
+                "source": "https://github.com/oneduo/nova-file-manager/tree/v0.7.2"
+            },
+            "time": "2022-11-01T14:07:28+00:00"
+        },
+        {
             "name": "openspout/openspout",
             "version": "v3.7.4",
             "source": {
@@ -3062,6 +3645,72 @@
                 }
             ],
             "time": "2022-07-30T15:51:26+00:00"
+        },
+        {
+            "name": "pion/laravel-chunk-upload",
+            "version": "v1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pionl/laravel-chunk-upload.git",
+                "reference": "e1ffe87e8a50a6a8cf8204c6afd46f6df99083e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pionl/laravel-chunk-upload/zipball/e1ffe87e8a50a6a8cf8204c6afd46f6df99083e6",
+                "reference": "e1ffe87e8a50a6a8cf8204c6afd46f6df99083e6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "illuminate/filesystem": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "illuminate/http": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "illuminate/support": "5.2 - 5.8 | ^6.0 | ^7.0 | ^8.0 | ^9.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16.0",
+                "mockery/mockery": "^1.1.0 | ^1.3.0",
+                "overtrue/phplint": "^1.1 | ^2.0",
+                "phpunit/phpunit": "5.7 | 6.0 | 7.0 | 7.5 | 8.4 | ^8.5 | ^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pion\\Laravel\\ChunkUpload\\Providers\\ChunkUploadServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pion\\Laravel\\ChunkUpload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Kluska",
+                    "email": "martin@kluska.cz"
+                }
+            ],
+            "description": "Service for chunked upload with several js providers",
+            "support": {
+                "issues": "https://github.com/pionl/laravel-chunk-upload/issues",
+                "source": "https://github.com/pionl/laravel-chunk-upload/tree/v1.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://revolut.me/martinpv7n",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/pionl",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-08-31T07:30:45+00:00"
         },
         {
             "name": "psr/cache",
@@ -3838,6 +4487,293 @@
             "time": "2022-07-21T14:21:25+00:00"
         },
         {
+            "name": "spatie/db-dumper",
+            "version": "3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/db-dumper.git",
+                "reference": "129b8254b2c9f10881a754a692bd9507b09a1893"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/db-dumper/zipball/129b8254b2c9f10881a754a692bd9507b09a1893",
+                "reference": "129b8254b2c9f10881a754a692bd9507b09a1893",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0",
+                "symfony/process": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\DbDumper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Dump databases",
+            "homepage": "https://github.com/spatie/db-dumper",
+            "keywords": [
+                "database",
+                "db-dumper",
+                "dump",
+                "mysqldump",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/db-dumper/tree/3.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-09-01T20:20:26+00:00"
+        },
+        {
+            "name": "spatie/invade",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/invade.git",
+                "reference": "d0a9c895a96152549d478a7e3420e19039eef038"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/invade/zipball/d0a9c895a96152549d478a7e3420e19039eef038",
+                "reference": "d0a9c895a96152549d478a7e3420e19039eef038",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.20",
+                "phpstan/phpstan": "^1.4",
+                "spatie/ray": "^1.28"
+            },
+            "type": "library",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "phpstan-extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Spatie\\Invade\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A PHP function to work with private properties and methods",
+            "homepage": "https://github.com/spatie/invade",
+            "keywords": [
+                "invade",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/invade/tree/1.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-05T09:31:00+00:00"
+        },
+        {
+            "name": "spatie/laravel-backup",
+            "version": "8.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-backup.git",
+                "reference": "cf367fbe50ff3b1ae9a79638cc5ef66f3cc9c7fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-backup/zipball/cf367fbe50ff3b1ae9a79638cc5ef66f3cc9c7fa",
+                "reference": "cf367fbe50ff3b1ae9a79638cc5ef66f3cc9c7fa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zip": "^1.14.0",
+                "illuminate/console": "^9.0",
+                "illuminate/contracts": "^9.0",
+                "illuminate/events": "^9.0",
+                "illuminate/filesystem": "^9.0",
+                "illuminate/notifications": "^9.0",
+                "illuminate/support": "^9.0",
+                "league/flysystem": "^3.0",
+                "php": "^8.0",
+                "spatie/db-dumper": "^3.0",
+                "spatie/laravel-package-tools": "^1.6.2",
+                "spatie/laravel-signal-aware-command": "^1.2",
+                "spatie/temporary-directory": "^2.0",
+                "symfony/console": "^6.0",
+                "symfony/finder": "^6.0"
+            },
+            "require-dev": {
+                "composer-runtime-api": "^2.0",
+                "ext-pcntl": "*",
+                "laravel/slack-notification-channel": "^2.4",
+                "league/flysystem-aws-s3-v3": "^2.0|^3.0",
+                "mockery/mockery": "^1.4",
+                "nunomaduro/larastan": "^2.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.20",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.1"
+            },
+            "suggest": {
+                "laravel/slack-notification-channel": "Required for sending notifications via Slack"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Backup\\BackupServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Helpers/functions.php"
+                ],
+                "psr-4": {
+                    "Spatie\\Backup\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package to backup your application",
+            "homepage": "https://github.com/spatie/laravel-backup",
+            "keywords": [
+                "backup",
+                "database",
+                "laravel-backup",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-backup/issues",
+                "source": "https://github.com/spatie/laravel-backup/tree/8.1.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2022-10-19T13:01:58+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.13.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "c377cc7223655c2278c148c1685b8b5a78af5c65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/c377cc7223655c2278c148c1685b8b5a78af5c65",
+                "reference": "c377cc7223655c2278c148c1685b8b5a78af5c65",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.28",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "orchestra/testbench": "^7.7",
+                "phpunit/phpunit": "^9.5.24",
+                "spatie/test-time": "^1.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.13.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-11T06:37:42+00:00"
+        },
+        {
             "name": "spatie/laravel-permission",
             "version": "5.5.16",
             "source": {
@@ -3920,6 +4856,147 @@
             "time": "2022-10-23T02:49:28+00:00"
         },
         {
+            "name": "spatie/laravel-signal-aware-command",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-signal-aware-command.git",
+                "reference": "d15a5b69bf715fc557b7034b4abd5a1472ae7ec8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-signal-aware-command/zipball/d15a5b69bf715fc557b7034b4abd5a1472ae7ec8",
+                "reference": "d15a5b69bf715fc557b7034b4abd5a1472ae7ec8",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.35|^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.4.3"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.2",
+                "ext-pcntl": "*",
+                "nunomaduro/collision": "^5.3|^6.0",
+                "orchestra/testbench": "^6.16|^7.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.17"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider"
+                    ],
+                    "aliases": {
+                        "Signal": "Spatie\\SignalAwareCommand\\Facades\\Signal"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\SignalAwareCommand\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle signals in artisan commands",
+            "homepage": "https://github.com/spatie/laravel-signal-aware-command",
+            "keywords": [
+                "laravel",
+                "laravel-signal-aware-command",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-signal-aware-command/issues",
+                "source": "https://github.com/spatie/laravel-signal-aware-command/tree/1.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-01-12T19:42:44+00:00"
+        },
+        {
+            "name": "spatie/nova-backup-tool",
+            "version": "5.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/nova-backup-tool.git",
+                "reference": "2d21e9fe3dc7f0201de404599a52b16a1b496023"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/nova-backup-tool/zipball/2d21e9fe3dc7f0201de404599a52b16a1b496023",
+                "reference": "2d21e9fe3dc7f0201de404599a52b16a1b496023",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "laravel/nova": "^4.0",
+                "nesbot/carbon": "^2.31",
+                "php": "^8.0|^7.3",
+                "spatie/laravel-backup": "^6.0|^7.0|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "9.3",
+                "spatie/phpunit-snapshot-assertions": "^3.0|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\BackupTool\\BackupToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\BackupTool\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova tool to backup your application.",
+            "homepage": "https://github.com/spatie/nova-backup-tool",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/nova-backup-tool/tree/5.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-10-12T12:16:40+00:00"
+        },
+        {
             "name": "spatie/once",
             "version": "3.1.0",
             "source": {
@@ -3980,6 +5057,67 @@
                 }
             ],
             "time": "2022-04-21T12:23:20+00:00"
+        },
+        {
+            "name": "spatie/temporary-directory",
+            "version": "2.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/temporary-directory.git",
+                "reference": "e2818d871783d520b319c2d38dc37c10ecdcde20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/temporary-directory/zipball/e2818d871783d520b319c2d38dc37c10ecdcde20",
+                "reference": "e2818d871783d520b319c2d38dc37c10ecdcde20",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TemporaryDirectory\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alex Vanderbist",
+                    "email": "alex@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily create, use and destroy temporary directories",
+            "homepage": "https://github.com/spatie/temporary-directory",
+            "keywords": [
+                "php",
+                "spatie",
+                "temporary-directory"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/temporary-directory/issues",
+                "source": "https://github.com/spatie/temporary-directory/tree/2.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-08-23T07:15:15+00:00"
         },
         {
             "name": "symfony/console",
@@ -6382,6 +7520,66 @@
             "time": "2022-09-12T13:28:28+00:00"
         },
         {
+            "name": "visanduma/nova-back-navigation",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Visanduma/nova-back-navigation.git",
+                "reference": "5b5cfe6cc41d02066ba8883fe6a634b672d87ee5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Visanduma/nova-back-navigation/zipball/5b5cfe6cc41d02066ba8883fe6a634b672d87ee5",
+                "reference": "5b5cfe6cc41d02066ba8883fe6a634b672d87ee5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Visanduma\\NovaBackNavigation\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Visanduma\\NovaBackNavigation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Visanduma R & D (pvt) Ltd",
+                    "email": "info@visanduma.com",
+                    "role": "Owner"
+                },
+                {
+                    "name": "LaHiRu",
+                    "email": "lahirulhr@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The missing Back button of NOVA",
+            "keywords": [
+                "Back",
+                "Visanduma",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/Visanduma/nova-back-navigation/issues",
+                "source": "https://github.com/Visanduma/nova-back-navigation/tree/v1.0.3"
+            },
+            "time": "2022-10-31T04:52:15+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.5.0",
             "source": {
@@ -6589,6 +7787,149 @@
                 "source": "https://github.com/vyuldashev/nova-permission/tree/v3.2.0"
             },
             "time": "2022-08-23T23:14:12+00:00"
+        },
+        {
+            "name": "wdelfuego/nova-calendar",
+            "version": "v1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wdelfuego/nova-calendar.git",
+                "reference": "325b91829aa3c21ed0931bf3298f7fa3c678fa15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wdelfuego/nova-calendar/zipball/325b91829aa3c21ed0931bf3298f7fa3c678fa15",
+                "reference": "325b91829aa3c21ed0931bf3298f7fa3c678fa15",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.0",
+                "laravel/nova": "^4.2.4",
+                "php": "^8.0",
+                "wdelfuego/nova-datetime": "^1.0.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wdelfuego\\NovaCalendar\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wdelfuego\\NovaCalendar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later",
+                "proprietary"
+            ],
+            "description": "A minimalistic event calendar Tool for Laravel's Nova 4.",
+            "keywords": [
+                "calendar",
+                "date",
+                "event-calendar",
+                "events",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/wdelfuego/nova-calendar/issues",
+                "source": "https://github.com/wdelfuego/nova-calendar/tree/v1.6.1"
+            },
+            "time": "2022-09-03T17:22:15+00:00"
+        },
+        {
+            "name": "wdelfuego/nova-datetime",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wdelfuego/nova-datetime.git",
+                "reference": "67006e24ae7bcd728ed707d943668387511c0abc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wdelfuego/nova-datetime/zipball/67006e24ae7bcd728ed707d943668387511c0abc",
+                "reference": "67006e24ae7bcd728ed707d943668387511c0abc",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.2.4",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Wdelfuego\\Nova\\DateTime\\ServiceProvider"
+                    ],
+                    "aliases": []
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wdelfuego\\Nova\\DateTime\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Willem Vervuurt",
+                    "email": "willem@studiodelfuego.com"
+                }
+            ],
+            "description": "Makes working with DateTime fields in Laravel's Nova 4 easier",
+            "support": {
+                "issues": "https://github.com/wdelfuego/nova-datetime/issues",
+                "source": "https://github.com/wdelfuego/nova-datetime/tree/v1.1.2"
+            },
+            "time": "2022-07-18T20:57:27+00:00"
+        },
+        {
+            "name": "wdelfuego/nova4-customizable-footer",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wdelfuego/nova4-customizable-footer.git",
+                "reference": "3560fd04685fb6131398a138f274c5aece6bfe1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wdelfuego/nova4-customizable-footer/zipball/3560fd04685fb6131398a138f274c5aece6bfe1d",
+                "reference": "3560fd04685fb6131398a138f274c5aece6bfe1d",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Wdelfuego\\Nova4\\CustomizableFooter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Willem Vervuurt",
+                    "email": "willem@studiodelfuego.com"
+                }
+            ],
+            "description": "Customizable footer for Laravel's Nova 4",
+            "support": {
+                "issues": "https://github.com/wdelfuego/nova4-customizable-footer/issues",
+                "source": "https://github.com/wdelfuego/nova4-customizable-footer/tree/v1.0.3"
+            },
+            "abandoned": true,
+            "time": "2022-05-03T22:37:27+00:00"
         },
         {
             "name": "webmozart/assert",

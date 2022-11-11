@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -52,7 +52,9 @@ class Setting extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request, $this),
+        ];
     }
 
     /**

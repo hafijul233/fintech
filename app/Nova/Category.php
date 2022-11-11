@@ -2,7 +2,7 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
@@ -67,7 +67,9 @@ class Category extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request, $this),
+        ];
     }
 
     /**

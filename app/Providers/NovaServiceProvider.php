@@ -2,9 +2,18 @@
 
 namespace App\Providers;
 
+use App\Nova\Dashboards\MainDashboard;
+use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\LogViewer\LogViewer;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Oneduo\NovaFileManager\NovaFileManager;
+use Spatie\BackupTool\BackupTool;
+use Stepanenko3\LogsTool\LogsTool;
+use Visanduma\NovaBackNavigation\NovaBackNavigation;
+use Vyuldashev\NovaPermission\NovaPermissionTool;
+use Wdelfuego\Nova4\CustomizableFooter\Footer;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -16,6 +25,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        Footer::set('<p class="text-center">My Testing Footer</p>');
     }
 
     /**
@@ -26,9 +36,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -55,7 +65,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [
-            new \App\Nova\Dashboards\MainDashboard,
+            new MainDashboard,
         ];
     }
 
@@ -67,7 +77,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
+            NovaPermissionTool::make(),
+            NovaBackNavigation::make(),
+            LanguageSwitch::make(),
+            NovaFileManager::make(),
+            LogViewer::make(),
+            BackupTool::make(),
         ];
     }
 

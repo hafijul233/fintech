@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Greg0x46\MaskedField\MaskedField;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Country;
@@ -14,7 +15,6 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Vyuldashev\NovaPermission\Permission;
-use Vyuldashev\NovaPermission\PermissionBooleanGroup;
 use Vyuldashev\NovaPermission\Role;
 
 class User extends Resource
@@ -118,9 +118,7 @@ class User extends Resource
 
             MorphToMany::make('Roles', 'roles', Role::class),
 
-            //MorphToMany::make('Permissions', 'permissions', Permission::class),
-
-            PermissionBooleanGroup::make('Permissions', 'permissions', null, 'description'),
+            MorphToMany::make('Permissions', 'permissions', Permission::class),
         ];
     }
 
@@ -132,7 +130,9 @@ class User extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request, $this),
+        ];
     }
 
     /**

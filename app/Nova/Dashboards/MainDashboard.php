@@ -2,9 +2,9 @@
 
 namespace App\Nova\Dashboards;
 
-use Illuminate\Support\Str;
-use Laravel\Nova\Cards\Help;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Dashboards\Main as Dashboard;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class MainDashboard extends Dashboard
 {
@@ -43,7 +43,7 @@ class MainDashboard extends Dashboard
     public function cards()
     {
         return [
-            //
+            Breadcrumbs::make(app(NovaRequest::class), $this),
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Badinansoft\LanguageSwitch\Http\Middleware\LanguageSwitch;
 use Laravel\Nova\Actions\ActionResource;
 use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\Authorize;
@@ -105,6 +106,7 @@ return [
         DispatchServingNovaEvent::class,
         BootTools::class,
         ForgetCachedPermissions::class,
+        LanguageSwitch::class,
     ],
 
     'api_middleware' => [
