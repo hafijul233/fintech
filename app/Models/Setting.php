@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\EnabledScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Setting extends Model
 {
@@ -25,6 +26,12 @@ class Setting extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new EnabledScope);
+
+        static::creating(function (Setting $setting) {
+            $setting->user_id = request()->user()->id ?? null;
+            $setting->name = strtolower(str_replace([' '], '_', $setting->name));
+            $setting->getDirty();
+        });
     }
 
     public function user(): BelongsTo
