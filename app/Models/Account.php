@@ -4,9 +4,8 @@ namespace App\Models;
 
 use App\Models\Scopes\EnabledScope;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Setting extends Model
+class Account extends Model
 {
     /**
      * The attributes that should be cast.
@@ -25,10 +24,5 @@ class Setting extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new EnabledScope);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }
