@@ -8,10 +8,14 @@ use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\Email;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Vyuldashev\NovaPermission\Permission;
+use Vyuldashev\NovaPermission\PermissionBooleanGroup;
+use Vyuldashev\NovaPermission\Role;
 
 class User extends Resource
 {
@@ -111,6 +115,12 @@ class User extends Resource
                 ->default(function () {
                     return config('app.timezone');
                 }),
+
+            MorphToMany::make('Roles', 'roles', Role::class),
+
+            //MorphToMany::make('Permissions', 'permissions', Permission::class),
+
+            PermissionBooleanGroup::make('Permissions', 'permissions', null, 'description'),
         ];
     }
 
