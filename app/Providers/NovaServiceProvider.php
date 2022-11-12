@@ -25,7 +25,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
-        Footer::set('<p class="text-center">My Testing Footer</p>');
+        Footer::set('<p class="text-center">All right reserved.</p>');
     }
 
     /**
