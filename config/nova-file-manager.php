@@ -29,6 +29,7 @@ return [
     */
     'available_disks' => [
         'public',
+        'backup',
         // 's3',
         // 'ftp',
         // ... more disks

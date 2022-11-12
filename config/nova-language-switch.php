@@ -14,7 +14,9 @@ return [
     */
     'supported-languages' => [
         'en' => 'English',
+        'bn' => 'Bangla',
         'ar' => 'Arabic',
+
     ],
 
 
