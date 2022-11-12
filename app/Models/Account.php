@@ -23,6 +23,6 @@ class Account extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new EnabledScope);
+        //static::addGlobalScope(new EnabledScope);
     }
 }
