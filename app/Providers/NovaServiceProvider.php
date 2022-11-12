@@ -3,9 +3,14 @@
 namespace App\Providers;
 
 use App\Nova\Account;
+use App\Nova\Asset;
 use App\Nova\Chart;
 use App\Nova\Configuration;
 use App\Nova\Dashboards\MainDashboard;
+use App\Nova\Equity;
+use App\Nova\Expense;
+use App\Nova\Liability;
+use App\Nova\Revenue;
 use App\Nova\User;
 use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\Facades\Gate;
@@ -45,28 +50,25 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->icon('chart-bar'),
 
                 MenuSection::resource(User::class)
-                ->icon('user'),
+                    ->icon('user'),
 
-/*                MenuSection::make('Vehicle Hub', [
-                    MenuItem::link('All Vehicles', '/resources/vehicles'),
-                    MenuItem::link('Active Vehicles', '/resources/vehicles/lens/vehicle-active-vehicle-status-lens'),
-                    MenuItem::resource(Pickup::class),
-                    MenuItem::resource(AuctionAssignment::class),
-
-                ])->icon('collection')->collapsable(),
-
-                MenuSection::make('Money Hub', [
-                    MenuItem::resource(Payment::class),
-                    // MenuItem::resource(Expense::class),
-                    MenuItem::resource(Ledger::class),
-
-                ])->icon('cash')->collapsable(),*/
+                MenuSection::make('Accounts', [
+                    MenuItem::resource(Asset::class),
+                    MenuItem::resource(Liability::class),
+                    MenuItem::resource(Equity::class),
+                    MenuItem::resource(Revenue::class),
+                    MenuItem::resource(Expense::class)
+                ])
+                    ->icon('cash')
+                    ->collapsable(),
 
                 MenuSection::make('Settings', [
                     MenuItem::resource(Account::class),
                     MenuItem::resource(Chart::class),
                     MenuItem::resource(Configuration::class),
-                ])->icon('cog')->collapsable(),
+                ])
+                    ->icon('cog')
+                    ->collapsable(),
             ];
         });
 
