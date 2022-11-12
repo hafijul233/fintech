@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\EnabledScope;
 use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
