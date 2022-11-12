@@ -18,7 +18,7 @@ class CreateActionEventsTable extends Migration
         Schema::create('action_events', function (Blueprint $table) {
             $table->id();
             $table->char('batch_id', 36);
-            $table->foreignIdFor(Util::userModel(), 'user_id')->index();
+            $table->foreignId('user_id')->index();
             $table->string('name');
             $table->morphs('actionable');
             $table->morphs('target');

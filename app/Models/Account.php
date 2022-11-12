@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\EnabledScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
@@ -17,12 +17,13 @@ class Account extends Model
     ];
 
     /**
-     * The "booted" method of the model.
+     * get the list of only enabled list
      *
-     * @return void
+     * @param Builder $query
+     * @return Builder
      */
-    protected static function booted(): void
+    public function scopeEnabled(Builder $query): Builder
     {
-        //static::addGlobalScope(new EnabledScope);
+        return $query->where('enabled', "=", true);
     }
 }

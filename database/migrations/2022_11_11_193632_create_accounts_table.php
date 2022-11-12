@@ -15,6 +15,8 @@ return new class extends Migration {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedSmallInteger('start')->nullable();
+            $table->unsignedSmallInteger('end')->nullable();
             $table->boolean('enabled');
             $table->timestamps();
         });

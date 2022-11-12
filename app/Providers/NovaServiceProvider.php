@@ -2,10 +2,17 @@
 
 namespace App\Providers;
 
+use App\Nova\Account;
+use App\Nova\Chart;
+use App\Nova\Configuration;
 use App\Nova\Dashboards\MainDashboard;
+use App\Nova\User;
 use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Support\Facades\Gate;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\LogViewer\LogViewer;
+use Laravel\Nova\Menu\MenuItem;
+use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use Oneduo\NovaFileManager\NovaFileManager;
@@ -25,6 +32,44 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Nova::userTimezone(function (NovaRequest $request) {
+            return ($request->user())
+                ? $request->user()->timezone
+                : config('app.timezone');
+        });
+
+        Nova::mainMenu(function (NovaRequest $request) {
+            return [
+                MenuSection::dashboard(MainDashboard::class)
+                    ->icon('chart-bar'),
+
+                MenuSection::resource(User::class)
+                ->icon('user'),
+
+/*                MenuSection::make('Vehicle Hub', [
+                    MenuItem::link('All Vehicles', '/resources/vehicles'),
+                    MenuItem::link('Active Vehicles', '/resources/vehicles/lens/vehicle-active-vehicle-status-lens'),
+                    MenuItem::resource(Pickup::class),
+                    MenuItem::resource(AuctionAssignment::class),
+
+                ])->icon('collection')->collapsable(),
+
+                MenuSection::make('Money Hub', [
+                    MenuItem::resource(Payment::class),
+                    // MenuItem::resource(Expense::class),
+                    MenuItem::resource(Ledger::class),
+
+                ])->icon('cash')->collapsable(),*/
+
+                MenuSection::make('Settings', [
+                    MenuItem::resource(Account::class),
+                    MenuItem::resource(Chart::class),
+                    MenuItem::resource(Configuration::class),
+                ])->icon('cog')->collapsable(),
+            ];
+        });
+
         Footer::set('<p class="text-center">All right reserved.</p>');
     }
 
@@ -65,7 +110,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [
-            new MainDashboard,
+            //new MainDashboard,
         ];
     }
 

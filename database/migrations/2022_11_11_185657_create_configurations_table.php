@@ -12,20 +12,18 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('configurations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')
                 ->nullable()
                 ->constrained('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreignId('account_id')
-                ->nullable()
-                ->constrained('accounts')
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
             $table->string('name');
-            $table->boolean('enabled');
+            $table->text('value')->nullable();
+            $table->boolean('enabled')
+                ->nullable()
+                ->default(true);
             $table->timestamps();
         });
     }
@@ -37,6 +35,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('configurations');
     }
 };

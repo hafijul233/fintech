@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
@@ -17,6 +18,10 @@ class OnlyUserScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
+        if ($model instanceof User) {
+            $builder->where($model->getTable() . '.id', "=", request()->user()->id);
+        }
+
         if (auth()->user()) {
             $builder->where($model->getTable() . '.user_id', "=", request()->user()->id);
         }
