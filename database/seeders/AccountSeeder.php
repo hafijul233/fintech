@@ -59,6 +59,7 @@ class AccountSeeder extends Seeder
             foreach ($accounts as $account) {
                 Account::create($account);
             }
+            DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             $this->command->error($exception->getMessage());

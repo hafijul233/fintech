@@ -29,8 +29,10 @@ class Chart extends Model
         static::addGlobalScope(new OnlyUserScope);
 
         static::creating(function (Chart $category) {
-            $category->user_id = request()->user()->id ?? null;
-            $category->getDirty();
+            if (auth()->user()) {
+                $category->user_id = $category->user_id ?? request()->user()->id;
+                $category->getDirty();
+            }
         });
     }
 

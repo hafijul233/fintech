@@ -17,6 +17,7 @@ class ChartSeeder extends Seeder
      */
     public function run(...$params)
     {
+
         $user_id = $params[0] ?? null;
 
         $charts = [
@@ -188,7 +189,7 @@ class ChartSeeder extends Seeder
                 ['code' => '580', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Permits expense', 'enabled' => true],
                 ['code' => '581', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Postage expense', 'enabled' => true],
                 ['code' => '582', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Property taxes expense', 'enabled' => true],
-                ['code' => '582', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Repairs expense', 'enabled' => true],
+                ['code' => '583', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Repairs expense', 'enabled' => true],
                 ['code' => '584', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Selling expense', 'enabled' => true],
                 ['code' => '585', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Telephone expense', 'enabled' => true],
                 ['code' => '587', 'user_id' => NULL, 'account_id' => NULL, 'name' => 'Travel and entertainment expense', 'enabled' => true],
@@ -207,6 +208,7 @@ class ChartSeeder extends Seeder
                     Chart::create($entry);
                 }
             }
+            DB::commit();
         } catch (\Exception $exception) {
             DB::rollBack();
             $this->command->error($exception->getMessage());
