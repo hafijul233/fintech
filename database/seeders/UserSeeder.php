@@ -17,14 +17,15 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'id' => 1,
             'name' => 'Hafijul Islam',
             'email' => 'hafijul233@gmail.com',
             'phone_code' => '880',
             'phone' => '(168) 955-3434',
             'password' => Hash::make('password'),
-            'street' => null,
-            'city' => null,
-            'state' => null,
+            'street' => 'Shamlapur',
+            'city' => 'Savar',
+            'state' => 'Dhaka',
             'zipcode' => '1310',
             'country' => 'BD',
             'timezone' => 'Asia/Dhaka',
