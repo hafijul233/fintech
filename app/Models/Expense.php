@@ -9,7 +9,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Expense extends Model  implements Auditable, HasMedia
+class Expense extends Model implements Auditable, HasMedia
 {
     use \OwenIt\Auditing\Auditable;
     use InteractsWithMedia;
