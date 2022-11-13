@@ -3,6 +3,8 @@
 namespace App\Nova\Metrics\Equity;
 
 use App\Models\Equity;
+use DateInterval;
+use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 
@@ -26,7 +28,7 @@ class TotalEquity extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sum($request, Equity::class, 'amount','entry');
+        return $this->sum($request, Equity::class, 'amount', 'entry');
     }
 
     /**
@@ -51,7 +53,7 @@ class TotalEquity extends Value
     /**
      * Determine the amount of time the results of the metric should be cached.
      *
-     * @return \DateTimeInterface|\DateInterval|float|int|null
+     * @return DateTimeInterface|DateInterval|float|int|null
      */
     public function cacheFor()
     {

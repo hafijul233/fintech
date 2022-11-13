@@ -41,6 +41,16 @@ class User extends Resource
         'id', 'name', 'email',
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query = parent::indexQuery($request, $query);
+
+        $query->where('id', '=', $request->user()->id)
+            ->orWhere('user_id', '=', $request->user()->id);
+
+        return $query;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

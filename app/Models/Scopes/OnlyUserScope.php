@@ -18,12 +18,6 @@ class OnlyUserScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-
-        if (request()->user()) {
-            if ($model instanceof User) {
-                $builder->where($model->getTable() . '.id', "=", request()->user()->id);
-            }
-            $builder->where($model->getTable() . '.user_id', "=", request()->user()->id);
-        }
+        $builder->where($model->getTable() . '.user_id', "=", request()->user()->id);
     }
 }

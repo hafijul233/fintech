@@ -10,6 +10,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 class Asset extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
+
     protected $casts = [
         'entry' => 'date',
         'amount' => 'float'

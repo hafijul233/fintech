@@ -34,6 +34,12 @@ class Account extends Resource
         'id', 'name'
     ];
 
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

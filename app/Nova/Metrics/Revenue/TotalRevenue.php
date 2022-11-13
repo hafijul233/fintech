@@ -2,8 +2,9 @@
 
 namespace App\Nova\Metrics\Revenue;
 
-use App\Models\Asset;
 use App\Models\Revenue;
+use DateInterval;
+use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 
@@ -52,7 +53,7 @@ class TotalRevenue extends Value
     /**
      * Determine the amount of time the results of the metric should be cached.
      *
-     * @return \DateTimeInterface|\DateInterval|float|int|null
+     * @return DateTimeInterface|DateInterval|float|int|null
      */
     public function cacheFor()
     {

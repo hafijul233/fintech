@@ -3,6 +3,8 @@
 namespace App\Nova\Metrics\Liability;
 
 use App\Models\Liability;
+use DateInterval;
+use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 
@@ -26,7 +28,7 @@ class TotalLiability extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sum($request, Liability::class, 'amount','entry');
+        return $this->sum($request, Liability::class, 'amount', 'entry');
     }
 
     /**
@@ -47,10 +49,11 @@ class TotalLiability extends Value
             'YTD' => __('Year To Date'),
         ];
     }
+
     /**
      * Determine the amount of time the results of the metric should be cached.
      *
-     * @return \DateTimeInterface|\DateInterval|float|int|null
+     * @return DateTimeInterface|DateInterval|float|int|null
      */
     public function cacheFor()
     {

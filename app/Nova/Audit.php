@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Supports\Constant;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\DateTime;
@@ -36,11 +37,6 @@ class Audit extends Resource
         'user.name', 'user.email', 'event', 'auditable_type', 'auditable_id', 'old_values', 'new_values', 'url', 'ip_address', 'user_agent', 'tags',
     ];
 
-    public function authorizedToAdd(NovaRequest $request, $model)
-    {
-        return false;
-    }
-
     public function authorizedToDelete(Request $request)
     {
         return false;
@@ -52,6 +48,11 @@ class Audit extends Resource
     }
 
     public static function authorizedToCreate(Request $request)
+    {
+        return false;
+    }
+
+    public function authorizedToUpdate(Request $request)
     {
         return false;
     }
@@ -68,7 +69,7 @@ class Audit extends Resource
             ID::make()->sortable(),
 
             MorphTo::make('User')->types([
-                \App\Nova\User::class,
+                User::class,
             ])->nullable(),
 
             Badge::make('Event')
@@ -77,18 +78,20 @@ class Audit extends Resource
                     'updated' => 'warning',
                     'deleted' => 'danger',
                     'restored' => 'info',
-                ]),
+                ])
+                ->filterable(),
+
             MorphTo::make('Auditable')
                 ->types([
-                    \App\Nova\Account::class,
-                    \App\Nova\Asset::class,
-                    \App\Nova\Chart::class,
-                    \App\Nova\Configuration::class,
-                    \App\Nova\Equity::class,
-                    \App\Nova\Expense::class,
-                    \App\Nova\Liability::class,
-                    \App\Nova\Revenue::class,
-                    \App\Nova\User::class,
+                    Account::class,
+                    Asset::class,
+                    Chart::class,
+                    Configuration::class,
+                    Equity::class,
+                    Expense::class,
+                    Liability::class,
+                    Revenue::class,
+                    User::class,
                 ])->nullable(),
 
             KeyValue::make('Old Values', 'old_values')
@@ -120,7 +123,7 @@ class Audit extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -131,7 +134,7 @@ class Audit extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -142,7 +145,7 @@ class Audit extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -153,7 +156,7 @@ class Audit extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)

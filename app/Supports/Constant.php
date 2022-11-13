@@ -14,4 +14,11 @@ class Constant
 
     const AC_EXPENSE = 5;
 
+    const AUDIT_EVENTS = [
+        'created' => 'Create',
+        'updated' => 'Update',
+        'deleted' => 'Delete',
+        'restored' => 'Restore',
+    ];
+
 }

@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Nova\Account;
 use App\Nova\Asset;
 use App\Nova\Audit;
 use App\Nova\Chart;
