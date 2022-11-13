@@ -34,11 +34,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(function (Request $request) {
-            return ($request->user())
-                ? $request->user()->timezone
-                : config('app.timezone');
-        });
+        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'));
 
         Nova::mainMenu(function () {
             return [
@@ -120,9 +116,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             NovaBackNavigation::make(),
             LanguageSwitch::make(),
-/*            NovaFileManager::make(),
-            LogViewer::make(),
-            BackupTool::make(),*/
+            /*            NovaFileManager::make(),
+                        LogViewer::make(),
+                        BackupTool::make(),*/
         ];
     }
 

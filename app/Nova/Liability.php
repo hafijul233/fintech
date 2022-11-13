@@ -40,7 +40,7 @@ class Liability extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->asBigInt()->sortable(),
         ];
     }
 

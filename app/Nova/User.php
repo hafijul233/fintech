@@ -49,7 +49,7 @@ class User extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->asBigInt()->sortable(),
 
             Gravatar::make()->maxWidth(50),
 
@@ -110,9 +110,7 @@ class User extends Resource
                 ->required()
                 ->hideFromIndex()
                 ->displayUsingLabels()
-                ->default(function () {
-                    return config('app.timezone');
-                }),
+                ->default(fn() => config('app.timezone')),
         ];
     }
 

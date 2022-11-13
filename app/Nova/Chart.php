@@ -43,7 +43,7 @@ class Chart extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->sortable(),
+            ID::make()->asBigInt()->sortable(),
 
             BelongsTo::make('User', 'user', User::class)->onlyOnDetail(),
 
