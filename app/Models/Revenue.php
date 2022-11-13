@@ -22,7 +22,7 @@ class Revenue extends Model implements Auditable, HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('attachments')
-            ->useDisk('public');
+            ->useDisk('attachments');
     }
 
     protected $casts = [
