@@ -25,12 +25,12 @@ class Chart extends Model
      */
     protected static function booted(): void
     {
-        //static::addGlobalScope(new OnlyUserScope);
+        static::addGlobalScope(new OnlyUserScope);
 
-        static::creating(function (Chart $category) {
+        static::creating(function (Chart $chart) {
             if (auth()->user()) {
-                $category->user_id = $category->user_id ?? request()->user()->id;
-                $category->getDirty();
+                $chart->user_id = $chart->user_id ?? request()->user()->id;
+                $chart->getDirty();
             }
         });
     }
