@@ -13,6 +13,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "ext-pdo": "*",
+        "ext-json": "*",
         "alexwenzel/nova-dependency-container": "^1.7",
         "badinansoft/nova-language-switch": "^1.0",
         "coroowicaksono/chart-js-integration": "^0.4.0",
