@@ -55,7 +55,7 @@ class User extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -85,7 +85,8 @@ class User extends Resource
                 ->displayUsingLabels(),
 
             MaskedField::make('Phone')
-                ->mask('(###) ###-####'),
+                ->mask('(###) ###-####')
+                ->displayUsing(fn() => "{$this->phone_code} {$this->phone}"),
 
             Password::make('Password')
                 ->onlyOnForms()
@@ -124,7 +125,7 @@ class User extends Resource
                 ->required()
                 ->hideFromIndex()
                 ->displayUsingLabels()
-                ->default(fn () => config('app.timezone')),
+                ->default(fn() => config('app.timezone')),
 
             DateTime::make('Created', 'created_at')
                 ->exceptOnForms(),
@@ -139,7 +140,7 @@ class User extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -152,7 +153,7 @@ class User extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -163,7 +164,7 @@ class User extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -174,7 +175,7 @@ class User extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)
