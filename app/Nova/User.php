@@ -44,8 +44,6 @@ class User extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query = parent::indexQuery($request, $query);
-
         $query->where('id', '=', $request->user()->id)
             ->orWhere('user_id', '=', $request->user()->id);
 
