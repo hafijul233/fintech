@@ -629,6 +629,6 @@ return [
         '681' => 'Wallis and Futuna (+681)',
         '967' => 'Yemen (+967)',
         '260' => 'Zambia (+260)',
-        '263' => 'Zimbabwe (+263)'
+        '263' => 'Zimbabwe (+263)',
     ],
 ];

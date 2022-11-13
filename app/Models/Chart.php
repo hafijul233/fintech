@@ -42,12 +42,12 @@ class Chart extends Model implements Auditable
     /**
      * get the list of only enabled list
      *
-     * @param Builder $query
+     * @param  Builder  $query
      * @return Builder
      */
     public function scopeEnabled(Builder $query): Builder
     {
-        return $query->where('enabled', "=", true);
+        return $query->where('enabled', '=', true);
     }
 
     public function user(): BelongsTo
@@ -80,11 +80,8 @@ class Chart extends Model implements Auditable
         return $this->hasMany(Revenue::class);
     }
 
-
     public function expenses(): HasMany
     {
         return $this->hasMany(Expense::class);
     }
-
-
 }

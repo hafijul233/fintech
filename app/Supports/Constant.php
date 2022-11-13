@@ -20,5 +20,4 @@ class Constant
         'deleted' => 'Delete',
         'restored' => 'Restore',
     ];
-
 }

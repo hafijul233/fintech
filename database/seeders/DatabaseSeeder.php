@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AccountSeeder::class,
             UserSeeder::class,
-            ConfigurationSeeder::class
+            ConfigurationSeeder::class,
         ]);
 
         $this->call(ChartSeeder::class, false, ['user_id' => 1]);

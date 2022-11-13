@@ -11,7 +11,6 @@ use Laravel\Nova\Metrics\ValueResult;
 
 class TotalAsset extends Value
 {
-
     /**
      * Get the displayable name of the metric.
      *
@@ -25,7 +24,7 @@ class TotalAsset extends Value
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return ValueResult
      */
     public function calculate(NovaRequest $request)
@@ -51,7 +50,6 @@ class TotalAsset extends Value
             'YTD' => __('Year To Date'),
         ];
     }
-
 
     /**
      * Determine the amount of time the results of the metric should be cached.

@@ -43,7 +43,7 @@ class Revenue extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -53,8 +53,8 @@ class Revenue extends Resource
 
             Date::make('Entry', 'entry')
                 ->required()
-                ->default(fn() => date('Y-m-d'))
-                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:' . date('Y-m-d')]),
+                ->default(fn () => date('Y-m-d'))
+                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:'.date('Y-m-d')]),
 
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
@@ -62,12 +62,12 @@ class Revenue extends Resource
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_REVENUE)
-                        ->get()->pluck('id')->toArray())
+                        ->get()->pluck('id')->toArray()),
                 ])->showCreateRelationButton(),
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn() => \App\Models\Asset::select('description')
+                ->suggestions(fn () => \App\Models\Asset::select('description')
                     ->get()->pluck('description')->toArray()
                 ),
 
@@ -75,7 +75,7 @@ class Revenue extends Resource
                 ->step(4)
                 ->required()
                 ->min(0)
-                ->displayUsing(fn($value) => number_format($value, 2)),
+                ->displayUsing(fn ($value) => number_format($value, 2)),
 
             Textarea::make('Notes', 'notes')
                 ->nullable(),
@@ -86,14 +86,14 @@ class Revenue extends Resource
             DateTime::make('Updated', 'updated_at')
                 ->exceptOnForms(),
 
-            AuditableLog::make()
+            AuditableLog::make(),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -101,14 +101,14 @@ class Revenue extends Resource
         return [
             TotalRevenue::make()
                 ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange()
+                ->refreshWhenFiltersChange(),
         ];
     }
 
     /**
      * Get the filters available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -119,7 +119,7 @@ class Revenue extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -130,7 +130,7 @@ class Revenue extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

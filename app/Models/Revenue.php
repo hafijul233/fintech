@@ -13,7 +13,7 @@ class Revenue extends Model implements Auditable
 
     protected $casts = [
         'entry' => 'date',
-        'amount' => 'float'
+        'amount' => 'float',
     ];
 
     /**
