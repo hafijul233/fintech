@@ -44,14 +44,6 @@ return [
             'throw' => false,
         ],
 
-        'backup' => [
-            'driver' => 'local',
-            'root' => storage_path('app/backup'),
-            'url' => env('APP_URL') . '/backup',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
-
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -79,7 +71,6 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('storage/backup') => storage_path('app/backup'),
     ],
 
 ];

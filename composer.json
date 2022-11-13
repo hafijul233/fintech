@@ -17,6 +17,7 @@
         "badinansoft/nova-language-switch": "^1.0",
         "coroowicaksono/chart-js-integration": "^0.4.0",
         "devpartners/auditable-log": "^2.0",
+        "ebess/advanced-nova-media-library": "^4.0",
         "formfeed-uk/nova-breadcrumbs": "^1.1",
         "greg0x46/masked-field": "^1.0",
         "guzzlehttp/guzzle": "^7.2",

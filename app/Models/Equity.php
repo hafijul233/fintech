@@ -6,10 +6,24 @@ use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use OwenIt\Auditing\Contracts\Auditable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Equity extends Model implements Auditable
+class Equity extends Model implements Auditable, HasMedia
 {
     use \OwenIt\Auditing\Auditable;
+    use InteractsWithMedia;
+
+    /**
+     * Register profile Image Media Collection
+     *
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('attachments')
+            ->useDisk('public');
+    }
 
     protected $casts = [
         'entry' => 'date',
