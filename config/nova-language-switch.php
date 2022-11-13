@@ -16,7 +16,6 @@ return [
         'en' => 'English',
         'bn' => 'Bangla',
         'ar' => 'Arabic',
-
     ],
 
 
