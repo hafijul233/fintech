@@ -15,11 +15,24 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->nullable()->constrained('users');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedSmallInteger('phone_code')
+                ->nullable()->default('880');
+            $table->string('phone')->nullable();
             $table->string('password');
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('country')->nullable();
+            $table->string('timezone')->nullable()
+                ->default(config('app.timezone'));
+            $table->text('notes')->nullable();
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }

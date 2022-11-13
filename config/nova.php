@@ -1,5 +1,6 @@
 <?php
 
+use Badinansoft\LanguageSwitch\Http\Middleware\LanguageSwitch;
 use Laravel\Nova\Actions\ActionResource;
 use Laravel\Nova\Http\Middleware\Authenticate;
 use Laravel\Nova\Http\Middleware\Authorize;
@@ -59,7 +60,7 @@ return [
     |
     */
 
-    'path' => '/nova',
+    'path' => '/',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,6 +104,7 @@ return [
         HandleInertiaRequests::class,
         DispatchServingNovaEvent::class,
         BootTools::class,
+        LanguageSwitch::class,
     ],
 
     'api_middleware' => [

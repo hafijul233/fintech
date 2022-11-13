@@ -13,16 +13,25 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "alexwenzel/nova-dependency-container": "^1.7",
+        "badinansoft/nova-language-switch": "^1.0",
+        "coroowicaksono/chart-js-integration": "^0.4.0",
+        "devpartners/auditable-log": "^2.0",
+        "ebess/advanced-nova-media-library": "^4.0",
+        "formfeed-uk/nova-breadcrumbs": "^1.1",
+        "greg0x46/masked-field": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/nova": "^4.18",
+        "laravel/nova-log-viewer": "^0.1.4",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "owen-it/laravel-auditing": "^13.0",
+        "wdelfuego/nova-calendar": "^1.6"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
+        "laravel/tinker": "^2.7",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "phpunit/phpunit": "^9.5.10",
@@ -43,7 +52,9 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan storage:link --ansi"
+
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",

@@ -3,25 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +30,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function (User $user) {
+            $user->user_id = request()->user()->id ?? null;
+            $user->getDirty();
+        });
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'user_id');
+    }
 }
