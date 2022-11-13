@@ -63,7 +63,7 @@ class MainDashboard extends Dashboard
                 ->refreshWhenFiltersChange(),
             TotalExpense::make()
                 ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange()
+                ->refreshWhenFiltersChange(),
         ];
     }
 }

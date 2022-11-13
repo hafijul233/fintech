@@ -27,7 +27,7 @@ class Asset extends Model implements Auditable, HasMedia
 
     protected $casts = [
         'entry' => 'date',
-        'amount' => 'float'
+        'amount' => 'float',
     ];
 
     /**

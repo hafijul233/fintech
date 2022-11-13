@@ -2,7 +2,7 @@
 
 return [
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | Always Link to Parent
         |--------------------------------------------------------------------------
@@ -12,36 +12,36 @@ return [
         | the index view for that resource
         |
         | Default Value: false
-        | Default Behaviour: 
+        | Default Behaviour:
         | Where a resource is in the main navigation, links to that resource will
         | go to its index view.
-        | 
+        |
         | Can be overridden on a per resource basis with:
         | public static $linkToParent = true|false;
         |
         */
-        "linkToParent" => false,
+    'linkToParent' => false,
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | Model Parent method
         |--------------------------------------------------------------------------
         |
-        | The name of the optional method on the resources model that defines the 
+        | The name of the optional method on the resources model that defines the
         | parent model
         |
         | Default Value: parent
         |
         */
-        "parentMethod" => "parent",
+    'parentMethod' => 'parent',
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | Use Invoking Reflection
         |--------------------------------------------------------------------------
         |
-        | If the package can't get the parent relationship from either a specified 
-        | "parent" method, a Nova/Fields/BelongsTo field, or a method with BelongsTo 
+        | If the package can't get the parent relationship from either a specified
+        | "parent" method, a Nova/Fields/BelongsTo field, or a method with BelongsTo
         | return type on the underlying model, it will attempt to find the parent
         | via creating a new blank model, invoking the methods, and reading the
         | response types.
@@ -60,9 +60,9 @@ return [
         | Default Value: false
         |
         */
-        "invokingReflection" => false,
+    'invokingReflection' => false,
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | Title Static Property
         |--------------------------------------------------------------------------
@@ -70,28 +70,28 @@ return [
         | The static property on a nova resource that stores the "title" column to
         | use as the label for resource record crumbs.
         |
-        | Default: "title"  
+        | Default: "title"
         |
         */
-        "titleProperty" => "title",
+    'titleProperty' => 'title',
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | Label static method
         |--------------------------------------------------------------------------
         |
         | The resource static method to use to determine the label and
-        | singular label for the resource name 
+        | singular label for the resource name
         |
-        | Default: 
+        | Default:
         | labelFunction: "label"
-        | singularLabelFunction: "singularLabel"  
+        | singularLabelFunction: "singularLabel"
         |
         */
-        "labelFunction" => "label",
-        "singularLabelFunction" => "singularLabel",
+    'labelFunction' => 'label',
+    'singularLabelFunction' => 'singularLabel',
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | Global CSS Classes
         |--------------------------------------------------------------------------
@@ -101,7 +101,6 @@ return [
         | Can be added to on a per-resource basis using withClasses()
         |
         */
-        "cssClasses" => [],
+    'cssClasses' => [],
 
-    
 ];

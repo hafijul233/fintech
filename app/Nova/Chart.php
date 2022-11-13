@@ -34,7 +34,7 @@ class Chart extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name'
+        'id', 'name',
     ];
 
     public static function indexQuery(NovaRequest $request, $query)
@@ -42,23 +42,23 @@ class Chart extends Resource
         $query = parent::indexQuery($request, $query);
 
         switch ($request->route('resource')) {
-            case 'assets' :
+            case 'assets':
                 $query->where('account_id', Constant::AC_ASSET);
                 break;
 
-            case 'liabilities' :
+            case 'liabilities':
                 $query->where('account_id', Constant::AC_LIABILITY);
                 break;
 
-            case 'equities' :
+            case 'equities':
                 $query->where('account_id', Constant::AC_EQUITY);
                 break;
 
-            case 'revenues' :
+            case 'revenues':
                 $query->where('account_id', Constant::AC_REVENUE);
                 break;
 
-            case 'expenses' :
+            case 'expenses':
                 $query->where('account_id', Constant::AC_EXPENSE);
                 break;
         }
@@ -69,7 +69,7 @@ class Chart extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -95,14 +95,14 @@ class Chart extends Resource
             DateTime::make('Updated', 'updated_at')
                 ->exceptOnForms(),
 
-            AuditableLog::make()
+            AuditableLog::make(),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -115,7 +115,7 @@ class Chart extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -126,7 +126,7 @@ class Chart extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -137,7 +137,7 @@ class Chart extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

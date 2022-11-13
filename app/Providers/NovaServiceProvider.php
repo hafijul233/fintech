@@ -32,7 +32,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -46,7 +46,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(Liability::class),
                         MenuItem::resource(Equity::class),
                         MenuItem::resource(Revenue::class),
-                        MenuItem::resource(Expense::class)
+                        MenuItem::resource(Expense::class),
                     ])
                         ->icon('cash')
                         ->collapsable(),
@@ -55,11 +55,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(Audit::class),
                         MenuItem::resource(Chart::class),
                         MenuItem::resource(Configuration::class),
-                        MenuItem::link('Logs', 'logs')
+                        MenuItem::link('Logs', 'logs'),
                     ])
                         ->icon('cog')
                         ->collapsable(),
-
 
                 ];
             });
