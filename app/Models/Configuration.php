@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Configuration extends Model
+class Configuration extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
     /**
      * The attributes that should be cast.
      *

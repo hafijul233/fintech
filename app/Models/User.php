@@ -3,14 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Auditable
 {
-    use HasApiTokens, Notifiable;
+    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,6 +44,11 @@ class User extends Authenticatable
            $user->user_id = request()->user()->id ?? null;
            $user->getDirty();
         });
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'user_id');
     }
 
 }

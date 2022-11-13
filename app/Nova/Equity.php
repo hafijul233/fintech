@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\Equity\TotalEquity;
 use App\Supports\Constant;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -42,7 +42,7 @@ class Equity extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -58,6 +58,7 @@ class Equity extends Resource
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
                 ->searchable()
+                ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_EQUITY)
                         ->get()->pluck('id')->toArray())
@@ -89,18 +90,22 @@ class Equity extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            TotalEquity::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange()
+        ];
     }
 
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -111,7 +116,7 @@ class Equity extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -122,7 +127,7 @@ class Equity extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)

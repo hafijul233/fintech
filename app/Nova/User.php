@@ -5,12 +5,12 @@ namespace App\Nova;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Greg0x46\MaskedField\MaskedField;
 use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Country;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Email;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -51,6 +51,8 @@ class User extends Resource
     {
         return [
             ID::make()->asBigInt()->sortable(),
+
+            BelongsTo::make('Referred By', 'parent', User::class)->onlyOnDetail(),
 
             Gravatar::make()->maxWidth(50),
 

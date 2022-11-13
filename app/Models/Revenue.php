@@ -5,9 +5,12 @@ namespace App\Models;
 use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Revenue extends Model
+class Revenue extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     protected $casts = [
         'entry' => 'date',
         'amount' => 'float'

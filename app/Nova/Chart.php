@@ -40,6 +40,8 @@ class Chart extends Resource
     {
         $query = parent::indexQuery($request, $query);
 
+        logger("associate", ["resource" => $request->route('resource'), "field" => $request->route('field')]);
+
         switch ($request->route('resource')) {
             case 'assets' :
                 $query->where('account_id', Constant::AC_ASSET);

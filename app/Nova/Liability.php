@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\Liability\TotalLiability;
 use App\Supports\Constant;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -58,6 +58,7 @@ class Liability extends Resource
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
                 ->searchable()
+                ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_LIABILITY)
                         ->get()->pluck('id')->toArray())
@@ -94,7 +95,11 @@ class Liability extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            TotalLiability::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange()
+        ];
     }
 
     /**

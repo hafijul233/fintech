@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Nova\Account;
 use App\Nova\Asset;
+use App\Nova\Audit;
 use App\Nova\Chart;
 use App\Nova\Configuration;
 use App\Nova\Dashboards\MainDashboard;
@@ -15,7 +16,6 @@ use App\Nova\User;
 use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\LogViewer\LogViewer;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
@@ -34,35 +34,35 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'));
+        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+            ->mainMenu(function () {
+                return [
+                    MenuSection::dashboard(MainDashboard::class)
+                        ->icon('chart-bar'),
 
-        Nova::mainMenu(function () {
-            return [
-                MenuSection::dashboard(MainDashboard::class)
-                    ->icon('chart-bar'),
+                    MenuSection::resource(User::class)
+                        ->icon('user'),
 
-                MenuSection::resource(User::class)
-                    ->icon('user'),
+                    MenuSection::make('Accounts', [
+                        MenuItem::resource(Asset::class),
+                        MenuItem::resource(Liability::class),
+                        MenuItem::resource(Equity::class),
+                        MenuItem::resource(Revenue::class),
+                        MenuItem::resource(Expense::class)
+                    ])
+                        ->icon('cash')
+                        ->collapsable(),
 
-                MenuSection::make('Accounts', [
-                    MenuItem::resource(Asset::class),
-                    MenuItem::resource(Liability::class),
-                    MenuItem::resource(Equity::class),
-                    MenuItem::resource(Revenue::class),
-                    MenuItem::resource(Expense::class)
-                ])
-                    ->icon('cash')
-                    ->collapsable(),
+                    MenuSection::make('Settings', [
+                        MenuItem::resource(Audit::class),
+                        MenuItem::resource(Chart::class),
+                        MenuItem::resource(Configuration::class),
+                    ])
+                        ->icon('cog')
+                        ->collapsable(),
 
-                MenuSection::make('Settings', [
-                    MenuItem::resource(Account::class),
-                    MenuItem::resource(Chart::class),
-                    MenuItem::resource(Configuration::class),
-                ])
-                    ->icon('cog')
-                    ->collapsable(),
-            ];
-        });
+                ];
+            });
     }
 
     /**
@@ -116,9 +116,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             NovaBackNavigation::make(),
             LanguageSwitch::make(),
-            /*            NovaFileManager::make(),
-                        LogViewer::make(),
-                        BackupTool::make(),*/
+            LogViewer::make(),
         ];
     }
 

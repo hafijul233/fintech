@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\Revenue\TotalRevenue;
 use App\Supports\Constant;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -58,6 +58,7 @@ class Revenue extends Resource
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
                 ->searchable()
+                ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_REVENUE)
                         ->get()->pluck('id')->toArray())
@@ -94,7 +95,11 @@ class Revenue extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            TotalRevenue::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange()
+        ];
     }
 
     /**

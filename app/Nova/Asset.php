@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\Asset\TotalAsset;
 use App\Supports\Constant;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
@@ -41,7 +42,7 @@ class Asset extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -57,6 +58,7 @@ class Asset extends Resource
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
                 ->searchable()
+                ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_ASSET)
                         ->get()->pluck('id')->toArray())
@@ -88,18 +90,22 @@ class Asset extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            TotalAsset::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange()
+        ];
     }
 
     /**
      * Get the filters available for the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -110,7 +116,7 @@ class Asset extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -121,7 +127,7 @@ class Asset extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)

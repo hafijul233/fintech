@@ -7,9 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use OwenIt\Auditing\Contracts\Auditable;
 
-class Chart extends Model
+class Chart extends Model implements Auditable
 {
+    use \OwenIt\Auditing\Auditable;
+
     /**
      * The attributes that should be cast.
      *

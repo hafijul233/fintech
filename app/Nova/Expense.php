@@ -2,8 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Metrics\Expense\TotalExpense;
 use App\Supports\Constant;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -58,6 +58,7 @@ class Expense extends Resource
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
                 ->searchable()
+                ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_EXPENSE)
                         ->get()->pluck('id')->toArray())
@@ -94,7 +95,11 @@ class Expense extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            TotalExpense::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange()
+        ];
     }
 
     /**
