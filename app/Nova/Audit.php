@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Supports\Constant;
+use Devpartners\AuditableLog\AuditableLog;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\DateTime;
@@ -115,8 +116,6 @@ class Audit extends Resource
             DateTime::make('Created At')->exceptOnForms(),
 
             DateTime::make('Updated At')->exceptOnForms(),
-
-
         ];
     }
 

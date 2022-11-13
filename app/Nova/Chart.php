@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Supports\Constant;
+use Devpartners\AuditableLog\AuditableLog;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -93,6 +94,8 @@ class Chart extends Resource
 
             DateTime::make('Updated', 'updated_at')
                 ->exceptOnForms(),
+
+            AuditableLog::make()
         ];
     }
 

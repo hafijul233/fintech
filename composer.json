@@ -25,7 +25,6 @@
         "laravel/nova-log-viewer": "^0.1.4",
         "laravel/sanctum": "^3.0",
         "owen-it/laravel-auditing": "^13.0",
-        "visanduma/nova-back-navigation": "^1.0",
         "wdelfuego/nova-calendar": "^1.6"
     },
     "require-dev": {

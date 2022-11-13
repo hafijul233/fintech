@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Nova\Metrics\Equity\TotalEquity;
 use App\Supports\Constant;
+use Devpartners\AuditableLog\AuditableLog;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -84,6 +85,8 @@ class Equity extends Resource
 
             DateTime::make('Updated', 'updated_at')
                 ->exceptOnForms(),
+
+            AuditableLog::make()
         ];
     }
 

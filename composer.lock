@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a2273e1b93040613ce59d5d8c9a3da0",
+    "content-hash": "472c8561e9d6290ecde69dfb35fdf7f6",
     "packages": [
         {
             "name": "alexwenzel/nova-dependency-container",
@@ -6454,66 +6454,6 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/2.2.5"
             },
             "time": "2022-09-12T13:28:28+00:00"
-        },
-        {
-            "name": "visanduma/nova-back-navigation",
-            "version": "v1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Visanduma/nova-back-navigation.git",
-                "reference": "5b5cfe6cc41d02066ba8883fe6a634b672d87ee5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Visanduma/nova-back-navigation/zipball/5b5cfe6cc41d02066ba8883fe6a634b672d87ee5",
-                "reference": "5b5cfe6cc41d02066ba8883fe6a634b672d87ee5",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/nova": "^4.0",
-                "php": "^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Visanduma\\NovaBackNavigation\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Visanduma\\NovaBackNavigation\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Visanduma R & D (pvt) Ltd",
-                    "email": "info@visanduma.com",
-                    "role": "Owner"
-                },
-                {
-                    "name": "LaHiRu",
-                    "email": "lahirulhr@gmail.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "The missing Back button of NOVA",
-            "keywords": [
-                "Back",
-                "Visanduma",
-                "laravel",
-                "nova"
-            ],
-            "support": {
-                "issues": "https://github.com/Visanduma/nova-back-navigation/issues",
-                "source": "https://github.com/Visanduma/nova-back-navigation/tree/v1.0.3"
-            },
-            "time": "2022-10-31T04:52:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

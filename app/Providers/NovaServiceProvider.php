@@ -20,7 +20,6 @@ use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Visanduma\NovaBackNavigation\NovaBackNavigation;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -56,9 +55,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(Audit::class),
                         MenuItem::resource(Chart::class),
                         MenuItem::resource(Configuration::class),
+                        MenuItem::link('Logs', 'logs')
                     ])
                         ->icon('cog')
                         ->collapsable(),
+
 
                 ];
             });
@@ -113,7 +114,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            NovaBackNavigation::make(),
             LanguageSwitch::make(),
             LogViewer::make(),
         ];

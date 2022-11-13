@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Devpartners\AuditableLog\AuditableLog;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -56,6 +57,8 @@ class Configuration extends Resource
 
             DateTime::make('Updated', 'updated_at')
                 ->exceptOnForms(),
+
+            AuditableLog::make()
         ];
     }
 

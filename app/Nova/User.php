@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Devpartners\AuditableLog\AuditableLog;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Greg0x46\MaskedField\MaskedField;
 use Illuminate\Validation\Rules;
@@ -130,6 +131,8 @@ class User extends Resource
 
             DateTime::make('Updated', 'updated_at')
                 ->exceptOnForms(),
+
+            AuditableLog::make()
         ];
     }
 
