@@ -6,6 +6,7 @@ use Formfeed\Breadcrumbs\Breadcrumbs;
 use Greg0x46\MaskedField\MaskedField;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Country;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Email;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
@@ -111,6 +112,12 @@ class User extends Resource
                 ->hideFromIndex()
                 ->displayUsingLabels()
                 ->default(fn() => config('app.timezone')),
+
+            DateTime::make('Created', 'created_at')
+                ->exceptOnForms(),
+
+            DateTime::make('Updated', 'updated_at')
+                ->exceptOnForms(),
         ];
     }
 

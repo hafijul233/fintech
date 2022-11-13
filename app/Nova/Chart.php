@@ -2,9 +2,11 @@
 
 namespace App\Nova;
 
+use App\Supports\Constant;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -34,6 +36,35 @@ class Chart extends Resource
         'id', 'name'
     ];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query = parent::indexQuery($request, $query);
+
+        switch ($request->route('resource')) {
+            case 'assets' :
+                $query->where('account_id', Constant::AC_ASSET);
+                break;
+
+            case 'liabilities' :
+                $query->where('account_id', Constant::AC_LIABILITY);
+                break;
+
+            case 'equities' :
+                $query->where('account_id', Constant::AC_EQUITY);
+                break;
+
+            case 'revenues' :
+                $query->where('account_id', Constant::AC_REVENUE);
+                break;
+
+            case 'expenses' :
+                $query->where('account_id', Constant::AC_EXPENSE);
+                break;
+        }
+
+        return $query;
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -55,7 +86,13 @@ class Chart extends Resource
 
             Boolean::make('Enabled')
                 ->nullable()
-                ->default(true)
+                ->default(true),
+
+            DateTime::make('Created', 'created_at')
+                ->exceptOnForms(),
+
+            DateTime::make('Updated', 'updated_at')
+                ->exceptOnForms(),
         ];
     }
 

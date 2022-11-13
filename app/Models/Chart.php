@@ -6,6 +6,7 @@ use App\Models\Scopes\OnlyUserScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Chart extends Model
 {
@@ -55,4 +56,32 @@ class Chart extends Model
     {
         return $this->belongsTo(Account::class);
     }
+
+    public function assets(): HasMany
+    {
+        return $this->hasMany(Asset::class);
+    }
+
+    public function liabilities(): HasMany
+    {
+        return $this->hasMany(Liability::class);
+    }
+
+    public function equities(): HasMany
+    {
+        return $this->hasMany(Equity::class);
+    }
+
+    public function revenues(): HasMany
+    {
+        return $this->hasMany(Revenue::class);
+    }
+
+
+    public function expenses(): HasMany
+    {
+        return $this->hasMany(Expense::class);
+    }
+
+
 }

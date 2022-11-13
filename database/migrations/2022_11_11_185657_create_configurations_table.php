@@ -19,7 +19,7 @@ return new class extends Migration {
                 ->constrained('users')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->string('name');
+            $table->string('key');
             $table->text('value')->nullable();
             $table->boolean('enabled')
                 ->nullable()

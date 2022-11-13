@@ -2,8 +2,16 @@
 
 namespace App\Nova;
 
+use App\Supports\Constant;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Liability extends Resource
@@ -41,6 +49,40 @@ class Liability extends Resource
     {
         return [
             ID::make()->asBigInt()->sortable(),
+
+            Date::make('Entry', 'entry')
+                ->required()
+                ->default(fn() => date('Y-m-d'))
+                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:' . date('Y-m-d')]),
+
+            BelongsTo::make('Chart', 'chart', Chart::class)
+                ->required()
+                ->searchable()
+                ->rules(['required', 'integer',
+                    Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_LIABILITY)
+                        ->get()->pluck('id')->toArray())
+                ])->showCreateRelationButton(),
+
+            Text::make('Description', 'description')
+                ->required()
+                ->suggestions(fn() => \App\Models\Asset::select('description')
+                    ->get()->pluck('description')->toArray()
+                ),
+
+            Number::make('Amount', 'amount')
+                ->step(4)
+                ->required()
+                ->min(0)
+                ->displayUsing(fn($value) => number_format($value, 2)),
+
+            Textarea::make('Notes', 'notes')
+                ->nullable(),
+
+            DateTime::make('Created', 'created_at')
+                ->exceptOnForms(),
+
+            DateTime::make('Updated', 'updated_at')
+                ->exceptOnForms(),
         ];
     }
 

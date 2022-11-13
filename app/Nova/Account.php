@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -48,7 +49,13 @@ class Account extends Resource
 
             Boolean::make('Enabled')
                 ->nullable()
-                ->default(true)
+                ->default(true),
+
+            DateTime::make('Created', 'created_at')
+                ->exceptOnForms(),
+
+            DateTime::make('Updated', 'updated_at')
+                ->exceptOnForms(),
 
         ];
     }

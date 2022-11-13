@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Supports\Constant;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -57,19 +58,21 @@ class Asset extends Resource
                 ->required()
                 ->searchable()
                 ->rules(['required', 'integer',
-                    Rule::in(\App\Models\Chart::where('account_id', '=', 1)
+                    Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_ASSET)
                         ->get()->pluck('id')->toArray())
-                ]),
+                ])->showCreateRelationButton(),
 
             Text::make('Description', 'description')
                 ->required()
                 ->suggestions(fn() => \App\Models\Asset::select('description')
-                    ->get()->pluck('description')->toArray()),
+                    ->get()->pluck('description')->toArray()
+                ),
 
             Number::make('Amount', 'amount')
                 ->step(4)
                 ->required()
-                ->min(0),
+                ->min(0)
+                ->displayUsing(fn($value) => number_format($value, 2)),
 
             Textarea::make('Notes', 'notes')
                 ->nullable(),
