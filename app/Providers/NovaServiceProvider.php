@@ -21,10 +21,7 @@ use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Oneduo\NovaFileManager\NovaFileManager;
-use Spatie\BackupTool\BackupTool;
 use Visanduma\NovaBackNavigation\NovaBackNavigation;
-use Wdelfuego\Nova4\CustomizableFooter\Footer;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -43,7 +40,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 : config('app.timezone');
         });
 
-        Nova::mainMenu(function (NovaRequest $request) {
+        Nova::mainMenu(function () {
             return [
                 MenuSection::dashboard(MainDashboard::class)
                     ->icon('chart-bar'),
@@ -70,8 +67,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->collapsable(),
             ];
         });
-
-        Footer::set('<p class="text-center">All right reserved.</p>');
     }
 
     /**
@@ -111,7 +106,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function dashboards()
     {
         return [
-            //new MainDashboard,
+            new MainDashboard,
         ];
     }
 

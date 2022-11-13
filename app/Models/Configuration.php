@@ -25,7 +25,7 @@ class Configuration extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new OnlyUserScope);
+        //static::addGlobalScope(new OnlyUserScope);
 
         static::creating(function (Configuration $setting) {
             $setting->user_id = request()->user()->id ?? null;

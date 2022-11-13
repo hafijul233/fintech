@@ -38,7 +38,7 @@ class User extends Authenticatable
      */
     protected static function booted()
     {
-        static::addGlobalScope(new OnlyUserScope);
+/*        static::addGlobalScope(new OnlyUserScope);*/
 
         static::creating(function (User $user) {
            $user->user_id = request()->user()->id ?? null;

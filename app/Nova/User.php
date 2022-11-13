@@ -14,8 +14,6 @@ use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Vyuldashev\NovaPermission\Permission;
-use Vyuldashev\NovaPermission\Role;
 
 class User extends Resource
 {
@@ -115,10 +113,6 @@ class User extends Resource
                 ->default(function () {
                     return config('app.timezone');
                 }),
-
-            MorphToMany::make('Roles', 'roles', Role::class),
-
-            MorphToMany::make('Permissions', 'permissions', Permission::class),
         ];
     }
 

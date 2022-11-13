@@ -25,7 +25,7 @@ class Chart extends Model
      */
     protected static function booted(): void
     {
-        static::addGlobalScope(new OnlyUserScope);
+        //static::addGlobalScope(new OnlyUserScope);
 
         static::creating(function (Chart $category) {
             if (auth()->user()) {
