@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Chart;
 use App\Models\User;
 use App\Supports\Constant;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class UserOnboardService
@@ -20,6 +21,7 @@ class UserOnboardService
 
     private function createChartedAccounts(): bool
     {
+        Model::unguard();
         try {
             DB::beginTransaction();
             foreach (Constant::CHARTED_ACCOUNTS as $account_id => $chart) {
@@ -30,11 +32,11 @@ class UserOnboardService
                 }
             }
             DB::commit();
-
+            Model::reguard();
             return true;
         } catch (\Exception $exception) {
             DB::rollBack();
-            logger('User Onboard Chart Exception: '.$exception->getMessage());
+            logger('User Onboard Chart Exception: ' . $exception->getMessage());
 
             return true;
         }
