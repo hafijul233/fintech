@@ -18,6 +18,3 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command('seeder', function () {
-    Artisan::call('db:seed', ['--class' =>base_path('database/seeders/ChartSeeder.php') ]);
-})->purpose('Display an inspiring quote');

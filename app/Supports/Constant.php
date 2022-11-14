@@ -14,13 +14,6 @@ class Constant
 
     const AC_EXPENSE = 5;
 
-    const AUDIT_EVENTS = [
-        'created' => 'Create',
-        'updated' => 'Update',
-        'deleted' => 'Delete',
-        'restored' => 'Restore',
-    ];
-
     const CHARTED_ACCOUNTS = [
         '1' => [
             ['code' => '101', 'user_id' => null, 'account_id' => null, 'name' => 'Cash', 'enabled' => true],
