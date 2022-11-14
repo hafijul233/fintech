@@ -2,10 +2,14 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Common\EndDate;
+use App\Nova\Filters\Common\StartDate;
+use App\Nova\Metrics\Asset\AssetPerDay;
 use App\Nova\Metrics\Asset\TotalAsset;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -44,7 +48,7 @@ class Asset extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -54,8 +58,8 @@ class Asset extends Resource
 
             Date::make('Entry', 'entry')
                 ->required()
-                ->default(fn () => date('Y-m-d'))
-                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:'.date('Y-m-d')]),
+                ->default(fn() => date('Y-m-d'))
+                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:' . date('Y-m-d')]),
 
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
@@ -68,7 +72,7 @@ class Asset extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn () => \App\Models\Asset::select('description')
+                ->suggestions(fn() => \App\Models\Asset::select('description')
                     ->get()->pluck('description')->toArray()
                 ),
 
@@ -76,7 +80,7 @@ class Asset extends Resource
                 ->step(4)
                 ->required()
                 ->min(0)
-                ->displayUsing(fn ($value) => number_format($value, 2)),
+                ->displayUsing(fn($value) => number_format($value, 2)),
 
             Textarea::make('Notes', 'notes')
                 ->nullable(),
@@ -96,13 +100,17 @@ class Asset extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
     {
         return [
+            ...parent::cards($request),
             TotalAsset::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange(),
+            AssetPerDay::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
         ];
@@ -111,18 +119,21 @@ class Asset extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [
+            StartDate::make(),
+            EndDate::make()
+        ];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -133,7 +144,7 @@ class Asset extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)

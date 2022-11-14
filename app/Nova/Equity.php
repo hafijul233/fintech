@@ -2,6 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\Common\EndDate;
+use App\Nova\Filters\Common\StartDate;
+use App\Nova\Metrics\Equity\EquityPerDay;
 use App\Nova\Metrics\Equity\TotalEquity;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
@@ -44,7 +47,7 @@ class Equity extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -54,8 +57,8 @@ class Equity extends Resource
 
             Date::make('Entry', 'entry')
                 ->required()
-                ->default(fn () => date('Y-m-d'))
-                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:'.date('Y-m-d')]),
+                ->default(fn() => date('Y-m-d'))
+                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:' . date('Y-m-d')]),
 
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
@@ -68,7 +71,7 @@ class Equity extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn () => \App\Models\Asset::select('description')
+                ->suggestions(fn() => \App\Models\Asset::select('description')
                     ->get()->pluck('description')->toArray()
                 ),
 
@@ -76,7 +79,7 @@ class Equity extends Resource
                 ->step(4)
                 ->required()
                 ->min(0)
-                ->displayUsing(fn ($value) => number_format($value, 2)),
+                ->displayUsing(fn($value) => number_format($value, 2)),
 
             Textarea::make('Notes', 'notes')
                 ->nullable(),
@@ -96,13 +99,17 @@ class Equity extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function cards(NovaRequest $request)
     {
         return [
+            ...parent::cards($request),
             TotalEquity::make()
+                ->refreshWhenActionsRun()
+                ->refreshWhenFiltersChange(),
+            EquityPerDay::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
         ];
@@ -111,18 +118,21 @@ class Equity extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [
+            StartDate::make(),
+            EndDate::make()
+        ];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -133,7 +143,7 @@ class Equity extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function actions(NovaRequest $request)

@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Nova\Metrics\Revenue;
+namespace App\Nova\Metrics\Expense;
 
-use App\Models\Revenue;
+use App\Models\Expense;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Metrics\Value;
+use Laravel\Nova\Metrics\Trend;
 
-class TotalRevenue extends Value
+class ExpensePerDay extends Trend
 {
     /**
-     * Get the displayable name of the metric.
+     * The width of the card (1/3, 2/3, 1/2, 1/4, 3/4, or full).
      *
-     * @return string
+     * @var string
      */
-    public function name(): string
-    {
-        return 'Revenues';
-    }
+    public $width = '2/3';
 
     /**
      * Calculate the value of the metric.
@@ -28,7 +25,7 @@ class TotalRevenue extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sum($request, Revenue::class, 'amount', 'entry');
+        return $this->countByDays($request, Expense::class, 'amount');
     }
 
     /**
@@ -39,14 +36,11 @@ class TotalRevenue extends Value
     public function ranges()
     {
         return [
-            'TODAY' => __('Today'),
-            'YESTERDAY' => __('Yesterday'),
+            7 => __('7 Days'),
+            15 => __('15 Days'),
             30 => __('30 Days'),
             60 => __('60 Days'),
-            365 => __('365 Days'),
-            'MTD' => __('Month To Date'),
-            'QTD' => __('Quarter To Date'),
-            'YTD' => __('Year To Date'),
+            90 => __('90 Days'),
         ];
     }
 
@@ -58,5 +52,15 @@ class TotalRevenue extends Value
     public function cacheFor()
     {
         // return now()->addMinutes(5);
+    }
+
+    /**
+     * Get the URI key for the metric.
+     *
+     * @return string
+     */
+    public function uriKey()
+    {
+        return 'expense-expense-per-day';
     }
 }

@@ -144,7 +144,7 @@ class User extends Resource
     public function cards(NovaRequest $request)
     {
         return [
-            Breadcrumbs::make($request, $this),
+            ...parent::cards($request),
         ];
     }
 

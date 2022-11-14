@@ -16,6 +16,7 @@ use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\LogViewer\LogViewer;
+use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
@@ -32,7 +33,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -61,6 +62,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         ->collapsable(),
 
                 ];
+            })
+            ->userMenu(function (Request $request, Menu $menu) {
+                return $menu->append(
+                    MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey()));
             });
     }
 
