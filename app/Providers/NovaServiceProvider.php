@@ -33,7 +33,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -65,7 +65,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             })
             ->userMenu(function (Request $request, Menu $menu) {
                 return $menu->append(
-                    MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey()));
+                    MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey()));
             });
     }
 
