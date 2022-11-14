@@ -9,10 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class UserOnboardService
 {
-
     public function __construct(public User $user)
     {
-
     }
 
     public function setup(array $options = [])
@@ -32,10 +30,12 @@ class UserOnboardService
                 }
             }
             DB::commit();
+
             return true;
         } catch (\Exception $exception) {
             DB::rollBack();
-            logger('User Onboard Chart Exception: ' . $exception->getMessage());
+            logger('User Onboard Chart Exception: '.$exception->getMessage());
+
             return true;
         }
     }
