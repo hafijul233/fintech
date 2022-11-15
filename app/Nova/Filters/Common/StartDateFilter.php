@@ -9,7 +9,6 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class StartDateFilter extends DateFilter
 {
-
     /**
      * The displayable name of the filter.
      *

@@ -11,8 +11,6 @@ use Laravel\Nova\Metrics\ValueResult;
 
 class TotalAssetMetric extends Value
 {
-
-
     /**
      * The displayable name of the metric.
      *
