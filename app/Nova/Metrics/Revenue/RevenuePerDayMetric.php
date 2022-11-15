@@ -1,24 +1,28 @@
 <?php
 
-namespace App\Nova\Metrics\Liability;
+namespace App\Nova\Metrics\Revenue;
 
-use App\Models\Liability;
+use App\Models\Revenue;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Metrics\Value;
+use Laravel\Nova\Metrics\Trend;
 
-class TotalLiability extends Value
+class RevenuePerDayMetric extends Trend
 {
     /**
-     * Get the displayable name of the metric.
+     * The width of the card (1/3, 2/3, 1/2, 1/4, 3/4, or full).
      *
-     * @return string
+     * @var string
      */
-    public function name(): string
-    {
-        return 'Liabilities';
-    }
+    public $width = '2/3';
+
+    /**
+     * The displayable name of the metric.
+     *
+     * @var string
+     */
+    public $name = 'Revenue/Day';
 
     /**
      * Calculate the value of the metric.
@@ -28,7 +32,7 @@ class TotalLiability extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sum($request, Liability::class, 'amount', 'entry');
+        return $this->countByDays($request, Revenue::class, 'amount');
     }
 
     /**
@@ -39,14 +43,11 @@ class TotalLiability extends Value
     public function ranges()
     {
         return [
-            'TODAY' => __('Today'),
-            'YESTERDAY' => __('Yesterday'),
+            7 => __('7 Days'),
+            15 => __('15 Days'),
             30 => __('30 Days'),
             60 => __('60 Days'),
-            365 => __('365 Days'),
-            'MTD' => __('Month To Date'),
-            'QTD' => __('Quarter To Date'),
-            'YTD' => __('Year To Date'),
+            90 => __('90 Days'),
         ];
     }
 
@@ -58,5 +59,15 @@ class TotalLiability extends Value
     public function cacheFor()
     {
         // return now()->addMinutes(5);
+    }
+
+    /**
+     * Get the URI key for the metric.
+     *
+     * @return string
+     */
+    public function uriKey()
+    {
+        return 'revenue-revenue-per-day';
     }
 }

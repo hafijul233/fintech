@@ -2,10 +2,10 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Common\EndDate;
-use App\Nova\Filters\Common\StartDate;
-use App\Nova\Metrics\Revenue\RevenuePerDay;
-use App\Nova\Metrics\Revenue\TotalRevenue;
+use App\Nova\Filters\Common\EndDateFilter;
+use App\Nova\Filters\Common\StartDateFilter;
+use App\Nova\Metrics\Revenue\RevenuePerDayMetric;
+use App\Nova\Metrics\Revenue\TotalRevenueMetric;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
@@ -106,10 +106,10 @@ class Revenue extends Resource
     {
         return [
             ...parent::cards($request),
-            TotalRevenue::make()
+            TotalRevenueMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
-            RevenuePerDay::make()
+            RevenuePerDayMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
         ];
@@ -124,8 +124,8 @@ class Revenue extends Resource
     public function filters(NovaRequest $request)
     {
         return [
-            StartDate::make(),
-            EndDate::make(),
+            StartDateFilter::make(),
+            EndDateFilter::make(),
         ];
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Common\EndDate;
-use App\Nova\Filters\Common\StartDate;
-use App\Nova\Metrics\Liability\LiabilityPerDay;
-use App\Nova\Metrics\Liability\TotalLiability;
+use App\Nova\Filters\Common\EndDateFilter;
+use App\Nova\Filters\Common\StartDateFilter;
+use App\Nova\Metrics\Liability\LiabilityPerDayMetric;
+use App\Nova\Metrics\Liability\TotalLiabilityMetric;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
@@ -106,10 +106,10 @@ class Liability extends Resource
     {
         return [
             ...parent::cards($request),
-            TotalLiability::make()
+            TotalLiabilityMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
-            LiabilityPerDay::make()
+            LiabilityPerDayMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
         ];
@@ -124,8 +124,8 @@ class Liability extends Resource
     public function filters(NovaRequest $request)
     {
         return [
-            StartDate::make(),
-            EndDate::make(),
+            StartDateFilter::make(),
+            EndDateFilter::make(),
         ];
     }
 

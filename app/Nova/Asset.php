@@ -2,10 +2,10 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Common\EndDate;
-use App\Nova\Filters\Common\StartDate;
-use App\Nova\Metrics\Asset\AssetPerDay;
-use App\Nova\Metrics\Asset\TotalAsset;
+use App\Nova\Filters\Common\EndDateFilter;
+use App\Nova\Filters\Common\StartDateFilter;
+use App\Nova\Metrics\Asset\AssetPerDayMetric;
+use App\Nova\Metrics\Asset\TotalAssetMetric;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
@@ -106,10 +106,10 @@ class Asset extends Resource
     {
         return [
             ...parent::cards($request),
-            TotalAsset::make()
+            TotalAssetMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
-            AssetPerDay::make()
+            AssetPerDayMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
         ];
@@ -124,8 +124,8 @@ class Asset extends Resource
     public function filters(NovaRequest $request)
     {
         return [
-            StartDate::make(),
-            EndDate::make(),
+            StartDateFilter::make(),
+            EndDateFilter::make(),
         ];
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Common\EndDate;
-use App\Nova\Filters\Common\StartDate;
-use App\Nova\Metrics\Equity\EquityPerDay;
-use App\Nova\Metrics\Equity\TotalEquity;
+use App\Nova\Filters\Common\EndDateFilter;
+use App\Nova\Filters\Common\StartDateFilter;
+use App\Nova\Metrics\Equity\EquityPerDayMetric;
+use App\Nova\Metrics\Equity\TotalEquityMetric;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
@@ -106,10 +106,10 @@ class Equity extends Resource
     {
         return [
             ...parent::cards($request),
-            TotalEquity::make()
+            TotalEquityMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
-            EquityPerDay::make()
+            EquityPerDayMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
         ];
@@ -124,8 +124,8 @@ class Equity extends Resource
     public function filters(NovaRequest $request)
     {
         return [
-            StartDate::make(),
-            EndDate::make(),
+            StartDateFilter::make(),
+            EndDateFilter::make(),
         ];
     }
 

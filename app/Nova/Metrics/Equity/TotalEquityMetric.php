@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Nova\Metrics\Expense;
+namespace App\Nova\Metrics\Equity;
 
-use App\Models\Expense;
+use App\Models\Equity;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 
-class TotalExpense extends Value
+class TotalEquityMetric extends Value
 {
+
     /**
-     * Get the displayable name of the metric.
+     * The displayable name of the metric.
      *
-     * @return string
+     * @var string
      */
-    public function name(): string
-    {
-        return 'Expenses';
-    }
+    public $name = 'Equities';
 
     /**
      * Calculate the value of the metric.
@@ -28,7 +26,7 @@ class TotalExpense extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sum($request, Expense::class, 'amount', 'entry');
+        return $this->sum($request, Equity::class, 'amount', 'entry');
     }
 
     /**

@@ -1,31 +1,34 @@
 <?php
 
-namespace App\Nova\Metrics\Liability;
+namespace App\Nova\Metrics\Asset;
 
-use App\Models\Liability;
+use App\Models\Asset;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Metrics\Trend;
+use Laravel\Nova\Metrics\Value;
+use Laravel\Nova\Metrics\ValueResult;
 
-class LiabilityPerDay extends Trend
+class TotalAssetMetric extends Value
 {
+
+
     /**
-     * The width of the card (1/3, 2/3, 1/2, 1/4, 3/4, or full).
+     * The displayable name of the metric.
      *
      * @var string
      */
-    public $width = '2/3';
+    public $name = 'Assets';
 
     /**
      * Calculate the value of the metric.
      *
      * @param  NovaRequest  $request
-     * @return mixed
+     * @return ValueResult
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Liability::class, 'amount');
+        return $this->sum($request, Asset::class, 'amount', 'entry');
     }
 
     /**
@@ -36,11 +39,14 @@ class LiabilityPerDay extends Trend
     public function ranges()
     {
         return [
-            7 => __('7 Days'),
-            15 => __('15 Days'),
+            'TODAY' => __('Today'),
+            'YESTERDAY' => __('Yesterday'),
             30 => __('30 Days'),
             60 => __('60 Days'),
-            90 => __('90 Days'),
+            365 => __('365 Days'),
+            'MTD' => __('Month To Date'),
+            'QTD' => __('Quarter To Date'),
+            'YTD' => __('Year To Date'),
         ];
     }
 
@@ -52,15 +58,5 @@ class LiabilityPerDay extends Trend
     public function cacheFor()
     {
         // return now()->addMinutes(5);
-    }
-
-    /**
-     * Get the URI key for the metric.
-     *
-     * @return string
-     */
-    public function uriKey()
-    {
-        return 'liability-liability-per-day';
     }
 }
