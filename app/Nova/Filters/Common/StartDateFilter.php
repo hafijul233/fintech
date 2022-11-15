@@ -7,8 +7,16 @@ use Illuminate\Support\Carbon;
 use Laravel\Nova\Filters\DateFilter;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class StartDate extends DateFilter
+class StartDateFilter extends DateFilter
 {
+
+    /**
+     * The displayable name of the filter.
+     *
+     * @var string
+     */
+    public $name = 'Start Date';
+
     /**
      * Apply the filter to the given query.
      *

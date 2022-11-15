@@ -7,8 +7,16 @@ use Illuminate\Support\Carbon;
 use Laravel\Nova\Filters\DateFilter;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class EndDate extends DateFilter
+class EndDateFilter extends DateFilter
 {
+
+    /**
+     * The displayable name of the filter.
+     *
+     * @var string
+     */
+    public $name = 'End Date';
+
     /**
      * Apply the filter to the given query.
      *
