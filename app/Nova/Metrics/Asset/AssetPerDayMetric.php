@@ -24,7 +24,6 @@ class AssetPerDayMetric extends Trend
      */
     public $name = 'Assets/Day';
 
-
     /**
      * Calculate the value of the metric.
      *
