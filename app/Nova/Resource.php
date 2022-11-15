@@ -17,7 +17,7 @@ abstract class Resource extends NovaResource
      * @param  Builder  $query
      * @return Builder
      */
-    public static function indexQuery(NovaRequest $request, $query): Builder
+    public static function indexQuery(NovaRequest $request, $query)
     {
         return $query->where('user_id', '=', $request->user()->id);
     }
@@ -41,7 +41,7 @@ abstract class Resource extends NovaResource
      * @param  Builder  $query
      * @return Builder
      */
-    public static function detailQuery(NovaRequest $request, $query): Builder
+    public static function detailQuery(NovaRequest $request, $query)
     {
         return parent::detailQuery($request, $query);
     }
@@ -55,7 +55,7 @@ abstract class Resource extends NovaResource
      * @param  Builder  $query
      * @return Builder
      */
-    public static function relatableQuery(NovaRequest $request, $query): Builder
+    public static function relatableQuery(NovaRequest $request, $query)
     {
         return parent::relatableQuery($request, $query);
     }
@@ -66,7 +66,7 @@ abstract class Resource extends NovaResource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function cards(NovaRequest $request): array
+    public function cards(NovaRequest $request)
     {
         return [
             Breadcrumbs::make($request, $this),
@@ -79,7 +79,7 @@ abstract class Resource extends NovaResource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function actions(NovaRequest $request): array
+    public function actions(NovaRequest $request)
     {
         return [
             ExportAsCsv::make()

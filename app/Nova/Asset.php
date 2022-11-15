@@ -11,10 +11,10 @@ use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -75,10 +75,8 @@ class Asset extends Resource
                     ->get()->pluck('description')->toArray()
                 ),
 
-            Number::make('Amount', 'amount')
-                ->step(4)
+            Currency::make('Amount', 'amount')
                 ->required()
-                ->min(0)
                 ->displayUsing(fn ($value) => number_format($value, 2)),
 
             Textarea::make('Notes', 'notes')
