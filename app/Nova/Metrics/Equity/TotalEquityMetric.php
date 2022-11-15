@@ -10,7 +10,6 @@ use Laravel\Nova\Metrics\Value;
 
 class TotalEquityMetric extends Value
 {
-
     /**
      * The displayable name of the metric.
      *

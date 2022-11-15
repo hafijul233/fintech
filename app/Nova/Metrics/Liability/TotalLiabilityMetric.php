@@ -10,13 +10,13 @@ use Laravel\Nova\Metrics\Value;
 
 class TotalLiabilityMetric extends Value
 {
-
     /**
      * The displayable name of the metric.
      *
      * @var string
      */
     public $name = 'Liabilities';
+
     /**
      * Calculate the value of the metric.
      *

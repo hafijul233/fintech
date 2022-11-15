@@ -10,13 +10,13 @@ use Laravel\Nova\Metrics\Value;
 
 class TotalRevenueMetric extends Value
 {
-
     /**
      * The displayable name of the metric.
      *
      * @var string
      */
     public $name = 'Revenues';
+
     /**
      * Calculate the value of the metric.
      *
