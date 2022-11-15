@@ -13,8 +13,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "ext-pdo": "*",
         "ext-json": "*",
+        "ext-pdo": "*",
         "alexwenzel/nova-dependency-container": "^1.7",
         "badinansoft/nova-language-switch": "^1.0",
         "coroowicaksono/chart-js-integration": "^0.4.0",
@@ -28,6 +28,7 @@
         "laravel/nova-log-viewer": "^0.1.4",
         "laravel/sanctum": "^3.0",
         "owen-it/laravel-auditing": "^13.0",
+        "padocia/laravel-nova-pdf": "^1.0",
         "wdelfuego/nova-calendar": "^1.6"
     },
     "require-dev": {

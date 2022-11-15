@@ -6,6 +6,7 @@ use App\Nova\Asset;
 use App\Nova\Audit;
 use App\Nova\Chart;
 use App\Nova\Configuration;
+use App\Nova\Dashboards\HistogramDashboard;
 use App\Nova\Dashboards\MainDashboard;
 use App\Nova\Equity;
 use App\Nova\Expense;
@@ -33,7 +34,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -64,8 +65,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ];
             })
             ->userMenu(function (Request $request, Menu $menu) {
-                return $menu->append(
-                    MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey()));
+                $menu->append(
+                    MenuItem::dashboard(HistogramDashboard::class)
+                )->append(
+                    MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey())
+                );
+
+                return $menu;
             });
     }
 
@@ -107,6 +113,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new MainDashboard,
+            new HistogramDashboard
         ];
     }
 

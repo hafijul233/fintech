@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8480c10e51c58d4cb3bca6d4a652e692",
+    "content-hash": "f021193dbebbccea622fb4315dfd3388",
     "packages": [
         {
             "name": "alexwenzel/nova-dependency-container",
@@ -3554,6 +3554,61 @@
             "time": "2022-07-29T11:21:26+00:00"
         },
         {
+            "name": "padocia/laravel-nova-pdf",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Padocia/Laravel-Nova-Pdf.git",
+                "reference": "7f6bc6fc8584678ff0cef790d500a1d36b3f48bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Padocia/Laravel-Nova-Pdf/zipball/7f6bc6fc8584678ff0cef790d500a1d36b3f48bb",
+                "reference": "7f6bc6fc8584678ff0cef790d500a1d36b3f48bb",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "*",
+                "php": ">=7.2.5",
+                "spatie/browsershot": "^3.41"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Padocia\\NovaPdf\\NovaPdfServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Padocia\\NovaPdf\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Zakaria Tayeb Bey",
+                    "email": "zakaria.tayebbey@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate Pdf from nova resources",
+            "homepage": "https://github.com/padocia/laravel-nova-pdf",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/Padocia/Laravel-Nova-Pdf/issues",
+                "source": "https://github.com/Padocia/Laravel-Nova-Pdf/tree/v1.0.2"
+            },
+            "time": "2021-07-08T15:27:03+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.9.0",
             "source": {
@@ -4325,6 +4380,72 @@
                 }
             ],
             "time": "2022-07-21T14:21:25+00:00"
+        },
+        {
+            "name": "spatie/browsershot",
+            "version": "3.57.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/browsershot.git",
+                "reference": "6dbd43cc3e8f35879e1add2fba6801aa97443e12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/6dbd43cc3e8f35879e1add2fba6801aa97443e12",
+                "reference": "6dbd43cc3e8f35879e1add2fba6801aa97443e12",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4|^8.0",
+                "spatie/image": "^1.5.3|^2.0",
+                "spatie/temporary-directory": "^1.1|^2.0",
+                "symfony/process": "^4.2|^5.0|^6.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.20",
+                "spatie/phpunit-snapshot-assertions": "^4.2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Browsershot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://github.com/freekmurze",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert a webpage to an image or pdf using headless Chrome",
+            "homepage": "https://github.com/spatie/browsershot",
+            "keywords": [
+                "chrome",
+                "convert",
+                "headless",
+                "image",
+                "pdf",
+                "puppeteer",
+                "screenshot",
+                "webpage"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/browsershot/tree/3.57.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-10-25T08:30:53+00:00"
         },
         {
             "name": "spatie/image",
@@ -9985,7 +10106,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^8.1",
+        "ext-json": "*",
+        "ext-pdo": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
