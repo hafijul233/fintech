@@ -82,7 +82,7 @@ abstract class Resource extends NovaResource
     public function actions(NovaRequest $request)
     {
         return [
-            ExportAsCsv::make()
+            ExportAsCsv::make(),
         ];
     }
 }
