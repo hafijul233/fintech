@@ -141,6 +141,8 @@ class Chart extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            ...parent::actions($request),
+        ];
     }
 }

@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Illuminate\Database\Eloquent\Builder;
+use Laravel\Nova\Actions\ExportAsCsv;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Resource as NovaResource;
 
@@ -16,7 +17,7 @@ abstract class Resource extends NovaResource
      * @param  Builder  $query
      * @return Builder
      */
-    public static function indexQuery(NovaRequest $request, $query)
+    public static function indexQuery(NovaRequest $request, $query): Builder
     {
         return $query->where('user_id', '=', $request->user()->id);
     }
@@ -40,7 +41,7 @@ abstract class Resource extends NovaResource
      * @param  Builder  $query
      * @return Builder
      */
-    public static function detailQuery(NovaRequest $request, $query)
+    public static function detailQuery(NovaRequest $request, $query): Builder
     {
         return parent::detailQuery($request, $query);
     }
@@ -54,7 +55,7 @@ abstract class Resource extends NovaResource
      * @param  Builder  $query
      * @return Builder
      */
-    public static function relatableQuery(NovaRequest $request, $query)
+    public static function relatableQuery(NovaRequest $request, $query): Builder
     {
         return parent::relatableQuery($request, $query);
     }
@@ -65,10 +66,23 @@ abstract class Resource extends NovaResource
      * @param  NovaRequest  $request
      * @return array
      */
-    public function cards(NovaRequest $request)
+    public function cards(NovaRequest $request): array
     {
         return [
             Breadcrumbs::make($request, $this),
+        ];
+    }
+
+    /**
+     * Get the actions available for the resource.
+     *
+     * @param  NovaRequest  $request
+     * @return array
+     */
+    public function actions(NovaRequest $request): array
+    {
+        return [
+            ExportAsCsv::make()
         ];
     }
 }
