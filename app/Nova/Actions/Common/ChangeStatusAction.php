@@ -18,8 +18,8 @@ class ChangeStatusAction extends Action
     /**
      * Perform the action on the given models.
      *
-     * @param ActionFields $fields
-     * @param Collection $models
+     * @param  ActionFields  $fields
+     * @param  Collection  $models
      * @return mixed
      */
     public function handle(ActionFields $fields, Collection $models)
@@ -31,18 +31,20 @@ class ChangeStatusAction extends Action
                 $model->save();
             }
             DB::commit();
-            return Action::message(class_basename(get_class($models->first())) . "s enabled status update successful");
+
+            return Action::message(class_basename(get_class($models->first())).'s enabled status update successful');
         } catch (\Exception $exception) {
             DB::rollBack();
-            logger("Action Exception: " . $exception->getMessage(), $exception->getTrace());
-            return Action::danger(class_basename(get_class($models->first())) . "s enabled status update failed");
+            logger('Action Exception: '.$exception->getMessage(), $exception->getTrace());
+
+            return Action::danger(class_basename(get_class($models->first())).'s enabled status update failed');
         }
     }
 
     /**
      * Get the fields available on the action.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)

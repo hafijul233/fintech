@@ -13,8 +13,8 @@ abstract class Resource extends NovaResource
     /**
      * Build an "index" query for the given resource.
      *
-     * @param NovaRequest $request
-     * @param Builder $query
+     * @param  NovaRequest  $request
+     * @param  Builder  $query
      * @return Builder
      */
     public static function indexQuery(NovaRequest $request, $query)
@@ -25,8 +25,8 @@ abstract class Resource extends NovaResource
     /**
      * Build a Scout search query for the given resource.
      *
-     * @param NovaRequest $request
-     * @param \Laravel\Scout\Builder $query
+     * @param  NovaRequest  $request
+     * @param  \Laravel\Scout\Builder  $query
      * @return \Laravel\Scout\Builder
      */
     public static function scoutQuery(NovaRequest $request, $query)
@@ -37,8 +37,8 @@ abstract class Resource extends NovaResource
     /**
      * Build a "detail" query for the given resource.
      *
-     * @param NovaRequest $request
-     * @param Builder $query
+     * @param  NovaRequest  $request
+     * @param  Builder  $query
      * @return Builder
      */
     public static function detailQuery(NovaRequest $request, $query)
@@ -51,8 +51,8 @@ abstract class Resource extends NovaResource
      *
      * This query determines which instances of the model may be attached to other resources.
      *
-     * @param NovaRequest $request
-     * @param Builder $query
+     * @param  NovaRequest  $request
+     * @param  Builder  $query
      * @return Builder
      */
     public static function relatableQuery(NovaRequest $request, $query)
@@ -63,7 +63,7 @@ abstract class Resource extends NovaResource
     /**
      * Get the cards available for the request.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -76,7 +76,7 @@ abstract class Resource extends NovaResource
     /**
      * Get the actions available for the resource.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

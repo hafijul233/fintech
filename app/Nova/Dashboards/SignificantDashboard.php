@@ -7,7 +7,6 @@ use Laravel\Nova\Dashboard;
 
 class SignificantDashboard extends Dashboard
 {
-
     /**
      * The displayable name of the dashboard.
      *
@@ -27,7 +26,7 @@ class SignificantDashboard extends Dashboard
     {
         return [
             SignificantAssetMetric::make()
-                ->width('1/2')
+                ->width('1/2'),
         ];
     }
 

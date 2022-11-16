@@ -38,7 +38,7 @@ class UserOnboardService
             return true;
         } catch (Exception $exception) {
             DB::rollBack();
-            logger('User Onboard Chart Exception: ' . $exception->getMessage());
+            logger('User Onboard Chart Exception: '.$exception->getMessage());
 
             return true;
         }

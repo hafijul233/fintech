@@ -20,7 +20,7 @@ class TotalLiabilityMetric extends Value
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return mixed
      */
     public function calculate(NovaRequest $request)

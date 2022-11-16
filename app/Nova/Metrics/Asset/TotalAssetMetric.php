@@ -21,7 +21,7 @@ class TotalAssetMetric extends Value
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return ValueResult
      */
     public function calculate(NovaRequest $request)

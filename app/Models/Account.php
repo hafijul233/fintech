@@ -22,7 +22,7 @@ class Account extends Model implements Auditable
     /**
      * get the list of only enabled list
      *
-     * @param Builder $query
+     * @param  Builder  $query
      * @return Builder
      */
     public function scopeEnabled(Builder $query): Builder
