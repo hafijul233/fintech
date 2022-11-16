@@ -19,9 +19,9 @@ class StartDateFilter extends DateFilter
     /**
      * Apply the filter to the given query.
      *
-     * @param  NovaRequest  $request
-     * @param  Builder  $query
-     * @param  mixed  $value
+     * @param NovaRequest $request
+     * @param Builder $query
+     * @param mixed $value
      * @return Builder
      */
     public function apply(NovaRequest $request, $query, $value)

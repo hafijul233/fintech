@@ -45,7 +45,6 @@ class User extends Authenticatable implements Auditable
         });
 
         static::created(function (User $user) {
-            logger('created event called');
             $userOnboardService = new UserOnboardService($user);
             $userOnboardService->setup();
         });

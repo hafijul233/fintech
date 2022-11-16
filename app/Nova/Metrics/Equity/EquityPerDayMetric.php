@@ -27,12 +27,12 @@ class EquityPerDayMetric extends Trend
     /**
      * Calculate the value of the metric.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return mixed
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Equity::class, 'amount');
+        return $this->sumByDays($request, Equity::class, 'amount');
     }
 
     /**

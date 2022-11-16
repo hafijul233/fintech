@@ -14,17 +14,6 @@ class Expense extends Model implements Auditable, HasMedia
     use \OwenIt\Auditing\Auditable;
     use InteractsWithMedia;
 
-    /**
-     * Register profile Image Media Collection
-     *
-     * @return void
-     */
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('attachments')
-            ->useDisk('attachments');
-    }
-
     protected $casts = [
         'entry' => 'date',
         'amount' => 'float',
@@ -45,6 +34,17 @@ class Expense extends Model implements Auditable, HasMedia
                 $model->getDirty();
             }
         });
+    }
+
+    /**
+     * Register profile Image Media Collection
+     *
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('attachments')
+            ->useDisk('attachments');
     }
 
     public function user(): BelongsTo

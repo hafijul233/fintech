@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use OwenIt\Auditing\Contracts\Auditable;
+use Spatie\EloquentSortable\SortableTrait;
 
 class Chart extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
+    use SortableTrait;
 
     /**
      * The attributes that should be cast.
@@ -20,6 +22,16 @@ class Chart extends Model implements Auditable
      */
     protected $casts = [
         'enabled' => 'boolean',
+    ];
+
+    /**
+     * The attributes that should be used in sorting.
+     *
+     * @var array<string, string>
+     */
+    public $sortable = [
+        'order_column_name' => 'sort_order',
+        'sort_when_creating' => true,
     ];
 
     /**
@@ -42,12 +54,28 @@ class Chart extends Model implements Auditable
     /**
      * get the list of only enabled list
      *
-     * @param  Builder  $query
+     * @param Builder $query
      * @return Builder
      */
     public function scopeEnabled(Builder $query): Builder
     {
         return $query->where('enabled', '=', true);
+    }
+
+    /**
+     * get the list of only enabled list
+     *
+     * @param Builder $query
+     * @param array $filters
+     * @return Builder
+     */
+    public function scopeFiltered(Builder $query, array $filters = []): Builder
+    {
+        if (!empty($filters['account_id'])) {
+            $query->where('account_id', '=', $filters['account_id']);
+        }
+
+        return $query;
     }
 
     public function user(): BelongsTo

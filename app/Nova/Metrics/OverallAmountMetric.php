@@ -1,28 +1,25 @@
 <?php
 
-namespace App\Nova\Metrics\Asset;
+namespace App\Nova\Metrics;
 
 use App\Models\Asset;
-use DateInterval;
-use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
-use Laravel\Nova\Metrics\ValueResult;
 
-class TotalAssetMetric extends Value
+class OverallAmountMetric extends Value
 {
     /**
      * The displayable name of the metric.
      *
      * @var string
      */
-    public $name = 'Assets';
+    public $name = 'Overall Amount';
 
     /**
      * Calculate the value of the metric.
      *
      * @param NovaRequest $request
-     * @return ValueResult
+     * @return mixed
      */
     public function calculate(NovaRequest $request)
     {
@@ -51,7 +48,7 @@ class TotalAssetMetric extends Value
     /**
      * Determine the amount of time the results of the metric should be cached.
      *
-     * @return DateTimeInterface|DateInterval|float|int|null
+     * @return \DateTimeInterface|\DateInterval|float|int|null
      */
     public function cacheFor()
     {

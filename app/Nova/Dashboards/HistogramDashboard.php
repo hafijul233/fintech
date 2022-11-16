@@ -24,13 +24,6 @@ class HistogramDashboard extends Dashboard
     }
 
     /**
-     * Determines whether Nova should show a refresh button.
-     *
-     * @var bool
-     */
-    public $showRefreshButton = true;
-
-    /**
      * Get the URI key of the dashboard.
      *
      * @return string
@@ -50,25 +43,15 @@ class HistogramDashboard extends Dashboard
         return [
             Breadcrumbs::make(app(NovaRequest::class), $this),
             AssetPerDayMetric::make()
-                ->width('full')
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
+                ->width('full'),
             LiabilityPerDayMetric::make()
-                ->width('full')
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
+                ->width('full'),
             EquityPerDayMetric::make()
-                ->width('full')
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
+                ->width('full'),
             RevenuePerDayMetric::make()
-                ->width('full')
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
+                ->width('full'),
             ExpensePerDayMetric::make()
-                ->width('full')
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
+                ->width('full'),
         ];
     }
 }
