@@ -43,27 +43,27 @@ class Chart extends Resource
 
         switch ($request->route('resource')) {
             case 'assets':
-                $query->where('account_id', Constant::AC_ASSET);
+                $query->enabled()->where('account_id', Constant::AC_ASSET);
                 break;
 
             case 'liabilities':
-                $query->where('account_id', Constant::AC_LIABILITY);
+                $query->enabled()->where('account_id', Constant::AC_LIABILITY);
                 break;
 
             case 'equities':
-                $query->where('account_id', Constant::AC_EQUITY);
+                $query->enabled()->where('account_id', Constant::AC_EQUITY);
                 break;
 
             case 'revenues':
-                $query->where('account_id', Constant::AC_REVENUE);
+                $query->enabled()->where('account_id', Constant::AC_REVENUE);
                 break;
 
             case 'expenses':
-                $query->where('account_id', Constant::AC_EXPENSE);
+                $query->enabled()->where('account_id', Constant::AC_EXPENSE);
                 break;
         }
 
-        return $query->enabled();
+        return $query;
     }
 
     /**
