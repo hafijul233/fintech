@@ -70,7 +70,7 @@ class Revenue extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn () => \App\Models\Asset::select('description')
+                ->suggestions(fn () => \App\Models\Revenue::select('description')
                     ->get()->pluck('description')->toArray()
                 ),
 

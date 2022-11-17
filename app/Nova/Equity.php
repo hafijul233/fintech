@@ -70,7 +70,7 @@ class Equity extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn () => \App\Models\Asset::select('description')
+                ->suggestions(fn () => \App\Models\Equity::select('description')
                     ->get()->pluck('description')->toArray()
                 ),
 
