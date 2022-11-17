@@ -24,7 +24,7 @@ class SignificantAssetMetric extends Partition
 
         $query = Asset::whereHas('chart', function ($query) {
             return $query->where('account_id', '=', Constant::AC_ASSET);
-        })->limit(10);
+        });
 
         return $this->sum($request, $query, 'amount', 'chart_id')
             ->label(fn ($value) => $charts[$value] ?? 'None');
