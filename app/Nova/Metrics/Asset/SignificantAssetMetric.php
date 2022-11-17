@@ -19,8 +19,8 @@ class SignificantAssetMetric extends Partition
      */
     public function calculate(NovaRequest $request)
     {
-        $charts = Chart::enabled()
-            ->filtered(['account_id' => Constant::AC_ASSET])->get()->toArray();
+        $charts = Chart::enabled()->filtered(['account_id' => Constant::AC_ASSET])
+            ->get()->pluck('name', 'id')->toArray();
 
         $query = Asset::whereHas('chart', function ($query) {
             return $query->where('account_id', '=', Constant::AC_ASSET);
