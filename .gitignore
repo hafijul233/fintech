@@ -18,4 +18,5 @@ yarn-error.log
 /.vscode
 /public/access.log
 /public/error.log
-composer.lock
+/composer.lock
+/public/vendor/*
