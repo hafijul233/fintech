@@ -28,7 +28,7 @@ class Asset extends Model implements Auditable, HasMedia
     {
         static::addGlobalScope(new OnlyUserScope);
 
-        static::creating(function (Asset $model) {
+        static::creating(function (self $model) {
             if (auth()->user()) {
                 $model->user_id = $model->user_id ?? request()->user()->id;
                 $model->getDirty();
