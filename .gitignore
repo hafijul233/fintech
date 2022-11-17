@@ -20,3 +20,4 @@ yarn-error.log
 /public/error.log
 /composer.lock
 /public/vendor/*
+/.ftpquota
