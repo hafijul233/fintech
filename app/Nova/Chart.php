@@ -83,6 +83,8 @@ class Chart extends Resource
                 ->sortable()
                 ->filterable(),
 
+            Text::make('Code')->sortable(),
+
             Text::make('Name')->sortable(),
 
             Boolean::make('Enabled')
