@@ -14,7 +14,7 @@ class SignificantAssetMetric extends Partition
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return PartitionResult
      */
     public function calculate(NovaRequest $request)
@@ -27,7 +27,7 @@ class SignificantAssetMetric extends Partition
         })->limit(10);
 
         return $this->sum($request, $query, 'amount', 'chart_id')
-            ->label(fn($value) => $charts[$value] ?? 'None');
+            ->label(fn ($value) => $charts[$value] ?? 'None');
     }
 
     /**
