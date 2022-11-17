@@ -62,7 +62,6 @@ class Revenue extends Resource
 
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
-                ->searchable()
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_REVENUE)
@@ -83,10 +82,10 @@ class Revenue extends Resource
                 ->nullable(),
 
             DateTime::make('Created', 'created_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             Files::make('Attachments', 'attachments')->nullable(),
 

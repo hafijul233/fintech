@@ -111,9 +111,9 @@ class Audit extends Resource
 
             Text::make('Tags')->hideFromIndex(),
 
-            DateTime::make('Created At')->exceptOnForms(),
+            DateTime::make('Created At')->onlyOnDetail(),
 
-            DateTime::make('Updated At')->exceptOnForms(),
+            DateTime::make('Updated At')->onlyOnDetail(),
         ];
     }
 

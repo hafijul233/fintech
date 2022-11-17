@@ -62,8 +62,7 @@ class Chart extends Resource
                 $query->where('account_id', Constant::AC_EXPENSE);
                 break;
         }
-
-        return $query;
+        return $query->enabled();
     }
 
     /**
@@ -92,10 +91,10 @@ class Chart extends Resource
                 ->default(true),
 
             DateTime::make('Created', 'created_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             AuditableLog::make(),
         ];
