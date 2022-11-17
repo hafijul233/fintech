@@ -62,6 +62,7 @@ class Chart extends Resource
                 $query->where('account_id', Constant::AC_EXPENSE);
                 break;
         }
+
         return $query->enabled();
     }
 
