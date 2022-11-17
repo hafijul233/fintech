@@ -63,7 +63,7 @@ class Chart extends Resource
                 break;
         }
 
-        return $query;
+        return $query->orderBy('enabled')->orderBy('id', 'desc');
     }
 
     /**
