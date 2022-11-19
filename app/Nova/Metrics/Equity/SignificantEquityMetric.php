@@ -12,6 +12,12 @@ use Laravel\Nova\Metrics\PartitionResult;
 
 class SignificantEquityMetric extends Partition
 {
+    /**
+     * The displayable name of the metric.
+     *
+     * @var string
+     */
+    public $name = 'Equities';
 
     /**
      * Calculate the value of the metric.

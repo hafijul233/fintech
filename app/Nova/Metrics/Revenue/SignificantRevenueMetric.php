@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Nova\Metrics\Asset;
+namespace App\Nova\Metrics\Revenue;
 
-use App\Models\Asset;
 use App\Models\Chart;
+use App\Models\Expense;
+use App\Models\Revenue;
 use App\Supports\Constant;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Partition;
 use Laravel\Nova\Metrics\PartitionResult;
 
-class SignificantAssetMetric extends Partition
+class SignificantRevenueMetric extends Partition
 {
     /**
      * The displayable name of the metric.
      *
      * @var string
      */
-    public $name = 'Assets';
+    public $name = 'Revenues';
 
     /**
      * Calculate the value of the metric.
@@ -26,10 +27,10 @@ class SignificantAssetMetric extends Partition
      */
     public function calculate(NovaRequest $request)
     {
-        $charts = Chart::enabled()->filtered(['account_id' => Constant::AC_ASSET])
+        $charts = Chart::enabled()->filtered(['account_id' => Constant::AC_REVENUE])
             ->get()->pluck('name', 'id')->toArray();
 
-        return $this->sum($request, Asset::whereHas('chart', fn($query) => $query->where('account_id', '=', Constant::AC_ASSET)), 'amount', 'chart_id')
+        return $this->sum($request, Revenue::whereHas('chart', fn($query) => $query->where('account_id', '=', Constant::AC_REVENUE)), 'amount', 'chart_id')
             ->label(fn($value) => $charts[$value] ?? 'None');
     }
 
@@ -40,6 +41,6 @@ class SignificantAssetMetric extends Partition
      */
     public function uriKey()
     {
-        return 'significant-asset-metric';
+        return 'significant-revenue-metric';
     }
 }

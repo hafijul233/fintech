@@ -12,6 +12,12 @@ use Laravel\Nova\Metrics\PartitionResult;
 
 class SignificantExpenseMetric extends Partition
 {
+    /**
+     * The displayable name of the metric.
+     *
+     * @var string
+     */
+    public $name = 'Expenses';
 
     /**
      * Calculate the value of the metric.

@@ -5,6 +5,8 @@ namespace App\Nova\Dashboards;
 use App\Nova\Metrics\Asset\SignificantAssetMetric;
 use App\Nova\Metrics\Equity\SignificantEquityMetric;
 use App\Nova\Metrics\Expense\SignificantExpenseMetric;
+use App\Nova\Metrics\Liability\SignificantLiabilityMetric;
+use App\Nova\Metrics\Revenue\SignificantRevenueMetric;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Dashboard;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -34,7 +36,13 @@ class SignificantDashboard extends Dashboard
             SignificantAssetMetric::make()
                 ->width('1/2'),
 
+            SignificantLiabilityMetric::make()
+                ->width('1/2'),
+
             SignificantEquityMetric::make()
+                ->width('1/2'),
+
+            SignificantRevenueMetric::make()
                 ->width('1/2'),
 
             SignificantExpenseMetric::make()
