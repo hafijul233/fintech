@@ -7,7 +7,6 @@ use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
-use Nemrutco\NovaGlobalFilter\GlobalFilterable;
 
 class AssetPerDayMetric extends Trend
 {
