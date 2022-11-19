@@ -41,7 +41,7 @@ class Asset extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'description'
     ];
 
     /**
@@ -103,9 +103,11 @@ class Asset extends Resource
     {
         return [
             ...parent::cards($request),
+
             TotalAssetMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
+
             AssetPerDayMetric::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
@@ -122,6 +124,7 @@ class Asset extends Resource
     {
         return [
             StartDateFilter::make(),
+
             EndDateFilter::make(),
         ];
     }

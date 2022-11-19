@@ -7,6 +7,7 @@ use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Trend;
+use Nemrutco\NovaGlobalFilter\GlobalFilterable;
 
 class AssetPerDayMetric extends Trend
 {
@@ -32,7 +33,7 @@ class AssetPerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sumByDays($request, Asset::class, 'amount');
+        return $this->sumByDays($request, Asset::class, 'amount', 'entry');
     }
 
     /**

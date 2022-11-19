@@ -8,6 +8,7 @@ use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 use Laravel\Nova\Metrics\ValueResult;
+use Nemrutco\NovaGlobalFilter\GlobalFilterable;
 
 class TotalAssetMetric extends Value
 {
@@ -21,7 +22,7 @@ class TotalAssetMetric extends Value
     /**
      * Calculate the value of the metric.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return ValueResult
      */
     public function calculate(NovaRequest $request)

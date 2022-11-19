@@ -2,6 +2,8 @@
 
 namespace App\Nova\Metrics\Report;
 
+use App\Models\Revenue;
+use App\Supports\Constant;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\MetricTableRow;
 use Laravel\Nova\Metrics\Table;
@@ -16,6 +18,13 @@ class RevenueTableMetric extends Table
     public $width = 'full';
 
     /**
+     * The displayable name of the metric.
+     *
+     * @var string
+     */
+    public $name = 'Total Revenues';
+
+    /**
      * Calculate the value of the metric.
      *
      * @param NovaRequest $request
@@ -23,13 +32,23 @@ class RevenueTableMetric extends Table
      */
     public function calculate(NovaRequest $request)
     {
-        return [
-            MetricTableRow::make()
-                ->icon('check-circle')
-                ->iconClass('text-green-500')
-                ->title('Silver Surfer')
-                ->subtitle('In every part of the globe it is the same!'),
-        ];
+        $rows = [];
+
+        Revenue::selectRaw("charts.name, count(revenues.amount) as aggregate")
+            ->tap(fn($query) => $this->applyFilterQuery($request, $query))
+            ->join('charts', 'charts.id', '=', 'revenues.chart_id')
+            ->where('charts.account_id', '=', Constant::AC_REVENUE)
+            ->where('charts.enabled', '=', true)
+            ->groupBy('revenues.chart_id')
+            ->each(function ($revenue) use (&$rows) {
+                $rows[] = MetricTableRow::make()
+                    ->icon('check-circle')
+                    ->iconClass('text-green-500')
+                    ->title($revenue->name)
+                    ->subtitle('In every part of the globe it is the same!');
+            });
+
+        return $rows;
     }
 
     /**
