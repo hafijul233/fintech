@@ -21,7 +21,7 @@ class SignificantAssetMetric extends Partition
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return PartitionResult
      */
     public function calculate(NovaRequest $request)
@@ -29,8 +29,8 @@ class SignificantAssetMetric extends Partition
         $charts = Chart::enabled()->filtered(['account_id' => Constant::AC_ASSET])
             ->get()->pluck('name', 'id')->toArray();
 
-        return $this->sum($request, Asset::whereHas('chart', fn($query) => $query->where('account_id', '=', Constant::AC_ASSET)), 'amount', 'chart_id')
-            ->label(fn($value) => $charts[$value] ?? 'None');
+        return $this->sum($request, Asset::whereHas('chart', fn ($query) => $query->where('account_id', '=', Constant::AC_ASSET)), 'amount', 'chart_id')
+            ->label(fn ($value) => $charts[$value] ?? 'None');
     }
 
     /**

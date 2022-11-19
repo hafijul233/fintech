@@ -2,7 +2,6 @@
 
 namespace App\Nova\Metrics\Expense;
 
-use App\Models\Asset;
 use App\Models\Chart;
 use App\Models\Expense;
 use App\Supports\Constant;
@@ -22,7 +21,7 @@ class SignificantExpenseMetric extends Partition
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return PartitionResult
      */
     public function calculate(NovaRequest $request)
@@ -30,8 +29,8 @@ class SignificantExpenseMetric extends Partition
         $charts = Chart::enabled()->filtered(['account_id' => Constant::AC_EXPENSE])
             ->get()->pluck('name', 'id')->toArray();
 
-        return $this->sum($request, Expense::whereHas('chart', fn($query) => $query->where('account_id', '=', Constant::AC_EXPENSE)), 'amount', 'chart_id')
-            ->label(fn($value) => $charts[$value] ?? 'None');
+        return $this->sum($request, Expense::whereHas('chart', fn ($query) => $query->where('account_id', '=', Constant::AC_EXPENSE)), 'amount', 'chart_id')
+            ->label(fn ($value) => $charts[$value] ?? 'None');
     }
 
     /**

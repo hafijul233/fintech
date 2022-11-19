@@ -3,7 +3,6 @@
 namespace App\Nova\Metrics\Liability;
 
 use App\Models\Chart;
-use App\Models\Expense;
 use App\Models\Liability;
 use App\Supports\Constant;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -22,7 +21,7 @@ class SignificantLiabilityMetric extends Partition
     /**
      * Calculate the value of the metric.
      *
-     * @param NovaRequest $request
+     * @param  NovaRequest  $request
      * @return PartitionResult
      */
     public function calculate(NovaRequest $request)
@@ -30,8 +29,8 @@ class SignificantLiabilityMetric extends Partition
         $charts = Chart::enabled()->filtered(['account_id' => Constant::AC_LIABILITY])
             ->get()->pluck('name', 'id')->toArray();
 
-        return $this->sum($request, Liability::whereHas('chart', fn($query) => $query->where('account_id', '=', Constant::AC_LIABILITY)), 'amount', 'chart_id')
-            ->label(fn($value) => $charts[$value] ?? 'None');
+        return $this->sum($request, Liability::whereHas('chart', fn ($query) => $query->where('account_id', '=', Constant::AC_LIABILITY)), 'amount', 'chart_id')
+            ->label(fn ($value) => $charts[$value] ?? 'None');
     }
 
     /**
