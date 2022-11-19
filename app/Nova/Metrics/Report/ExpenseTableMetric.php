@@ -28,7 +28,7 @@ class ExpenseTableMetric extends TableCard
             ->join('charts', 'charts.id', '=', 'expenses.chart_id')
             ->where('charts.account_id', '=', Constant::AC_EXPENSE)
             ->where('charts.enabled', '=', true)
-            ->groupBy('expenses.chart_id')
+            ->groupBy(['expenses.chart_id', 'charts.name'])
             ->get()
             ->each(function ($expense) use (&$rows, &$total) {
                 $total += ($expense->amount ?? 0);

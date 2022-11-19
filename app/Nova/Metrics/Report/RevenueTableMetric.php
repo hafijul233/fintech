@@ -28,7 +28,7 @@ class RevenueTableMetric extends TableCard
             ->join('charts', 'charts.id', '=', 'revenues.chart_id')
             ->where('charts.account_id', '=', Constant::AC_REVENUE)
             ->where('charts.enabled', '=', true)
-            ->groupBy('revenues.chart_id')
+            ->groupBy(['revenues.chart_id', 'charts.name'])
             ->get()
             ->each(function ($revenue) use (&$rows, &$total) {
                 $total += ($revenue->amount ?? 0);
