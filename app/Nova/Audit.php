@@ -36,17 +36,17 @@ class Audit extends Resource
         'user.name', 'user.email', 'event', 'auditable_type', 'auditable_id', 'old_values', 'new_values', 'url', 'ip_address', 'user_agent', 'tags',
     ];
 
+    public static function authorizedToCreate(Request $request)
+    {
+        return false;
+    }
+
     public function authorizedToDelete(Request $request)
     {
         return false;
     }
 
     public function authorizedToReplicate(Request $request)
-    {
-        return false;
-    }
-
-    public static function authorizedToCreate(Request $request)
     {
         return false;
     }
@@ -111,9 +111,9 @@ class Audit extends Resource
 
             Text::make('Tags')->hideFromIndex(),
 
-            DateTime::make('Created At')->exceptOnForms(),
+            DateTime::make('Created At')->onlyOnDetail(),
 
-            DateTime::make('Updated At')->exceptOnForms(),
+            DateTime::make('Updated At')->onlyOnDetail(),
         ];
     }
 

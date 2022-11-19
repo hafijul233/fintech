@@ -6,6 +6,7 @@ use App\Nova\Metrics\Asset\TotalAssetMetric;
 use App\Nova\Metrics\Equity\TotalEquityMetric;
 use App\Nova\Metrics\Expense\TotalExpenseMetric;
 use App\Nova\Metrics\Liability\TotalLiabilityMetric;
+use App\Nova\Metrics\OverallAmountMetric;
 use App\Nova\Metrics\Revenue\TotalRevenueMetric;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Dashboards\Main as Dashboard;
@@ -22,13 +23,6 @@ class MainDashboard extends Dashboard
     {
         return 'Dashboard';
     }
-
-    /**
-     * Determines whether Nova should show a refresh button.
-     *
-     * @var bool
-     */
-    public $showRefreshButton = true;
 
     /**
      * Get the URI key of the dashboard.
@@ -49,21 +43,12 @@ class MainDashboard extends Dashboard
     {
         return [
             Breadcrumbs::make(app(NovaRequest::class), $this),
-            TotalAssetMetric::make()
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
-            TotalLiabilityMetric::make()
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
-            TotalEquityMetric::make()
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
-            TotalRevenueMetric::make()
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
-            TotalExpenseMetric::make()
-                ->refreshWhenActionsRun()
-                ->refreshWhenFiltersChange(),
+            OverallAmountMetric::make(),
+            TotalAssetMetric::make(),
+            TotalLiabilityMetric::make(),
+            TotalEquityMetric::make(),
+            TotalRevenueMetric::make(),
+            TotalExpenseMetric::make(),
         ];
     }
 }

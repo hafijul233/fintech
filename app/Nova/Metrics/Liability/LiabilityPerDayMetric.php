@@ -32,7 +32,7 @@ class LiabilityPerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Liability::class, 'amount');
+        return $this->sumByDays($request, Liability::class, 'amount');
     }
 
     /**

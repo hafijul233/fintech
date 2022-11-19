@@ -125,10 +125,10 @@ class User extends Resource
                 ->default(fn () => config('app.timezone')),
 
             DateTime::make('Created', 'created_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             AuditableLog::make(),
         ];

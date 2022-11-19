@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Chart;
 use App\Models\User;
 use App\Supports\Constant;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -35,7 +36,7 @@ class UserOnboardService
             Model::reguard();
 
             return true;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             DB::rollBack();
             logger('User Onboard Chart Exception: '.$exception->getMessage());
 

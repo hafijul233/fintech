@@ -57,10 +57,10 @@ class Account extends Resource
                 ->default(true),
 
             DateTime::make('Created', 'created_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             AuditableLog::make(),
         ];

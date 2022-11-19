@@ -32,7 +32,7 @@ class ExpensePerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Expense::class, 'amount');
+        return $this->sumByDays($request, Expense::class, 'amount');
     }
 
     /**

@@ -14,17 +14,6 @@ class Equity extends Model implements Auditable, HasMedia
     use \OwenIt\Auditing\Auditable;
     use InteractsWithMedia;
 
-    /**
-     * Register profile Image Media Collection
-     *
-     * @return void
-     */
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('attachments')
-            ->useDisk('attachments');
-    }
-
     protected $casts = [
         'entry' => 'date',
         'amount' => 'float',
@@ -39,12 +28,23 @@ class Equity extends Model implements Auditable, HasMedia
     {
         static::addGlobalScope(new OnlyUserScope);
 
-        static::creating(function (Asset $model) {
+        static::creating(function (self $model) {
             if (auth()->user()) {
                 $model->user_id = $model->user_id ?? request()->user()->id;
                 $model->getDirty();
             }
         });
+    }
+
+    /**
+     * Register profile Image Media Collection
+     *
+     * @return void
+     */
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('attachments')
+            ->useDisk('attachments');
     }
 
     public function user(): BelongsTo

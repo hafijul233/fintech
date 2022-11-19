@@ -62,7 +62,6 @@ class Expense extends Resource
 
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
-                ->searchable()
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_EXPENSE)
@@ -71,7 +70,7 @@ class Expense extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn () => \App\Models\Asset::select('description')
+                ->suggestions(fn () => \App\Models\Expense::select('description')
                     ->get()->pluck('description')->toArray()
                 ),
 
@@ -83,10 +82,10 @@ class Expense extends Resource
                 ->nullable(),
 
             DateTime::make('Created', 'created_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             Files::make('Attachments', 'attachments')->nullable(),
 

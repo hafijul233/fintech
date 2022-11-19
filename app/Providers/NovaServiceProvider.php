@@ -8,6 +8,7 @@ use App\Nova\Chart;
 use App\Nova\Configuration;
 use App\Nova\Dashboards\HistogramDashboard;
 use App\Nova\Dashboards\MainDashboard;
+use App\Nova\Dashboards\SignificantDashboard;
 use App\Nova\Equity;
 use App\Nova\Expense;
 use App\Nova\Liability;
@@ -85,12 +86,36 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 $menu->append(
                     MenuItem::dashboard(HistogramDashboard::class)
                 )->append(
+                    MenuItem::dashboard(SignificantDashboard::class)
+                )->append(
                     MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey())
                 );
 
                 return $menu;
             });
+    }
 
+    /**
+     * Get the tools that should be listed in the Nova sidebar.
+     *
+     * @return array
+     */
+    public function tools()
+    {
+        return [
+            LanguageSwitch::make(),
+            LogViewer::make(),
+        ];
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
     }
 
     /**
@@ -132,29 +157,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             new MainDashboard,
             new HistogramDashboard,
+            new SignificantDashboard,
         ];
-    }
-
-    /**
-     * Get the tools that should be listed in the Nova sidebar.
-     *
-     * @return array
-     */
-    public function tools()
-    {
-        return [
-            LanguageSwitch::make(),
-            LogViewer::make(),
-        ];
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }

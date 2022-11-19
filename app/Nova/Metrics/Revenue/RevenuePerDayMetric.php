@@ -32,7 +32,7 @@ class RevenuePerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->countByDays($request, Revenue::class, 'amount');
+        return $this->sumByDays($request, Revenue::class, 'amount');
     }
 
     /**

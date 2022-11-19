@@ -19,7 +19,5 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ConfigurationSeeder::class,
         ]);
-
-        $this->call(ChartSeeder::class, false, ['user_id' => 1]);
     }
 }

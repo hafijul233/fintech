@@ -27,6 +27,7 @@
         "laravel/nova": "^4.18",
         "laravel/nova-log-viewer": "^0.1.4",
         "laravel/sanctum": "^3.0",
+        "outl1ne/nova-sortable": "^3.3",
         "owen-it/laravel-auditing": "^13.0",
         "padocia/laravel-nova-pdf": "^1.0",
         "wdelfuego/nova-calendar": "^1.6"
@@ -55,19 +56,20 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan storage:link --ansi"
-
+            "@php artisan package:discover --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
             "@php artisan vendor:publish --tag=nova-assets --ansi --force"
-
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-install-cmd": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate --ansi"
         ]
     },

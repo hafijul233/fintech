@@ -1,28 +1,19 @@
 <?php
 
-namespace App\Nova\Metrics\Asset;
+namespace App\Nova\Metrics;
 
 use App\Models\Asset;
-use DateInterval;
-use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Metrics\Trend;
+use Laravel\Nova\Metrics\Value;
 
-class AssetPerDayMetric extends Trend
+class OverallAmountMetric extends Value
 {
-    /**
-     * The width of the card (1/3, 2/3, 1/2, 1/4, 3/4, or full).
-     *
-     * @var string
-     */
-    public $width = '2/3';
-
     /**
      * The displayable name of the metric.
      *
      * @var string
      */
-    public $name = 'Assets/Day';
+    public $name = 'Overall Amount';
 
     /**
      * Calculate the value of the metric.
@@ -32,7 +23,7 @@ class AssetPerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        return $this->sumByDays($request, Asset::class, 'amount');
+        return $this->sum($request, Asset::class, 'amount', 'entry');
     }
 
     /**
@@ -43,31 +34,24 @@ class AssetPerDayMetric extends Trend
     public function ranges()
     {
         return [
-            7 => __('7 Days'),
-            15 => __('15 Days'),
+            'TODAY' => __('Today'),
+            'YESTERDAY' => __('Yesterday'),
             30 => __('30 Days'),
             60 => __('60 Days'),
-            90 => __('90 Days'),
+            365 => __('365 Days'),
+            'MTD' => __('Month To Date'),
+            'QTD' => __('Quarter To Date'),
+            'YTD' => __('Year To Date'),
         ];
     }
 
     /**
      * Determine the amount of time the results of the metric should be cached.
      *
-     * @return DateTimeInterface|DateInterval|float|int|null
+     * @return \DateTimeInterface|\DateInterval|float|int|null
      */
     public function cacheFor()
     {
         // return now()->addMinutes(5);
-    }
-
-    /**
-     * Get the URI key for the metric.
-     *
-     * @return string
-     */
-    public function uriKey()
-    {
-        return 'asset-asset-per-day';
     }
 }

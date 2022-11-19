@@ -29,6 +29,7 @@ return new class extends Migration
                 ->nullable();
             $table->string('name');
             $table->boolean('enabled');
+            $table->integer('sort_order')->nullable();
             $table->timestamps();
             $table->unique(['user_id', 'account_id', 'code']);
         });

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Common\ChangeStatusAction;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Laravel\Nova\Fields\BelongsTo;
@@ -42,27 +43,27 @@ class Chart extends Resource
 
         switch ($request->route('resource')) {
             case 'assets':
-                $query->where('account_id', Constant::AC_ASSET);
+                $query->enabled()->where('account_id', Constant::AC_ASSET);
                 break;
 
             case 'liabilities':
-                $query->where('account_id', Constant::AC_LIABILITY);
+                $query->enabled()->where('account_id', Constant::AC_LIABILITY);
                 break;
 
             case 'equities':
-                $query->where('account_id', Constant::AC_EQUITY);
+                $query->enabled()->where('account_id', Constant::AC_EQUITY);
                 break;
 
             case 'revenues':
-                $query->where('account_id', Constant::AC_REVENUE);
+                $query->enabled()->where('account_id', Constant::AC_REVENUE);
                 break;
 
             case 'expenses':
-                $query->where('account_id', Constant::AC_EXPENSE);
+                $query->enabled()->where('account_id', Constant::AC_EXPENSE);
                 break;
         }
 
-        return $query;
+        return $query->orderBy('enabled')->orderBy('id', 'desc');
     }
 
     /**
@@ -82,17 +83,21 @@ class Chart extends Resource
                 ->sortable()
                 ->filterable(),
 
+            Text::make('Code')->sortable(),
+
             Text::make('Name')->sortable(),
 
             Boolean::make('Enabled')
                 ->nullable()
+                ->sortable()
+                ->filterable()
                 ->default(true),
 
             DateTime::make('Created', 'created_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->exceptOnForms(),
+                ->onlyOnDetail(),
 
             AuditableLog::make(),
         ];
@@ -143,6 +148,7 @@ class Chart extends Resource
     {
         return [
             ...parent::actions($request),
+            ChangeStatusAction::make(),
         ];
     }
 }
