@@ -4,9 +4,9 @@ namespace App\Nova\Metrics\Report;
 
 use App\Models\Revenue;
 use App\Supports\Constant;
-use JoeriTheGreat\TableCard\TableCard;
 use JoeriTheGreat\TableCard\Table\Cell;
 use JoeriTheGreat\TableCard\Table\Row;
+use JoeriTheGreat\TableCard\TableCard;
 
 class RevenueTableMetric extends TableCard
 {
@@ -17,14 +17,14 @@ class RevenueTableMetric extends TableCard
         $headers = [
             Cell::make('Name')->class('font-bold'),
             Cell::make('Amount')
-                ->class('font-bold')
+                ->class('font-bold'),
         ];
 
         $rows = [];
 
         $total = 0;
 
-        Revenue::selectRaw("charts.name, sum(revenues.amount) as amount")
+        Revenue::selectRaw('charts.name, sum(revenues.amount) as amount')
             ->join('charts', 'charts.id', '=', 'revenues.chart_id')
             ->where('charts.account_id', '=', Constant::AC_REVENUE)
             ->where('charts.enabled', '=', true)
