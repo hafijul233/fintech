@@ -8,6 +8,7 @@ use App\Nova\Chart;
 use App\Nova\Configuration;
 use App\Nova\Dashboards\HistogramDashboard;
 use App\Nova\Dashboards\MainDashboard;
+use App\Nova\Dashboards\Report\IncomeStatementDashboard;
 use App\Nova\Dashboards\SignificantDashboard;
 use App\Nova\Equity;
 use App\Nova\Expense;
@@ -23,6 +24,8 @@ use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
+use Wdelfuego\NovaCalendar\Interface\CalendarDataProviderInterface;
+use Wdelfuego\NovaCalendar\NovaCalendar;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -35,7 +38,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -59,14 +62,22 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         ->collapsable(),
 
                     MenuSection::make('Reports', [
-                       /* MenuItem::dashboard(IncomeStatementDashboard::class),
+                            MenuItem::dashboard(HistogramDashboard::class),
 
-                        MenuItem::dashboard( CashFlowDashboard::class),
+                            MenuItem::dashboard(SignificantDashboard::class),
 
-                        MenuItem::dashboard(BalanceSheetDashboard::class),*/
+                            MenuItem::dashboard(IncomeStatementDashboard::class),
+/*
+                            MenuItem::dashboard(CashFlowDashboard::class),
+
+                            MenuItem::dashboard(BalanceSheetDashboard::class),*/
                     ])
                         ->icon('book-open')
-                        ->collapsable(),
+                    ->collapsable(),
+
+                    MenuSection::make(config('nova-calendar.title'))
+                        ->path(config('nova-calendar.uri'))
+                        ->icon('calendar'),
 
                     MenuSection::make('Settings', [
                         MenuItem::resource(Audit::class),
@@ -88,7 +99,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 )->append(
                     MenuItem::dashboard(SignificantDashboard::class)
                 )->append(
-                    MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey())
+                    MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey())
                 );
 
                 return $menu;
@@ -105,6 +116,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             LanguageSwitch::make(),
             LogViewer::make(),
+            NovaCalendar::make(),
         ];
     }
 
@@ -115,7 +127,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(CalendarDataProviderInterface::class, function ($app) {
+            return new CalendarDataProvider();
+        });
     }
 
     /**
@@ -158,6 +172,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new MainDashboard,
             new HistogramDashboard,
             new SignificantDashboard,
+            new IncomeStatementDashboard
         ];
     }
 }

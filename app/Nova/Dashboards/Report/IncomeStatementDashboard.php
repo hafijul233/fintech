@@ -1,21 +1,18 @@
 <?php
 
-namespace App\Nova\Dashboards;
+namespace App\Nova\Dashboards\Report;
 
-use App\Nova\Metrics\Asset\SignificantAssetMetric;
+use App\Nova\Metrics\Report\RevenueTableMetric;
 use Laravel\Nova\Dashboard;
 
-class SignificantDashboard extends Dashboard
+class IncomeStatementDashboard extends Dashboard
 {
     /**
      * The displayable name of the dashboard.
      *
-     * @return string
+     * @var string
      */
-    public function name()
-    {
-        return 'Signification';
-    }
+    public $name = 'Income Statement';
 
     /**
      * Get the cards for the dashboard.
@@ -25,8 +22,7 @@ class SignificantDashboard extends Dashboard
     public function cards()
     {
         return [
-            SignificantAssetMetric::make()
-                ->width('1/2'),
+            (new RevenueTableMetric)->refreshWhenFiltersChange(),
         ];
     }
 
@@ -37,6 +33,6 @@ class SignificantDashboard extends Dashboard
      */
     public function uriKey()
     {
-        return 'significant';
+        return 'income-statement';
     }
 }
