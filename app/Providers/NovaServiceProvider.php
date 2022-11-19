@@ -45,18 +45,35 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                     MenuSection::make('Accounts', [
                         MenuItem::resource(Asset::class),
+
                         MenuItem::resource(Liability::class),
+
                         MenuItem::resource(Equity::class),
+
                         MenuItem::resource(Revenue::class),
+
                         MenuItem::resource(Expense::class),
                     ])
                         ->icon('cash')
                         ->collapsable(),
 
+                    MenuSection::make('Reports', [
+                       /* MenuItem::dashboard(IncomeStatementDashboard::class),
+
+                        MenuItem::dashboard( CashFlowDashboard::class),
+
+                        MenuItem::dashboard(BalanceSheetDashboard::class),*/
+                    ])
+                        ->icon('book-open')
+                        ->collapsable(),
+
                     MenuSection::make('Settings', [
                         MenuItem::resource(Audit::class),
+
                         MenuItem::resource(Chart::class),
+
                         MenuItem::resource(Configuration::class),
+
                         MenuItem::link('Logs', 'logs'),
                     ])
                         ->icon('cog')
