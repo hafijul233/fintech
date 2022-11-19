@@ -38,7 +38,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -62,12 +62,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         ->collapsable(),
 
                     MenuSection::make('Reports', [
-                            MenuItem::dashboard(HistogramDashboard::class),
+                        MenuItem::dashboard(HistogramDashboard::class),
 
-                            MenuItem::dashboard(SignificantDashboard::class),
+                        MenuItem::dashboard(SignificantDashboard::class),
 
-                            MenuItem::dashboard(IncomeStatementDashboard::class),
-/*
+                        MenuItem::dashboard(IncomeStatementDashboard::class),
+                        /*
                             MenuItem::dashboard(CashFlowDashboard::class),
 
                             MenuItem::dashboard(BalanceSheetDashboard::class),*/
@@ -99,7 +99,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 )->append(
                     MenuItem::dashboard(SignificantDashboard::class)
                 )->append(
-                    MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey())
+                    MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey())
                 );
 
                 return $menu;
@@ -172,7 +172,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new MainDashboard,
             new HistogramDashboard,
             new SignificantDashboard,
-            new IncomeStatementDashboard
+            new IncomeStatementDashboard,
         ];
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
+use App\Nova\User;
 use Wdelfuego\NovaCalendar\DataProvider\MonthCalendar;
 use Wdelfuego\NovaCalendar\Event;
-use App\Nova\User;
 
 class CalendarDataProvider extends MonthCalendar
 {
@@ -15,8 +15,8 @@ class CalendarDataProvider extends MonthCalendar
     // - each key is a Nova resource class name (eg: 'App/Nova/User::class')
     // - each value is either:
     //
-    //   1. a string containing the attribute name of a DateTime casted attribute   
-    //      of the underlying Eloquent model that will be used as the event's 
+    //   1. a string containing the attribute name of a DateTime casted attribute
+    //      of the underlying Eloquent model that will be used as the event's
     //      starting date and time (eg.: 'created_at')
     //
     //      OR
@@ -27,14 +27,14 @@ class CalendarDataProvider extends MonthCalendar
     //
     // See https://github.com/wdelfuego/nova-calendar to find out
     // how to customize the way the events are displayed
-    // 
-    public function novaResources() : array
+    //
+    public function novaResources(): array
     {
         return [
-            
+
             // Events without an ending timestamp will always be shown as single-day events:
             User::class => 'created_at',
-            
+
             // Events with an ending timestamp can be multi-day events:
             // SomeResource::class => ['starts_at', 'ends_at'],
         ];
@@ -43,13 +43,13 @@ class CalendarDataProvider extends MonthCalendar
     // Use this method to show events on the calendar that don't
     // come from a Nova resource. Just return an array of dynamically
     // generated events.
-    protected function nonNovaEvents() : array
+    protected function nonNovaEvents(): array
     {
         return [
-            (new Event("Today until tomorrow", now(), now()->addDays(1)))
+            (new Event('Today until tomorrow', now(), now()->addDays(1)))
                 ->displayTime()
                 ->addBadges('👍')
-                ->withNotes('these are the event notes')
+                ->withNotes('these are the event notes'),
         ];
     }
 }
