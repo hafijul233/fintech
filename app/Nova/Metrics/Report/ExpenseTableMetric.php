@@ -2,13 +2,13 @@
 
 namespace App\Nova\Metrics\Report;
 
-use App\Models\Revenue;
+use App\Models\Expense;
 use App\Supports\Constant;
 use JoeriTheGreat\TableCard\TableCard;
 use JoeriTheGreat\TableCard\Table\Cell;
 use JoeriTheGreat\TableCard\Table\Row;
 
-class RevenueTableMetric extends TableCard
+class ExpenseTableMetric extends TableCard
 {
     public function __construct(array $header = [], array $data = [], string $title = '', bool $viewAll = false)
     {
@@ -24,17 +24,17 @@ class RevenueTableMetric extends TableCard
 
         $total = 0;
 
-        Revenue::selectRaw("charts.name, sum(revenues.amount) as amount")
-            ->join('charts', 'charts.id', '=', 'revenues.chart_id')
-            ->where('charts.account_id', '=', Constant::AC_REVENUE)
+        Expense::selectRaw("charts.name, sum(expenses.amount) as amount")
+            ->join('charts', 'charts.id', '=', 'expenses.chart_id')
+            ->where('charts.account_id', '=', Constant::AC_EXPENSE)
             ->where('charts.enabled', '=', true)
-            ->groupBy('revenues.chart_id')
+            ->groupBy('expenses.chart_id')
             ->get()
-            ->each(function ($revenue) use (&$rows, &$total) {
-                $total += ($revenue->amount ?? 0);
+            ->each(function ($expense) use (&$rows, &$total) {
+                $total += ($expense->amount ?? 0);
                 $rows[] = Row::make(
-                    Cell::make(ucwords($revenue->name)),
-                    Cell::make(number_format($revenue->amount, 2))->class('text-right')
+                    Cell::make(ucwords($expense->name)),
+                    Cell::make(number_format($expense->amount, 2))->class('text-right')
                 );
             });
 
@@ -43,7 +43,7 @@ class RevenueTableMetric extends TableCard
             Cell::make(number_format($total, 2))->class('text-right font-bold text-2xl')
         );
 
-        $this->title('Total Revenues')
+        $this->title('Total Expenses')
             ->header($headers)
             ->data($rows);
     }
