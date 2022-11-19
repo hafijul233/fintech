@@ -3,7 +3,9 @@
 namespace App\Nova\Dashboards\Report;
 
 use App\Nova\Metrics\Report\RevenueTableMetric;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Dashboard;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class IncomeStatementDashboard extends Dashboard
 {
@@ -22,6 +24,8 @@ class IncomeStatementDashboard extends Dashboard
     public function cards()
     {
         return [
+            Breadcrumbs::make(app(NovaRequest::class), $this),
+
             (new RevenueTableMetric)->refreshWhenFiltersChange(),
         ];
     }
