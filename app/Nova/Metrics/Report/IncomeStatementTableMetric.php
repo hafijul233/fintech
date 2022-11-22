@@ -4,7 +4,6 @@ namespace App\Nova\Metrics\Report;
 
 use App\Models\Expense;
 use App\Models\Revenue;
-use App\Supports\Constant;
 use JoeriTheGreat\TableCard\Table\Cell;
 use JoeriTheGreat\TableCard\Table\Row;
 use JoeriTheGreat\TableCard\TableCard;
@@ -27,13 +26,12 @@ class IncomeStatementTableMetric extends TableCard
 
         $totalExpenses = Expense::all()->sum('amount');
 
-
         $rows[] = Row::make(
             Cell::make('Total Revenues'),
             Cell::make(
                 config("fintech.currency.{$currency}.symbol")
-                . ' '
-                . number_format($totalRevenues, 2)
+                .' '
+                .number_format($totalRevenues, 2)
             )->class('text-right')
         );
 
@@ -41,7 +39,7 @@ class IncomeStatementTableMetric extends TableCard
             Cell::make('Total Expenses'),
             Cell::make(
                 config("fintech.currency.{$currency}.symbol")
-                . number_format($totalExpenses, 2)
+                .number_format($totalExpenses, 2)
             )->class('text-right')
         );
 

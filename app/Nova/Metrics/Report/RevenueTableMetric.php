@@ -38,8 +38,8 @@ class RevenueTableMetric extends TableCard
                     Cell::make(ucwords($revenue->name)),
                     Cell::make(
                         config("fintech.currency.{$currency}.symbol")
-                        . ' '
-                        . number_format($revenue->amount, 2)
+                        .' '
+                        .number_format($revenue->amount, 2)
                     )->class('text-right')
                 );
             });
@@ -48,8 +48,8 @@ class RevenueTableMetric extends TableCard
             Cell::make('Total')->class('font-bold text-2xl'),
             Cell::make(
                 config("fintech.currency.{$currency}.symbol")
-                . ' '
-                . number_format($total, 2)
+                .' '
+                .number_format($total, 2)
             )->class('text-right font-bold text-2xl')
         );
 

@@ -59,8 +59,9 @@ class User extends Resource
     {
         $currencies = [];
 
-        foreach (config('fintech.currency') as $code => $currency)
+        foreach (config('fintech.currency') as $code => $currency) {
             $currencies[$code] = $currency['name'];
+        }
 
         return [
             ID::make()->asBigInt()->sortable(),
