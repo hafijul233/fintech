@@ -57,6 +57,11 @@ class User extends Resource
      */
     public function fields(NovaRequest $request)
     {
+        $currencies = [];
+
+        foreach (config('fintech.currency') as $code => $currency)
+            $currencies[$code] = $currency['name'];
+
         return [
             ID::make()->asBigInt()->sortable(),
 
@@ -112,6 +117,15 @@ class User extends Resource
                 ->filterable()
                 ->searchable()
                 ->nullable()
+                ->displayUsingLabels(),
+
+            Select::make('Currency')
+                ->options($currencies)
+                ->sortable()
+                ->filterable()
+                ->searchable()
+                ->nullable()
+                ->default('USD')
                 ->displayUsingLabels(),
 
             Select::make('Timezone')
