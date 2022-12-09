@@ -3,6 +3,7 @@
 namespace App\Nova\Metrics\Liability;
 
 use App\Models\Liability;
+use App\Traits\TrendQueryTrait;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -10,6 +11,8 @@ use Laravel\Nova\Metrics\Trend;
 
 class LiabilityPerDayMetric extends Trend
 {
+    use TrendQueryTrait;
+
     /**
      * The width of the card (1/3, 2/3, 1/2, 1/4, 3/4, or full).
      *
@@ -46,13 +49,7 @@ class LiabilityPerDayMetric extends Trend
      */
     public function ranges()
     {
-        return [
-            7 => __('7 Days'),
-            15 => __('15 Days'),
-            30 => __('30 Days'),
-            60 => __('60 Days'),
-            90 => __('90 Days'),
-        ];
+        return config('fintech.constants.trend_metric_range');
     }
 
     /**

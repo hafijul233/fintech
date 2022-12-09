@@ -7,6 +7,7 @@ use App\Nova\Filters\Common\StartDateFilter;
 use App\Nova\Metrics\Asset\AssetPerDayMetric;
 use App\Nova\Metrics\Asset\TotalAssetMetric;
 use App\Supports\Constant;
+use Carbon\CarbonImmutable;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
 use Illuminate\Validation\Rule;
@@ -57,11 +58,14 @@ class Asset extends Resource
 
             Date::make('Entry', 'entry')
                 ->required()
-                ->default(fn () => date('Y-m-d'))
-                ->rules(['date_format:Y-m-d', 'required', 'date', 'before_or_equal:'.date('Y-m-d')]),
+                ->sortable()
+                ->filterable()
+                ->default(fn() => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
+                ->rules(['date_format:Y-m-d', 'required', 'date']),
 
             BelongsTo::make('Chart', 'chart', Chart::class)
                 ->required()
+                ->sortable()
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_ASSET)
@@ -70,15 +74,18 @@ class Asset extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->suggestions(fn () => \App\Models\Asset::select('description')
-                    ->get()->pluck('description')->toArray()
+                ->sortable()
+                ->suggestions(fn () => array_unique(\App\Models\Asset::select('description')
+                    ->get()->pluck('description')->toArray())
                 ),
 
             Currency::make('Amount', 'amount')
                 ->required()
+                ->sortable()
                 ->displayUsing(fn ($value) => number_format($value, 2)),
 
             Textarea::make('Notes', 'notes')
+                ->hideFromIndex()
                 ->nullable(),
 
             DateTime::make('Created', 'created_at')
@@ -123,9 +130,7 @@ class Asset extends Resource
     public function filters(NovaRequest $request)
     {
         return [
-            StartDateFilter::make(),
-
-            EndDateFilter::make(),
+            ...parent::filters($request),
         ];
     }
 
@@ -137,7 +142,9 @@ class Asset extends Resource
      */
     public function lenses(NovaRequest $request)
     {
-        return [];
+        return [
+            ...parent::lenses($request),
+        ];
     }
 
     /**

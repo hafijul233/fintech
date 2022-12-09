@@ -54,6 +54,7 @@ class Account extends Resource
 
             Boolean::make('Enabled')
                 ->nullable()
+                ->sortable()
                 ->default(true),
 
             DateTime::make('Created', 'created_at')

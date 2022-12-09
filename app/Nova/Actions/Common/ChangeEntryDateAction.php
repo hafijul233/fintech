@@ -2,29 +2,29 @@
 
 namespace App\Nova\Actions\Common;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class ChangeStatusAction extends Action
+class ChangeEntryDateAction extends Action
 {
     /**
      * The displayable name of the action.
      *
      * @var string
      */
-    public $name = 'Change Status';
+    public $name = 'Change Entry Date';
 
     /**
      * Perform the action on the given models.
      *
-     * @param  ActionFields  $fields
-     * @param  Collection  $models
+     * @param ActionFields $fields
+     * @param Collection $models
      * @return mixed
      */
     public function handle(ActionFields $fields, Collection $models)
@@ -32,33 +32,31 @@ class ChangeStatusAction extends Action
         DB::beginTransaction();
         try {
             foreach ($models as $model) {
-                $model->enabled = $fields->enabled;
+                $model->entry = $fields->entry;
                 $model->save();
             }
             DB::commit();
 
-            return Action::message(class_basename(get_class($models->first())).'s enabled status update successful');
+            return Action::message(class_basename(get_class($models->first())) . 's entry date update successful');
         } catch (\Exception $exception) {
             DB::rollBack();
-            logger('Action Exception: '.$exception->getMessage(), $exception->getTrace());
+            logger('Action Exception: ' . $exception->getMessage(), $exception->getTrace());
 
-            return Action::danger(class_basename(get_class($models->first())).'s enabled status update failed');
+            return Action::danger(class_basename(get_class($models->first())) . 's entry date update failed');
         }
     }
 
     /**
      * Get the fields available on the action.
      *
-     * @param  NovaRequest  $request
+     * @param NovaRequest $request
      * @return array
      */
     public function fields(NovaRequest $request)
     {
         return [
-            Boolean::make('Enabled', 'enabled')
-                ->default(function () {
-                    return true;
-                }),
+            Date::make('Entry Date', 'entry')
+                ->default(fn() => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d')),
         ];
     }
 }

@@ -20,6 +20,13 @@ class OverallAmountMetric extends Value
     public $name = 'Overall Amount';
 
     /**
+     * Rounding precision.
+     *
+     * @var int
+     */
+    public $roundingPrecision = 2;
+
+    /**
      * Calculate the value of the metric.
      *
      * @param  NovaRequest  $request

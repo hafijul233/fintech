@@ -39,18 +39,7 @@ class TotalEquityMetric extends Value
      */
     public function ranges()
     {
-        return [
-            'TODAY' => __('Today'),
-            'YESTERDAY' => __('Yesterday'),
-            7 => __('7 Days'),
-            15 => __('15 Days'),
-            30 => __('30 Days'),
-            60 => __('60 Days'),
-            365 => __('365 Days'),
-            'MTD' => __('Month To Date'),
-            'QTD' => __('Quarter To Date'),
-            'YTD' => __('Year To Date'),
-        ];
+        return config('fintech.constants.value_metric_range');
     }
 
     /**

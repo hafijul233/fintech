@@ -2273,4 +2273,31 @@ return [
             'thousands_separator' => ',',
         ],
     ],
+    'constants' => [
+        'value_metric_range' => [
+            'TODAY' => 'Today',
+            'YESTERDAY' => 'Yesterday',
+            7 => 'Last 7 Days',
+            15 => 'Last 15 Days ',
+            30 => 'Last 30 Days',
+            60 => 'Last 60 Days',
+            'MTD' => 'Month To Date',
+            'QTD' => 'Quarter To Date',
+            'YTD' => 'Year To Date',
+            'ALL' => 'All Time',
+        ],
+
+        'trend_metric_range' => [
+            7 => 'Last 7 Days',
+            15 => 'Last 15 Days ',
+            30 => 'Last 30 Days',
+            60 => 'Last 60 Days',
+            'TODAY' => 'Today',
+            'YESTERDAY' => 'Yesterday',
+            'MTD' => 'Month To Date',
+            'QTD' => 'Quarter To Date',
+            'YTD' => 'Year To Date',
+            'ALL' => 'All Time',
+        ],
+    ]
 ];

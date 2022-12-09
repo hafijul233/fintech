@@ -54,7 +54,7 @@ class Chart extends Model implements Auditable
     /**
      * get the list of only enabled list
      *
-     * @param  Builder  $query
+     * @param Builder $query
      * @return Builder
      */
     public function scopeEnabled(Builder $query): Builder
@@ -65,17 +65,25 @@ class Chart extends Model implements Auditable
     /**
      * get the list of only enabled list
      *
-     * @param  Builder  $query
-     * @param  array  $filters
+     * @param Builder $query
+     * @param array $filters
      * @return Builder
      */
     public function scopeFiltered(Builder $query, array $filters = []): Builder
     {
-        if (! empty($filters['account_id'])) {
+        if (!empty($filters['account_id'])) {
             $query->where('account_id', '=', $filters['account_id']);
         }
 
         return $query;
+    }
+
+    public static function dropdown(array $filters = [])
+    {
+        return self::enabled()
+            ->filtered($filters)
+            ->get()->pluck('name', 'id')
+            ->toArray();
     }
 
     public function user(): BelongsTo

@@ -2,6 +2,9 @@
 
 namespace App\Nova;
 
+use App\Nova\Actions\Common\ChangeEntryDateAction;
+use App\Nova\Filters\Common\EndDateFilter;
+use App\Nova\Filters\Common\StartDateFilter;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Illuminate\Database\Eloquent\Builder;
 use Laravel\Nova\Actions\ExportAsCsv;
@@ -82,7 +85,33 @@ abstract class Resource extends NovaResource
     public function actions(NovaRequest $request)
     {
         return [
+            ChangeEntryDateAction::make(),
             ExportAsCsv::make(),
         ];
+    }
+
+    /**
+     * Get the filters available for the resource.
+     *
+     * @param  NovaRequest  $request
+     * @return array
+     */
+    public function filters(NovaRequest $request)
+    {
+        return [
+/*            StartDateFilter::make(),
+            EndDateFilter::make(),*/
+        ];
+    }
+
+    /**
+     * Get the lenses available on the resource.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @return array
+     */
+    public function lenses(NovaRequest $request)
+    {
+        return [];
     }
 }
