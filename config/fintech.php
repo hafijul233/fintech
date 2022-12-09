@@ -2299,5 +2299,5 @@ return [
             'YTD' => 'Year To Date',
             'ALL' => 'All Time',
         ],
-    ]
+    ],
 ];

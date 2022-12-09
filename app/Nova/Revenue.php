@@ -2,8 +2,6 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Common\EndDateFilter;
-use App\Nova\Filters\Common\StartDateFilter;
 use App\Nova\Metrics\Revenue\RevenuePerDayMetric;
 use App\Nova\Metrics\Revenue\TotalRevenueMetric;
 use App\Supports\Constant;
@@ -60,7 +58,7 @@ class Revenue extends Resource
                 ->required()
                 ->sortable()
                 ->filterable()
-                ->default(fn() => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
+                ->default(fn () => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
                 ->rules(['date_format:Y-m-d', 'required', 'date']),
 
             BelongsTo::make('Chart', 'chart', Chart::class)

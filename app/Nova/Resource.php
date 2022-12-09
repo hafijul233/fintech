@@ -99,7 +99,7 @@ abstract class Resource extends NovaResource
     public function filters(NovaRequest $request)
     {
         return [
-/*            StartDateFilter::make(),
+            /*            StartDateFilter::make(),
             EndDateFilter::make(),*/
         ];
     }

@@ -11,7 +11,6 @@ use Laravel\Nova\Metrics\Trend;
 
 class AssetPerDayMetric extends Trend
 {
-
     use TrendQueryTrait;
 
     /**

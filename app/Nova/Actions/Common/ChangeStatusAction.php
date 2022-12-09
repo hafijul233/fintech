@@ -2,8 +2,6 @@
 
 namespace App\Nova\Actions\Common;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Actions\Action;

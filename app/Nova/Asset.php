@@ -2,8 +2,6 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\Common\EndDateFilter;
-use App\Nova\Filters\Common\StartDateFilter;
 use App\Nova\Metrics\Asset\AssetPerDayMetric;
 use App\Nova\Metrics\Asset\TotalAssetMetric;
 use App\Supports\Constant;
@@ -60,7 +58,7 @@ class Asset extends Resource
                 ->required()
                 ->sortable()
                 ->filterable()
-                ->default(fn() => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
+                ->default(fn () => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
                 ->rules(['date_format:Y-m-d', 'required', 'date']),
 
             BelongsTo::make('Chart', 'chart', Chart::class)
