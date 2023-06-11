@@ -36,8 +36,6 @@ class Chart extends Model implements Auditable
 
     /**
      * The "booted" method of the model.
-     *
-     * @return void
      */
     protected static function booted(): void
     {
@@ -53,9 +51,6 @@ class Chart extends Model implements Auditable
 
     /**
      * get the list of only enabled list
-     *
-     * @param  Builder  $query
-     * @return Builder
      */
     public function scopeEnabled(Builder $query): Builder
     {
@@ -64,10 +59,6 @@ class Chart extends Model implements Auditable
 
     /**
      * get the list of only enabled list
-     *
-     * @param  Builder  $query
-     * @param  array  $filters
-     * @return Builder
      */
     public function scopeFiltered(Builder $query, array $filters = []): Builder
     {
