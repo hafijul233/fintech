@@ -22,6 +22,16 @@ class Chart extends Resource
     public static $model = \App\Models\Chart::class;
 
     /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return "Categories";
+    }
+
+    /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string

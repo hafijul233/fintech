@@ -17,7 +17,8 @@ class UserOnboardService
 
     public function setup(array $options = [])
     {
-        return $this->createChartedAccounts();
+        $this->createChartedAccounts();
+        $this->createDefaultConfig();
     }
 
     private function createChartedAccounts(): bool
@@ -42,5 +43,10 @@ class UserOnboardService
 
             return true;
         }
+    }
+
+    private function createDefaultConfig()
+    {
+
     }
 }

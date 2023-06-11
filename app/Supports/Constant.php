@@ -15,7 +15,7 @@ class Constant
     const AC_EXPENSE = 5;
 
     const CHARTED_ACCOUNTS = [
-        '1' => [
+        self::AC_ASSET => [
             ['code' => '101', 'user_id' => null, 'account_id' => null, 'name' => 'Cash', 'enabled' => false],
             ['code' => '102', 'user_id' => null, 'account_id' => null, 'name' => 'Petty cash', 'enabled' => false],
             ['code' => '103', 'user_id' => null, 'account_id' => null, 'name' => 'Cash equivalents', 'enabled' => false],
@@ -58,7 +58,7 @@ class Constant
             ['code' => '196', 'user_id' => null, 'account_id' => null, 'name' => 'Licenses', 'enabled' => false],
             ['code' => '197', 'user_id' => null, 'account_id' => null, 'name' => 'Accumulated amortization', 'enabled' => false],
         ],
-        '2' => [
+        self::AC_LIABILITY => [
             ['code' => '201', 'user_id' => null, 'account_id' => null, 'name' => 'Accounts payable', 'enabled' => false],
             ['code' => '202', 'user_id' => null, 'account_id' => null, 'name' => 'Insurance payable', 'enabled' => false],
             ['code' => '203', 'user_id' => null, 'account_id' => null, 'name' => 'Interest payable', 'enabled' => false],
@@ -92,7 +92,7 @@ class Constant
             ['code' => '255', 'user_id' => null, 'account_id' => null, 'name' => 'Bonds payable', 'enabled' => false],
             ['code' => '258', 'user_id' => null, 'account_id' => null, 'name' => 'Deferred income tax liability', 'enabled' => false],
         ],
-        '3' => [
+        self::AC_EQUITY => [
             ['code' => '301', 'user_id' => null, 'account_id' => null, 'name' => 'Owner’s Capital', 'enabled' => false],
             ['code' => '302', 'user_id' => null, 'account_id' => null, 'name' => 'Owner’s Withdrawals', 'enabled' => false],
             ['code' => '307', 'user_id' => null, 'account_id' => null, 'name' => 'Common stock, par value', 'enabled' => false],
@@ -112,7 +112,7 @@ class Constant
             ['code' => '322', 'user_id' => null, 'account_id' => null, 'name' => 'Unrealized gain-Equity', 'enabled' => false],
             ['code' => '323', 'user_id' => null, 'account_id' => null, 'name' => 'Unrealized loss-Equity', 'enabled' => false],
         ],
-        '4' => [
+        self::AC_REVENUE => [
             ['code' => '401', 'user_id' => null, 'account_id' => null, 'name' => 'Fees earned from product one*', 'enabled' => false],
             ['code' => '402', 'user_id' => null, 'account_id' => null, 'name' => 'Fees earned from product two*', 'enabled' => false],
             ['code' => '403', 'user_id' => null, 'account_id' => null, 'name' => 'Service revenue one*', 'enabled' => false],
@@ -127,7 +127,7 @@ class Constant
             ['code' => '414', 'user_id' => null, 'account_id' => null, 'name' => 'Sales returns and allowances', 'enabled' => false],
             ['code' => '415', 'user_id' => null, 'account_id' => null, 'name' => 'Sales discounts', 'enabled' => false],
         ],
-        '5' => [
+        self::AC_EXPENSE => [
             ['code' => '501', 'user_id' => null, 'account_id' => null, 'name' => 'Amortization expense', 'enabled' => false],
             ['code' => '502', 'user_id' => null, 'account_id' => null, 'name' => 'Depletion expense', 'enabled' => false],
             ['code' => '503', 'user_id' => null, 'account_id' => null, 'name' => 'Depreciation expense-Automobiles', 'enabled' => false],
@@ -191,5 +191,13 @@ class Constant
             ['code' => '591', 'user_id' => null, 'account_id' => null, 'name' => 'Warranty expense', 'enabled' => false],
             ['code' => '595', 'user_id' => null, 'account_id' => null, 'name' => 'Income taxes expense', 'enabled' => false],
         ],
+    ];
+
+    const ACCOUNT_LABELS = [
+        self::AC_ASSET => 'Assets',
+        self::AC_LIABILITY => 'Liabilities',
+        self::AC_EQUITY => 'Equities',
+        self::AC_REVENUE => 'Revenues',
+        self::AC_EXPENSE => 'Expenses'
     ];
 }

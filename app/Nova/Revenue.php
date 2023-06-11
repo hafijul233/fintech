@@ -35,6 +35,16 @@ class Revenue extends Resource
     public static $title = 'id';
 
     /**
+     * Get the value that should be displayed to represent the resource.
+     *
+     * @return string
+     */
+    public static function label()
+    {
+        return "Incomes";
+    }
+
+    /**
      * The columns that should be searched.
      *
      * @var array
