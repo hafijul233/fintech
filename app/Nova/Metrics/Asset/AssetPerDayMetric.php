@@ -35,7 +35,7 @@ class AssetPerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = $request->user()->currency ?? 'USD';
+        $currency = config('app.currency', 'USD');
 
         return $this->sumByDays($request, Asset::class, 'amount', 'entry')
             ->prefix(config("fintech.currency.{$currency}.symbol"))

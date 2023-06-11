@@ -61,7 +61,7 @@ class Expense extends Resource
                 ->default(fn () => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
                 ->rules(['date_format:Y-m-d', 'required', 'date']),
 
-            BelongsTo::make('Chart', 'chart', Chart::class)
+            BelongsTo::make('Category', 'chart', Chart::class)
                 ->required()
                 ->sortable()
                 ->filterable()

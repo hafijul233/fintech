@@ -62,7 +62,7 @@ class Asset extends Resource
                 ->default(fn () => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
                 ->rules(['date_format:Y-m-d', 'required', 'date']),
 
-            BelongsTo::make('Chart', 'chart', Chart::class)
+            BelongsTo::make('Category', 'chart', Chart::class)
                 ->required()
                 ->sortable()
                 ->filterable()
@@ -80,8 +80,7 @@ class Asset extends Resource
 
             Currency::make('Amount', 'amount')
                 ->required()
-                ->sortable()
-                ->displayUsing(fn ($value) => number_format($value, 2)),
+                ->sortable(),
 
             Textarea::make('Notes', 'notes')
                 ->hideFromIndex()

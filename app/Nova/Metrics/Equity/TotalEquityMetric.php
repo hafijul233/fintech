@@ -25,7 +25,7 @@ class TotalEquityMetric extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = $request->user()->currency ?? 'USD';
+        $currency = config('app.currency', 'USD');
 
         return $this->sum($request, Equity::class, 'amount', 'entry')
             ->prefix(config("fintech.currency.{$currency}.symbol"))

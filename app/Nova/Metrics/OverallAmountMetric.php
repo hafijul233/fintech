@@ -34,7 +34,7 @@ class OverallAmountMetric extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = $request->user()->currency ?? 'USD';
+        $currency = config('app.currency', 'USD');
 
         $assets = $this->sum($request, Asset::class, 'amount', 'entry');
 

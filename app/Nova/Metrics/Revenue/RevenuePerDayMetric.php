@@ -35,7 +35,7 @@ class RevenuePerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = $request->user()->currency ?? 'USD';
+        $currency = config('app.currency', 'USD');
 
         return $this->sumByDays($request, Revenue::class, 'amount')
             ->prefix(config("fintech.currency.{$currency}.symbol"))

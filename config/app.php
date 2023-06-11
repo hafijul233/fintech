@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'currency' => env('APP_CURRENCY', 'USD'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

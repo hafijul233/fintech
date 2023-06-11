@@ -404,6 +404,7 @@ return [
         'Asia/Anadyr' => 'Asia/Anadyr',
         'Asia/Kamchatka' => 'Asia/Kamchatka',
     ],
+
     'phone_codes' => [
         '93' => 'Afghanistan (+93)',
         '355' => 'Albania (+355)',
@@ -631,6 +632,7 @@ return [
         '260' => 'Zambia (+260)',
         '263' => 'Zimbabwe (+263)',
     ],
+
     'currency' => [
         'AED' => [
             'name' => 'UAE Dirham',
@@ -2273,6 +2275,7 @@ return [
             'thousands_separator' => ',',
         ],
     ],
+
     'constants' => [
         'value_metric_range' => [
             'TODAY' => 'Today',
