@@ -72,9 +72,8 @@ class Expense extends Resource
 
             Text::make('Description', 'description')
                 ->required()
-                ->sortable()
-                ->suggestions(fn () => array_unique(\App\Models\Expense::select('description')
-                    ->get()->pluck('description')->toArray())
+                ->suggestions(fn () => \App\Models\Asset::select('description')
+                    ->get()->pluck('description')->toArray()
                 ),
 
             Currency::make('Amount', 'amount')
