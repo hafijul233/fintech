@@ -4,9 +4,9 @@ namespace App\Nova\Metrics\Report;
 
 use App\Models\Revenue;
 use App\Supports\Constant;
-use JoeriTheGreat\TableCard\Table\Cell;
-use JoeriTheGreat\TableCard\Table\Row;
-use JoeriTheGreat\TableCard\TableCard;
+use Whitespacecode\TableCard\Table\Cell;
+use Whitespacecode\TableCard\Table\Row;
+use Whitespacecode\TableCard\TableCard;
 
 class RevenueTableMetric extends TableCard
 {

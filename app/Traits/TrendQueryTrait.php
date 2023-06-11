@@ -63,7 +63,8 @@ trait TrendQueryTrait
             $startingDate,
             $endingDate,
             $unit,
-            $request->twelveHourTime === 'true'
+            $request->boolean('twelveHourTime', false),
+            $request->range
         );
 
         $wrappedColumn = $column instanceof Expression
