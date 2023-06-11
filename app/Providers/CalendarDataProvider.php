@@ -72,7 +72,7 @@ class CalendarDataProvider extends MonthCalendar
 //        ];
 //    }
 
-    public function filters() : array
+    public function filters(): array
     {
         return [
             new NovaResourceFilter(__('Only Assets'), Asset::class),
@@ -86,5 +86,4 @@ class CalendarDataProvider extends MonthCalendar
     {
         return $this->request->user()->timezone ?? config('app.timezone');
     }
-
 }

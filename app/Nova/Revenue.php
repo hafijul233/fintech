@@ -41,7 +41,7 @@ class Revenue extends Resource
      */
     public static function label()
     {
-        return "Incomes";
+        return 'Incomes';
     }
 
     /**

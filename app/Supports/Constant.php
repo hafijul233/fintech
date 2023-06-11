@@ -198,7 +198,7 @@ class Constant
         self::AC_LIABILITY => 'Liabilities',
         self::AC_EQUITY => 'Equities',
         self::AC_REVENUE => 'Revenues',
-        self::AC_EXPENSE => 'Expenses'
+        self::AC_EXPENSE => 'Expenses',
     ];
 
     const DEFAULT_CONFIG = [

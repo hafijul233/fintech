@@ -32,7 +32,7 @@ class Configuration extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'key', 'value'
+        'id', 'key', 'value',
     ];
 
     /**
@@ -45,7 +45,7 @@ class Configuration extends Resource
         return [
             ID::make()->asBigInt()->sortable(),
 
-            Hidden::make('user_id', )->value($request->user()->id),
+            Hidden::make('user_id')->value($request->user()->id),
 
             Text::make('Key', 'key')->required(),
 

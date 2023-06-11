@@ -28,7 +28,7 @@ class Chart extends Resource
      */
     public static function label()
     {
-        return "Categories";
+        return 'Categories';
     }
 
     /**
