@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\DateTime;
@@ -125,7 +126,9 @@ class Audit extends Resource
      */
     public function cards(NovaRequest $request)
     {
-        return [];
+        return [
+            Breadcrumbs::make($request, $this),
+        ];
     }
 
     /**

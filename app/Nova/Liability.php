@@ -6,6 +6,7 @@ use App\Nova\Metrics\Liability\TotalLiability;
 use App\Supports\Constant;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Formfeed\Breadcrumbs\Breadcrumbs;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -102,6 +103,7 @@ class Liability extends Resource
     public function cards(NovaRequest $request)
     {
         return [
+            Breadcrumbs::make($request, $this),
             TotalLiability::make()
                 ->refreshWhenActionsRun()
                 ->refreshWhenFiltersChange(),
