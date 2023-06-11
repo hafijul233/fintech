@@ -16,7 +16,6 @@ abstract class Resource extends NovaResource
     /**
      * Build an "index" query for the given resource.
      *
-     * @param  NovaRequest  $request
      * @param  Builder  $query
      * @return Builder
      */
@@ -28,7 +27,6 @@ abstract class Resource extends NovaResource
     /**
      * Build a Scout search query for the given resource.
      *
-     * @param  NovaRequest  $request
      * @param  \Laravel\Scout\Builder  $query
      * @return \Laravel\Scout\Builder
      */
@@ -40,7 +38,6 @@ abstract class Resource extends NovaResource
     /**
      * Build a "detail" query for the given resource.
      *
-     * @param  NovaRequest  $request
      * @param  Builder  $query
      * @return Builder
      */
@@ -54,7 +51,6 @@ abstract class Resource extends NovaResource
      *
      * This query determines which instances of the model may be attached to other resources.
      *
-     * @param  NovaRequest  $request
      * @param  Builder  $query
      * @return Builder
      */
@@ -66,7 +62,6 @@ abstract class Resource extends NovaResource
     /**
      * Get the cards available for the request.
      *
-     * @param  NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -79,7 +74,6 @@ abstract class Resource extends NovaResource
     /**
      * Get the actions available for the resource.
      *
-     * @param  NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)
@@ -93,7 +87,6 @@ abstract class Resource extends NovaResource
     /**
      * Get the filters available for the resource.
      *
-     * @param  NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -107,7 +100,6 @@ abstract class Resource extends NovaResource
     /**
      * Get the lenses available on the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)

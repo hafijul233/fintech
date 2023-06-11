@@ -21,8 +21,6 @@ class Asset extends Model implements Auditable, HasMedia
 
     /**
      * The "booted" method of the model.
-     *
-     * @return void
      */
     protected static function booted(): void
     {
@@ -38,8 +36,6 @@ class Asset extends Model implements Auditable, HasMedia
 
     /**
      * Register profile Image Media Collection
-     *
-     * @return void
      */
     public function registerMediaCollections(): void
     {

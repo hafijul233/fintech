@@ -73,7 +73,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                             MenuItem::dashboard(BalanceSheetDashboard::class),*/
                     ])
                         ->icon('book-open')
-                    ->collapsable(),
+                        ->collapsable(),
 
                     MenuSection::make(config('nova-calendar.title'))
                         ->path(config('nova-calendar.uri'))

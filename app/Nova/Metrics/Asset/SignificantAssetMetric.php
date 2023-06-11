@@ -21,7 +21,6 @@ class SignificantAssetMetric extends Partition
     /**
      * Calculate the value of the metric.
      *
-     * @param  NovaRequest  $request
      * @return PartitionResult
      */
     public function calculate(NovaRequest $request)
