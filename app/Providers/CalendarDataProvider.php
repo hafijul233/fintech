@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
-use App\Nova\User;
+use App\Nova\Asset;
+use App\Nova\Equity;
+use App\Nova\Expense;
+use App\Nova\Liability;
+use App\Nova\Revenue;
 use Wdelfuego\NovaCalendar\DataProvider\MonthCalendar;
-use Wdelfuego\NovaCalendar\Event;
+use Wdelfuego\NovaCalendar\EventFilter\NovaResourceFilter;
 
 class CalendarDataProvider extends MonthCalendar
 {
@@ -31,25 +35,56 @@ class CalendarDataProvider extends MonthCalendar
     public function novaResources(): array
     {
         return [
+            Asset::class => 'created_at',
+            Equity::class => 'created_at',
+            Liability::class => 'created_at',
+            Expense::class => 'created_at',
+            Revenue::class => 'created_at',
 
-            // Events without an ending timestamp will always be shown as single-day events:
-            User::class => 'created_at',
-
-            // Events with an ending timestamp can be multi-day events:
-            // SomeResource::class => ['starts_at', 'ends_at'],
         ];
     }
 
     // Use this method to show events on the calendar that don't
     // come from a Nova resource. Just return an array of dynamically
     // generated events.
-    protected function nonNovaEvents(): array
+//    protected function nonNovaEvents(): array
+//    {
+//        return [
+//            (new Event('Today until tomorrow', now()->subDays(1), now()->addDays(1)))
+//                ->displayTime()
+//                ->addBadges('👍')
+//                ->withNotes('these are the event notes'),
+//
+//            (new Event('Today until tomorrow', now()->subDays(2), now()->addDays(2)))
+//                ->displayTime()
+//                ->addBadges('👍')
+//                ->withNotes('these are the event notes'),
+//
+//            (new Event('Today until tomorrow', now()->subDays(3), now()->addDays(3)))
+//                ->displayTime()
+//                ->addBadges('👍')
+//                ->withNotes('these are the event notes'),
+//
+//            (new Event('Today until tomorrow', now()->subDays(4), now()->addDays(4)))
+//                ->displayTime()
+//                ->addBadges('👍')
+//                ->withNotes('these are the event notes'),
+//        ];
+//    }
+
+    public function filters() : array
     {
         return [
-            (new Event('Today until tomorrow', now(), now()->addDays(1)))
-                ->displayTime()
-                ->addBadges('👍')
-                ->withNotes('these are the event notes'),
+            new NovaResourceFilter(__('Only Assets'), Asset::class),
+            new NovaResourceFilter(__('Only Equity'), Equity::class),
+            new NovaResourceFilter(__('Only Liability'), Liability::class),
+            new NovaResourceFilter(__('Only Expense'), Expense::class),
         ];
     }
+
+    public function timezone(): string
+    {
+        return $this->request->user()->timezone ?? config('app.timezone');
+    }
+
 }

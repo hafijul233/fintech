@@ -19,36 +19,26 @@ class AccountSeeder extends Seeder
         $accounts = [
             [
                 'id' => Constant::AC_ASSET,
-                'start' => '101',
-                'end' => '199',
                 'name' => 'Asset',
                 'enabled' => true,
             ],
             [
                 'id' => Constant::AC_LIABILITY,
-                'start' => '201',
-                'end' => '299',
                 'name' => 'Liability',
                 'enabled' => true,
             ],
             [
                 'id' => Constant::AC_EQUITY,
-                'start' => '301',
-                'end' => '399',
                 'name' => 'Equity',
                 'enabled' => true,
             ],
             [
                 'id' => Constant::AC_REVENUE,
-                'start' => '401',
-                'end' => '499',
                 'name' => 'Revenue',
                 'enabled' => true,
             ],
             [
                 'id' => Constant::AC_EXPENSE,
-                'start' => '501',
-                'end' => '599',
                 'name' => 'Expense',
                 'enabled' => true,
             ],

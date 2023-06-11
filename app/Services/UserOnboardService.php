@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Chart;
+use App\Models\Configuration;
 use App\Models\User;
 use App\Supports\Constant;
 use Exception;
@@ -39,7 +40,7 @@ class UserOnboardService
             return true;
         } catch (Exception $exception) {
             DB::rollBack();
-            logger('User Onboard Chart Exception: '.$exception->getMessage());
+            logger('User Onboard Chart Exception: ' . $exception->getMessage());
 
             return true;
         }
@@ -47,6 +48,22 @@ class UserOnboardService
 
     private function createDefaultConfig()
     {
+        Model::unguard();
+        try {
+            DB::beginTransaction();
+            foreach (Constant::DEFAULT_CONFIG as $entry) {
+                $entry['user_id'] = $this->user->id;
+                Configuration::create($entry);
+            }
+            DB::commit();
+            Model::reguard();
 
+            return true;
+        } catch (Exception $exception) {
+            DB::rollBack();
+            logger('User Onboard Config Exception: ' . $exception->getMessage());
+
+            return true;
+        }
     }
 }

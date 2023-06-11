@@ -80,7 +80,8 @@ class Asset extends Resource
 
             Currency::make('Amount', 'amount')
                 ->required()
-                ->sortable(),
+                ->sortable()
+            ->currency(config('app.currency')),
 
             Textarea::make('Notes', 'notes')
                 ->hideFromIndex()

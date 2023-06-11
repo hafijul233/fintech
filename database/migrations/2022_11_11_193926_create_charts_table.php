@@ -25,13 +25,12 @@ return new class extends Migration
                 ->constrained('accounts')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->unsignedSmallInteger('code')
-                ->nullable();
             $table->string('name');
+            $table->text('description')
+                ->nullable();
             $table->boolean('enabled');
             $table->integer('sort_order')->nullable();
             $table->timestamps();
-            $table->unique(['user_id', 'account_id', 'code']);
         });
     }
 

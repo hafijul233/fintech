@@ -44,8 +44,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuSection::dashboard(MainDashboard::class)
                         ->icon('chart-bar'),
 
-                    MenuSection::resource(User::class)
-                        ->icon('user'),
+//                    MenuSection::resource(User::class)
+//                        ->icon('user'),
 
                     MenuSection::make('Accounts', [
                         MenuItem::resource(Asset::class),
