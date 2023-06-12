@@ -25,11 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! $this->app->runningInConsole()) {
-            $user = request()->user();
-            if ($user instanceof User && $user->currency != null) {
-                Config::set('app.currency', $user->currency);
-            }
-        }
+
     }
 }

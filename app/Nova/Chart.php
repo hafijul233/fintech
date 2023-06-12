@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Chart extends Resource
@@ -92,9 +93,9 @@ class Chart extends Resource
                 ->sortable()
                 ->filterable(),
 
-            Text::make('Code')->sortable(),
-
             Text::make('Name')->sortable(),
+
+            Textarea::make('Description')->sortable(),
 
             Boolean::make('Enabled')
                 ->nullable()

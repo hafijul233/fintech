@@ -13,6 +13,17 @@ use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
+    protected $preferCurrency;
+
+    public function __construct($resource = null)
+    {
+        parent::__construct($resource);
+
+        $this->preferCurrency = request()->user()->currency;
+
+    }
+
+
     /**
      * Build an "index" query for the given resource.
      *

@@ -4,6 +4,7 @@ namespace App\Nova\Metrics\Equity;
 
 use App\Models\Equity;
 use App\Traits\TrendQueryTrait;
+use App\Traits\UserConfigTrait;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -12,6 +13,7 @@ use Laravel\Nova\Metrics\Trend;
 class EquityPerDayMetric extends Trend
 {
     use TrendQueryTrait;
+    use UserConfigTrait;
 
     /**
      * The width of the card (1/3, 2/3, 1/2, 1/4, 3/4, or full).
@@ -34,7 +36,7 @@ class EquityPerDayMetric extends Trend
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = config('app.currency', 'USD');
+        $currency = $this->userPrefer()->currency;
 
         return $this->sumByDays($request, Equity::class, 'amount')
             ->prefix(config("fintech.currency.{$currency}.symbol"))

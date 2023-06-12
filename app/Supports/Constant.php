@@ -238,31 +238,31 @@ class Constant
         [
             'name' => 'Asset Calendar Color',
             'key' => 'asset-color',
-            'value' => self::ACCOUNT_LABELS[self::AC_ASSET],
+            'value' => '#007bff',
             'enabled' => true,
         ],
         [
             'name' => 'Liability Calendar Color',
             'key' => 'liability-color',
-            'value' => self::ACCOUNT_LABELS[self::AC_LIABILITY],
+            'value' => '#ffc107',
             'enabled' => true,
         ],
         [
             'name' => 'Equity Calendar Color',
             'key' => 'equity-color',
-            'value' => self::ACCOUNT_LABELS[self::AC_EQUITY],
+            'value' => '#17a2b8',
             'enabled' => true,
         ],
         [
             'name' => 'Revenue Calendar Color',
             'key' => 'revenue-color',
-            'value' => self::ACCOUNT_LABELS[self::AC_REVENUE],
+            'value' => '#28a745',
             'enabled' => true,
         ],
         [
             'name' => 'Expense Calendar Color',
             'key' => 'expense-color',
-            'value' => self::ACCOUNT_LABELS[self::AC_EXPENSE],
+            'value' => '#dc3545',
             'enabled' => true,
         ],
     ];

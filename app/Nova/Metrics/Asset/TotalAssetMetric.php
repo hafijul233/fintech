@@ -3,6 +3,7 @@
 namespace App\Nova\Metrics\Asset;
 
 use App\Models\Asset;
+use App\Traits\UserConfigTrait;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -11,6 +12,7 @@ use Laravel\Nova\Metrics\ValueResult;
 
 class TotalAssetMetric extends Value
 {
+    use UserConfigTrait;
     /**
      * The displayable name of the metric.
      *
@@ -25,7 +27,7 @@ class TotalAssetMetric extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = config('app.currency', 'USD');
+        $currency = $this->userPrefer()->currency;
 
         return $this->sum($request, Asset::class, 'amount', 'entry')
             ->prefix(config("fintech.currency.{$currency}.symbol"))

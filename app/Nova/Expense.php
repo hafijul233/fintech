@@ -2,18 +2,22 @@
 
 namespace App\Nova;
 
+use Alexwenzel\DependencyContainer\DependencyContainer;
 use App\Nova\Metrics\Expense\ExpensePerDayMetric;
 use App\Nova\Metrics\Expense\TotalExpenseMetric;
 use App\Supports\Constant;
 use Carbon\CarbonImmutable;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -63,6 +67,7 @@ class Expense extends Resource
             BelongsTo::make('Category', 'chart', Chart::class)
                 ->required()
                 ->sortable()
+                ->searchable()
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_EXPENSE)
@@ -78,11 +83,26 @@ class Expense extends Resource
             Currency::make('Amount', 'amount')
                 ->required()
                 ->sortable()
-                ->displayUsing(fn ($value) => number_format($value, 2)),
+                ->currency($this->preferCurrency),
 
             Textarea::make('Notes', 'notes')
                 ->hideFromIndex()
                 ->nullable(),
+
+            Boolean::make('Deduct From Asset account?', 'deduct_asset')
+                ->trueValue(true)
+                ->falseValue(false)
+                ->default(true)
+                ->hideFromIndex(),
+
+            DependencyContainer::make([
+                Select::make('Asset Category', 'asset_category_id')
+                    ->required()
+                    ->options(function () {
+                        return \App\Models\Chart::enabled()->where('account_id', '=', Constant::AC_ASSET)
+                            ->get()->pluck('name', 'id')->toArray();
+                    })
+            ])->dependsOn('deduct_asset', true),
 
             DateTime::make('Created', 'created_at')
                 ->onlyOnDetail(),
@@ -148,5 +168,26 @@ class Expense extends Resource
         return [
             ...parent::actions($request),
         ];
+    }
+
+    /**
+     * Fill a new model instance using the given request.
+     *
+     * @param NovaRequest $request
+     * @param Model $model
+     * @return array{Model, array<int, callable>}
+     */
+    public static function fill(NovaRequest $request, $model)
+    {
+        return static::fillFields(
+            $request, $model,
+            (new static($model))
+                ->creationFields($request)
+                ->applyDependsOn($request)
+                ->withoutReadonly($request)
+                ->reject(function ($field) use (&$request) {
+                    return in_array($field->attribute, ["", 'asset_category_id']);
+                })
+        );
     }
 }

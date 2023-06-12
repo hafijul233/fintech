@@ -79,7 +79,7 @@ class Equity extends Resource
             Currency::make('Amount', 'amount')
                 ->required()
                 ->sortable()
-                ->displayUsing(fn ($value) => number_format($value, 2)),
+                ->currency($this->preferCurrency),
 
             Textarea::make('Notes', 'notes')
                 ->hideFromIndex()

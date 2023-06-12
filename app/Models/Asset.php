@@ -14,6 +14,8 @@ class Asset extends Model implements Auditable, HasMedia
     use \OwenIt\Auditing\Auditable;
     use InteractsWithMedia;
 
+    protected $fillable = ['entry', 'user_id', 'chart_id', 'description', 'amount', 'notes'];
+
     protected $casts = [
         'entry' => 'date',
         'amount' => 'float',

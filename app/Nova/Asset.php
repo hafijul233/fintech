@@ -63,6 +63,7 @@ class Asset extends Resource
             BelongsTo::make('Category', 'chart', Chart::class)
                 ->required()
                 ->sortable()
+                ->searchable()
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_ASSET)
@@ -79,7 +80,7 @@ class Asset extends Resource
             Currency::make('Amount', 'amount')
                 ->required()
                 ->sortable()
-                ->currency(config('app.currency')),
+                ->currency($this->preferCurrency),
 
             Textarea::make('Notes', 'notes')
                 ->hideFromIndex()

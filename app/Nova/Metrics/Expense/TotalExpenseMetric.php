@@ -3,6 +3,7 @@
 namespace App\Nova\Metrics\Expense;
 
 use App\Models\Expense;
+use App\Traits\UserConfigTrait;
 use DateInterval;
 use DateTimeInterface;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -10,7 +11,9 @@ use Laravel\Nova\Metrics\Value;
 
 class TotalExpenseMetric extends Value
 {
+    use UserConfigTrait;
     /**
+     *
      * The displayable name of the metric.
      *
      * @var string
@@ -24,7 +27,7 @@ class TotalExpenseMetric extends Value
      */
     public function calculate(NovaRequest $request)
     {
-        $currency = config('app.currency', 'USD');
+        $currency = $this->userPrefer()->currency;
 
         return $this->sum($request, Expense::class, 'amount', 'entry')
             ->prefix(config("fintech.currency.{$currency}.symbol"))
