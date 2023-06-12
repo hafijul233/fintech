@@ -10,11 +10,9 @@ use App\Nova\Dashboards\HistogramDashboard;
 use App\Nova\Dashboards\IncomeStatementDashboard;
 use App\Nova\Dashboards\MainDashboard;
 use App\Nova\Dashboards\SignificantDashboard;
-use App\Nova\Equity;
 use App\Nova\Expense;
 use App\Nova\Liability;
 use App\Nova\Revenue;
-use App\Nova\User;
 use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -51,8 +49,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::resource(Asset::class),
 
                         MenuItem::resource(Liability::class),
-
-                        MenuItem::resource(Equity::class),
 
                         MenuItem::resource(Revenue::class),
 

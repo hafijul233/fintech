@@ -2,18 +2,22 @@
 
 namespace App\Nova;
 
+use Alexwenzel\DependencyContainer\DependencyContainer;
 use App\Nova\Metrics\Liability\LiabilityPerDayMetric;
 use App\Nova\Metrics\Liability\TotalLiabilityMetric;
 use App\Supports\Constant;
 use Carbon\CarbonImmutable;
 use Devpartners\AuditableLog\AuditableLog;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Files;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -63,6 +67,7 @@ class Liability extends Resource
             BelongsTo::make('Category', 'chart', Chart::class)
                 ->required()
                 ->sortable()
+                ->searchable()
                 ->filterable()
                 ->rules(['required', 'integer',
                     Rule::in(\App\Models\Chart::where('account_id', '=', Constant::AC_LIABILITY)
@@ -84,6 +89,21 @@ class Liability extends Resource
             Textarea::make('Notes', 'notes')
                 ->hideFromIndex()
                 ->nullable(),
+
+            Boolean::make('Deduct From Asset?', 'deduct_asset')
+                ->trueValue(true)
+                ->falseValue(false)
+                ->default(true)
+                ->hideFromIndex(),
+
+            DependencyContainer::make([
+                Select::make('Asset Category', 'asset_category_id')
+                    ->required()
+                    ->options(function () {
+                        return \App\Models\Chart::enabled()->where('account_id', '=', Constant::AC_ASSET)
+                            ->get()->pluck('name', 'id')->toArray();
+                    })
+            ])->dependsOn('deduct_asset', true),
 
             DateTime::make('Created', 'created_at')
                 ->onlyOnDetail(),
@@ -151,5 +171,50 @@ class Liability extends Resource
         return [
             ...parent::actions($request),
         ];
+    }
+
+    /**
+     * Fill a new model instance using the given request.
+     *
+     * @param NovaRequest $request
+     * @param Model $model
+     * @return array{Model, array<int, callable>}
+     */
+    public static function fill(NovaRequest $request, $model)
+    {
+        return static::fillFields(
+            $request, $model,
+            (new static($model))
+                ->creationFields($request)
+                ->applyDependsOn($request)
+                ->withoutReadonly($request)
+                ->reject(function ($field) use (&$request) {
+                    return in_array($field->attribute, ["", 'asset_category_id']);
+                })
+        );
+    }
+
+    /**
+     * Register a callback to be called after the resource is created.
+     *
+     * @param NovaRequest $request
+     * @param Model $model
+     * @return void
+     */
+    public static function afterCreate(NovaRequest $request, Model $model)
+    {
+        if ($request->has('deduct_asset') && $request->boolean('deduct_asset')) {
+
+            $assetValues = [
+                'entry' => $model->entry,
+                'user_id' => $request->user()->id,
+                'chart_id' => $request->input('asset_category_id'),
+                'description' => $model->description ?? null,
+                'amount' => -1 * $model->amount,
+                'notes' => $model->notes
+            ];
+
+            \App\Models\Asset::create($assetValues);
+        }
     }
 }

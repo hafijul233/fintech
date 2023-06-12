@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Nova\Asset;
-use App\Nova\Equity;
 use App\Nova\Expense;
 use App\Nova\Liability;
 use App\Nova\Revenue;
@@ -36,7 +35,6 @@ class CalendarDataProvider extends MonthCalendar
     {
         return [
             Asset::class => 'created_at',
-            Equity::class => 'created_at',
             Liability::class => 'created_at',
             Expense::class => 'created_at',
             Revenue::class => 'created_at',
@@ -76,7 +74,6 @@ class CalendarDataProvider extends MonthCalendar
     {
         return [
             new NovaResourceFilter(__('Only Assets'), Asset::class),
-            new NovaResourceFilter(__('Only Equity'), Equity::class),
             new NovaResourceFilter(__('Only Liability'), Liability::class),
             new NovaResourceFilter(__('Only Expense'), Expense::class),
         ];

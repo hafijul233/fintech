@@ -3,7 +3,6 @@
 namespace App\Nova\Dashboards;
 
 use App\Nova\Metrics\Asset\AssetPerDayMetric;
-use App\Nova\Metrics\Equity\EquityPerDayMetric;
 use App\Nova\Metrics\Expense\ExpensePerDayMetric;
 use App\Nova\Metrics\Liability\LiabilityPerDayMetric;
 use App\Nova\Metrics\Revenue\RevenuePerDayMetric;
@@ -45,8 +44,6 @@ class HistogramDashboard extends Dashboard
             AssetPerDayMetric::make()
                 ->width('full'),
             LiabilityPerDayMetric::make()
-                ->width('full'),
-            EquityPerDayMetric::make()
                 ->width('full'),
             RevenuePerDayMetric::make()
                 ->width('full'),

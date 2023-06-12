@@ -99,7 +99,7 @@ class Revenue extends Resource
                 ->sortable()
                 ->currency($this->preferCurrency),
 
-            Boolean::make('Add To Asset account?', 'add_to_asset')
+            Boolean::make('Add To Asset?', 'add_to_asset')
                 ->trueValue(true)
                 ->falseValue(false)
                 ->default(true)

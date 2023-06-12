@@ -30,6 +30,7 @@ return new class extends Migration
             $table->decimal('amount', 18, 4)
                 ->nullable()->default(0);
             $table->text('notes')->nullable();
+            $table->boolean('deduct_asset')->default(false);
             $table->timestamps();
         });
     }

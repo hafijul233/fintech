@@ -4,17 +4,18 @@ namespace App\Nova\Metrics\Report;
 
 use App\Models\Revenue;
 use App\Supports\Constant;
+use App\Traits\UserConfigTrait;
 use Whitespacecode\TableCard\Table\Cell;
 use Whitespacecode\TableCard\Table\Row;
 use Whitespacecode\TableCard\TableCard;
 
 class RevenueTableMetric extends TableCard
 {
+    use UserConfigTrait;
+
     public function __construct(array $header = [], array $data = [], string $title = '', bool $viewAll = false)
     {
         parent::__construct($header, $data, $title, $viewAll);
-
-        $currency = request()->user()->currency ?? 'USD';
 
         $headers = [
             Cell::make('Name')->class('font-bold'),
@@ -36,21 +37,13 @@ class RevenueTableMetric extends TableCard
                 $total += ($revenue->amount ?? 0);
                 $rows[] = Row::make(
                     Cell::make(ucwords($revenue->name)),
-                    Cell::make(
-                        config("fintech.currency.{$currency}.symbol")
-                        .' '
-                        .number_format($revenue->amount, 2)
-                    )->class('text-right')
+                    Cell::make($this->currency($revenue->amount))->class('text-right')
                 );
             });
 
         $rows[] = Row::make(
-            Cell::make('Total')->class('font-bold text-2xl'),
-            Cell::make(
-                config("fintech.currency.{$currency}.symbol")
-                .' '
-                .number_format($total, 2)
-            )->class('text-right font-bold text-2xl')
+            Cell::make('Total')->class('text-2xl'),
+            Cell::make($this->currency($total))->class('text-right text-2xl')
         );
 
         $this->title('Total Revenues')

@@ -85,7 +85,6 @@ class Audit extends Resource
                     Asset::class,
                     Chart::class,
                     Configuration::class,
-                    Equity::class,
                     Expense::class,
                     Liability::class,
                     Revenue::class,

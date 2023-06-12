@@ -3,7 +3,6 @@
 namespace App\Nova\Dashboards;
 
 use App\Nova\Metrics\Asset\SignificantAssetMetric;
-use App\Nova\Metrics\Equity\SignificantEquityMetric;
 use App\Nova\Metrics\Expense\SignificantExpenseMetric;
 use App\Nova\Metrics\Liability\SignificantLiabilityMetric;
 use App\Nova\Metrics\Revenue\SignificantRevenueMetric;
@@ -37,9 +36,6 @@ class SignificantDashboard extends Dashboard
                 ->width('1/2'),
 
             SignificantLiabilityMetric::make()
-                ->width('1/2'),
-
-            SignificantEquityMetric::make()
                 ->width('1/2'),
 
             SignificantRevenueMetric::make()

@@ -3,7 +3,6 @@
 namespace App\Nova\Dashboards;
 
 use App\Nova\Metrics\Asset\TotalAssetMetric;
-use App\Nova\Metrics\Equity\TotalEquityMetric;
 use App\Nova\Metrics\Expense\TotalExpenseMetric;
 use App\Nova\Metrics\Liability\TotalLiabilityMetric;
 use App\Nova\Metrics\OverallAmountMetric;
@@ -43,10 +42,9 @@ class MainDashboard extends Dashboard
     {
         return [
             Breadcrumbs::make(app(NovaRequest::class), $this),
-            OverallAmountMetric::make(),
-            TotalAssetMetric::make(),
+            OverallAmountMetric::make()->width('1/2'),
+            TotalAssetMetric::make()->width('1/2'),
             TotalLiabilityMetric::make(),
-            TotalEquityMetric::make(),
             TotalRevenueMetric::make(),
             TotalExpenseMetric::make(),
         ];

@@ -89,7 +89,7 @@ class Expense extends Resource
                 ->hideFromIndex()
                 ->nullable(),
 
-            Boolean::make('Deduct From Asset account?', 'deduct_asset')
+            Boolean::make('Deduct From Asset?', 'deduct_asset')
                 ->trueValue(true)
                 ->falseValue(false)
                 ->default(true)
@@ -189,5 +189,29 @@ class Expense extends Resource
                     return in_array($field->attribute, ["", 'asset_category_id']);
                 })
         );
+    }
+
+    /**
+     * Register a callback to be called after the resource is created.
+     *
+     * @param NovaRequest $request
+     * @param Model $model
+     * @return void
+     */
+    public static function afterCreate(NovaRequest $request, Model $model)
+    {
+        if ($request->has('deduct_asset') && $request->boolean('deduct_asset')) {
+
+            $assetValues = [
+                'entry' => $model->entry,
+                'user_id' => $request->user()->id,
+                'chart_id' => $request->input('asset_category_id'),
+                'description' => $model->description ?? null,
+                'amount' => -1 * $model->amount,
+                'notes' => $model->notes
+            ];
+
+            \App\Models\Asset::create($assetValues);
+        }
     }
 }

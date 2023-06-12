@@ -3,15 +3,17 @@
 namespace App\Nova\Metrics;
 
 use App\Models\Asset;
-use App\Models\Equity;
 use App\Models\Expense;
 use App\Models\Liability;
 use App\Models\Revenue;
+use App\Traits\UserConfigTrait;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\Value;
 
 class OverallAmountMetric extends Value
 {
+    use UserConfigTrait;
+
     /**
      * The displayable name of the metric.
      *
@@ -39,15 +41,13 @@ class OverallAmountMetric extends Value
 
         $liabilities = $this->sum($request, Liability::class, 'amount', 'entry');
 
-        $equities = $this->sum($request, Equity::class, 'amount', 'entry');
-
         $revenues = $this->sum($request, Revenue::class, 'amount', 'entry');
 
         $expenses = $this->sum($request, Expense::class, 'amount', 'entry');
 
-        $totalCurrentBalance = ($assets->value - ($liabilities->value + $equities->value + ($revenues->value - $expenses->value)));
+        $totalCurrentBalance = ($assets->value - ($liabilities->value + ($revenues->value - $expenses->value)));
 
-        $totalPreviousBalance = ($assets->previous - ($liabilities->previous + $equities->previous + ($revenues->previous - $expenses->previous)));
+        $totalPreviousBalance = ($assets->previous - ($liabilities->previous + ($revenues->previous - $expenses->previous)));
 
         return $this->result(
             round(

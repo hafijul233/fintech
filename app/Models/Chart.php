@@ -97,11 +97,6 @@ class Chart extends Model implements Auditable
         return $this->hasMany(Liability::class);
     }
 
-    public function equities(): HasMany
-    {
-        return $this->hasMany(Equity::class);
-    }
-
     public function revenues(): HasMany
     {
         return $this->hasMany(Revenue::class);
