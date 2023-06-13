@@ -11,8 +11,8 @@ use Laravel\Nova\Metrics\Value;
 
 class TotalLiabilityMetric extends Value
 {
-
     use UserConfigTrait;
+
     /**
      * The displayable name of the metric.
      *

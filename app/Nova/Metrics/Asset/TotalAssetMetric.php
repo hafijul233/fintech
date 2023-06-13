@@ -13,6 +13,7 @@ use Laravel\Nova\Metrics\ValueResult;
 class TotalAssetMetric extends Value
 {
     use UserConfigTrait;
+
     /**
      * The displayable name of the metric.
      *

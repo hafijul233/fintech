@@ -23,7 +23,6 @@ abstract class Resource extends NovaResource
 
     }
 
-
     /**
      * Build an "index" query for the given resource.
      *
