@@ -101,7 +101,7 @@ class Expense extends Resource
                     ->options(function () {
                         return \App\Models\Chart::enabled()->where('account_id', '=', Constant::AC_ASSET)
                             ->get()->pluck('name', 'id')->toArray();
-                    })
+                    }),
             ])->dependsOn('deduct_asset', true),
 
             DateTime::make('Created', 'created_at')
@@ -173,8 +173,7 @@ class Expense extends Resource
     /**
      * Fill a new model instance using the given request.
      *
-     * @param NovaRequest $request
-     * @param Model $model
+     * @param  Model  $model
      * @return array{Model, array<int, callable>}
      */
     public static function fill(NovaRequest $request, $model)
@@ -186,7 +185,7 @@ class Expense extends Resource
                 ->applyDependsOn($request)
                 ->withoutReadonly($request)
                 ->reject(function ($field) use (&$request) {
-                    return in_array($field->attribute, ["", 'asset_category_id']);
+                    return in_array($field->attribute, ['', 'asset_category_id']);
                 })
         );
     }
@@ -194,8 +193,6 @@ class Expense extends Resource
     /**
      * Register a callback to be called after the resource is created.
      *
-     * @param NovaRequest $request
-     * @param Model $model
      * @return void
      */
     public static function afterCreate(NovaRequest $request, Model $model)
@@ -208,7 +205,7 @@ class Expense extends Resource
                 'chart_id' => $request->input('asset_category_id'),
                 'description' => $model->description ?? null,
                 'amount' => -1 * $model->amount,
-                'notes' => $model->notes
+                'notes' => $model->notes,
             ];
 
             \App\Models\Asset::create($assetValues);

@@ -12,6 +12,7 @@ use Laravel\Nova\Metrics\Value;
 class TotalRevenueMetric extends Value
 {
     use UserConfigTrait;
+
     /**
      * The displayable name of the metric.
      *

@@ -21,8 +21,8 @@ trait UserConfigTrait
             $value = number_format($value, $money['precision'], $money['decimal_mark'], $money['thousands_separator']);
 
             return ($money['symbol_first'])
-                ? $money['symbol'] . "{$value} {$currency}s"
-                : "{$currency} $value" . $money['symbol'];
+                ? $money['symbol']."{$value} {$currency}s"
+                : "{$currency} $value".$money['symbol'];
         }
 
         return '-';

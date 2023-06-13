@@ -20,7 +20,6 @@ use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Revenue extends Resource
@@ -74,7 +73,7 @@ class Revenue extends Resource
                 ->required()
                 ->sortable()
                 ->filterable()
-                ->default(fn() => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
+                ->default(fn () => CarbonImmutable::now($request->user()->timezone ?? 'UTC')->format('Y-m-d'))
                 ->rules(['date_format:Y-m-d', 'required', 'date']),
 
             BelongsTo::make('Category', 'chart', Chart::class)
@@ -90,7 +89,7 @@ class Revenue extends Resource
             Text::make('Description', 'description')
                 ->required()
                 ->sortable()
-                ->suggestions(fn() => array_unique(\App\Models\Revenue::select('description')
+                ->suggestions(fn () => array_unique(\App\Models\Revenue::select('description')
                     ->get()->pluck('description')->toArray())
                 ),
 
@@ -112,7 +111,7 @@ class Revenue extends Resource
                     ->options(function () {
                         return \App\Models\Chart::enabled()->where('account_id', '=', Constant::AC_ASSET)
                             ->get()->pluck('name', 'id')->toArray();
-                    })
+                    }),
             ])->dependsOn('add_to_asset', true),
 
             DateTime::make('Created', 'created_at')
@@ -183,12 +182,10 @@ class Revenue extends Resource
         ];
     }
 
-
     /**
      * Fill a new model instance using the given request.
      *
-     * @param NovaRequest $request
-     * @param Model $model
+     * @param  Model  $model
      * @return array{Model, array<int, callable>}
      */
     public static function fill(NovaRequest $request, $model)
@@ -200,7 +197,7 @@ class Revenue extends Resource
                 ->applyDependsOn($request)
                 ->withoutReadonly($request)
                 ->reject(function ($field) use (&$request) {
-                    return in_array($field->attribute, ["", 'asset_category_id']);
+                    return in_array($field->attribute, ['', 'asset_category_id']);
                 })
         );
     }
@@ -208,8 +205,6 @@ class Revenue extends Resource
     /**
      * Register a callback to be called after the resource is created.
      *
-     * @param NovaRequest $request
-     * @param Model $model
      * @return void
      */
     public static function afterCreate(NovaRequest $request, Model $model)
@@ -222,7 +217,7 @@ class Revenue extends Resource
                 'chart_id' => $request->input('asset_category_id'),
                 'description' => $model->description ?? null,
                 'amount' => $model->amount,
-                'notes' => $model->notes
+                'notes' => $model->notes,
             ];
 
             \App\Models\Asset::create($assetValues);

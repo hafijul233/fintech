@@ -12,8 +12,8 @@ use Laravel\Nova\Metrics\Value;
 class TotalExpenseMetric extends Value
 {
     use UserConfigTrait;
+
     /**
-     *
      * The displayable name of the metric.
      *
      * @var string

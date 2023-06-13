@@ -12,6 +12,7 @@ use Whitespacecode\TableCard\TableCard;
 class ExpenseTableMetric extends TableCard
 {
     use UserConfigTrait;
+
     public function __construct(array $header = [], array $data = [], string $title = '', bool $viewAll = false)
     {
         parent::__construct($header, $data, $title, $viewAll);
