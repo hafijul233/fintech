@@ -45,7 +45,7 @@ class Configuration extends Resource
         return [
             ID::make()->asBigInt()->sortable(),
 
-            Hidden::make('user_id')->value($request->user()->id),
+            Hidden::make('user_id')->default($request->user()->id)->onlyOnForms(),
 
             Text::make('Key', 'key')->required(),
 
