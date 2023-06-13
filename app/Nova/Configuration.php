@@ -32,7 +32,7 @@ class Configuration extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'key', 'value',
+        'id', 'name', 'key', 'value',
     ];
 
     /**
@@ -47,7 +47,9 @@ class Configuration extends Resource
 
             Hidden::make('user_id')->default($request->user()->id)->onlyOnForms(),
 
-            Text::make('Key', 'key')->required(),
+            Text::make('Name', 'name')->required(),
+
+            Hidden::make('Key', 'key')->onlyOnForms(),
 
             Text::make('Value', 'value')->nullable(),
 
