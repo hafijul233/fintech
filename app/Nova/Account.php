@@ -47,7 +47,7 @@ class Account extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail(),
 
             Text::make('Name')->sortable(),
 

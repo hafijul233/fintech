@@ -85,7 +85,7 @@ class Chart extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail(),
 
             BelongsTo::make('User', 'user', User::class)->onlyOnDetail(),
 

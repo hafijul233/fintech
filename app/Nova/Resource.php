@@ -15,6 +15,13 @@ abstract class Resource extends NovaResource
 {
     protected $preferCurrency;
 
+    /**
+     * Indicates whether Nova should check for modifications between viewing and updating a resource.
+     *
+     * @var bool
+     */
+    public static $trafficCop = false;
+
     public function __construct($resource = null)
     {
         parent::__construct($resource);

@@ -43,7 +43,7 @@ class Configuration extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail(),
 
             Hidden::make('user_id')->default($request->user()->id)->onlyOnForms(),
 

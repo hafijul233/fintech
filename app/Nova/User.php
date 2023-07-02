@@ -63,7 +63,7 @@ class User extends Resource
         }
 
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail(),
 
             BelongsTo::make('Referred By', 'parent', User::class)->onlyOnDetail(),
 

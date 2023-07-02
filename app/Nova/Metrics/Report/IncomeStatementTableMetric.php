@@ -2,8 +2,8 @@
 
 namespace App\Nova\Metrics\Report;
 
+use App\Models\Asset;
 use App\Models\Expense;
-use App\Models\Revenue;
 use App\Traits\UserConfigTrait;
 use Whitespacecode\TableCard\Table\Cell;
 use Whitespacecode\TableCard\Table\Row;
@@ -23,13 +23,13 @@ class IncomeStatementTableMetric extends TableCard
                 ->class('font-bold'),
         ];
 
-        $totalRevenues = Revenue::all()->sum('amount');
+        $totalAssets = Asset::all()->sum('amount');
 
         $totalExpenses = Expense::all()->sum('amount');
 
         $rows[] = Row::make(
-            Cell::make('Total Revenues'),
-            Cell::make($this->currency($totalRevenues)
+            Cell::make('Total Assets'),
+            Cell::make($this->currency($totalAssets)
             )->class('text-right')
         );
 
@@ -39,7 +39,7 @@ class IncomeStatementTableMetric extends TableCard
             )->class('text-right')
         );
 
-        $total = $totalRevenues - $totalExpenses;
+        $total = $totalAssets - $totalExpenses;
 
         $rows[] = Row::make(
             Cell::make('Total')->class('text-2xl'),

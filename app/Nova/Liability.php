@@ -55,7 +55,7 @@ class Liability extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail(),
 
             Date::make('Entry', 'entry')
                 ->required()
@@ -99,19 +99,20 @@ class Liability extends Resource
             DependencyContainer::make([
                 Select::make('Asset Category', 'asset_category_id')
                     ->required()
+                    ->displayUsingLabels()
                     ->options(function () {
                         return \App\Models\Chart::enabled()->where('account_id', '=', Constant::AC_ASSET)
                             ->get()->pluck('name', 'id')->toArray();
                     }),
             ])->dependsOn('deduct_asset', true),
 
+            Files::make('Attachments', 'attachments')->nullable(),
+
             DateTime::make('Created', 'created_at')
                 ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
                 ->onlyOnDetail(),
-
-            Files::make('Attachments', 'attachments')->nullable(),
 
             AuditableLog::make(),
         ];
@@ -171,26 +172,6 @@ class Liability extends Resource
         return [
             ...parent::actions($request),
         ];
-    }
-
-    /**
-     * Fill a new model instance using the given request.
-     *
-     * @param  Model  $model
-     * @return array{Model, array<int, callable>}
-     */
-    public static function fill(NovaRequest $request, $model)
-    {
-        return static::fillFields(
-            $request, $model,
-            (new static($model))
-                ->creationFields($request)
-                ->applyDependsOn($request)
-                ->withoutReadonly($request)
-                ->reject(function ($field) use (&$request) {
-                    return in_array($field->attribute, ['', 'asset_category_id']);
-                })
-        );
     }
 
     /**

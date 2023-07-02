@@ -67,7 +67,7 @@ class Revenue extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail(),
 
             Date::make('Entry', 'entry')
                 ->required()
@@ -107,6 +107,7 @@ class Revenue extends Resource
             DependencyContainer::make([
                 Select::make('Asset Category', 'asset_category_id')
                     ->required()
+                    ->displayUsingLabels()
                     ->searchable()
                     ->options(function () {
                         return \App\Models\Chart::enabled()->where('account_id', '=', Constant::AC_ASSET)
@@ -114,13 +115,13 @@ class Revenue extends Resource
                     }),
             ])->dependsOn('add_to_asset', true),
 
+            Files::make('Attachments', 'attachments')->nullable(),
+
             DateTime::make('Created', 'created_at')
                 ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
                 ->onlyOnDetail(),
-
-            Files::make('Attachments', 'attachments')->nullable(),
 
             AuditableLog::make(),
         ];

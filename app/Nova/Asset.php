@@ -51,7 +51,7 @@ class Asset extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->asBigInt()->sortable(),
+            ID::make()->asBigInt()->sortable()->hideFromDetail()->hideFromDetail(),
 
             Date::make('Entry', 'entry')
                 ->required()
@@ -86,13 +86,13 @@ class Asset extends Resource
                 ->hideFromIndex()
                 ->nullable(),
 
+            Files::make('Attachments', 'attachments')->nullable(),
+
             DateTime::make('Created', 'created_at')
-                ->onlyOnDetail(),
+            ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-                ->onlyOnDetail(),
-
-            Files::make('Attachments', 'attachments')->nullable(),
+            ->onlyOnDetail(),
 
             AuditableLog::make(),
         ];

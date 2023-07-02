@@ -100,7 +100,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ->append(
                         MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey())
                     );
-            });
+            })
+            ->style('custom-css', public_path('css/custom.css'));
     }
 
     /**
