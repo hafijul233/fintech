@@ -89,10 +89,10 @@ class Asset extends Resource
             Files::make('Attachments', 'attachments')->nullable(),
 
             DateTime::make('Created', 'created_at')
-            ->onlyOnDetail(),
+                ->onlyOnDetail(),
 
             DateTime::make('Updated', 'updated_at')
-            ->onlyOnDetail(),
+                ->onlyOnDetail(),
 
             AuditableLog::make(),
         ];

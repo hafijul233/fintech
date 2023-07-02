@@ -5,7 +5,6 @@ namespace App\Nova\Dashboards;
 use App\Nova\Metrics\Report\AssetTableMetric;
 use App\Nova\Metrics\Report\ExpenseTableMetric;
 use App\Nova\Metrics\Report\IncomeStatementTableMetric;
-use App\Nova\Metrics\Report\RevenueTableMetric;
 use Formfeed\Breadcrumbs\Breadcrumbs;
 use Laravel\Nova\Dashboard;
 use Laravel\Nova\Http\Requests\NovaRequest;
