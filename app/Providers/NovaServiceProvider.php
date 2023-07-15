@@ -36,7 +36,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
             ->withoutNotificationCenter()
             ->mainMenu(function () {
                 return [
@@ -99,14 +99,13 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::dashboard(SignificantDashboard::class)
                     )
                     ->append(
-                        MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey())
+                        MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey())
                     );
             })
             ->style('custom-css', public_path('css/custom.css'))
             ->footer(function (Request $request) {
-                return Blade::render('<p class="text-center">Copyright © ' . date('Y') . ' <a class="link-default" href="https://hafijulislam.com">Hafijul Islam</a> . All rights reserved.</p>');
-            })
-;
+                return Blade::render('<p class="text-center">Copyright © '.date('Y').' <a class="link-default" href="https://hafijulislam.com">Hafijul Islam</a> . All rights reserved.</p>');
+            });
     }
 
     /**
