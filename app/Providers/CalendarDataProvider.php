@@ -45,30 +45,30 @@ class CalendarDataProvider extends MonthCalendar
     // Use this method to show events on the calendar that don't
     // come from a Nova resource. Just return an array of dynamically
     // generated events.
-//    protected function nonNovaEvents(): array
-//    {
-//        return [
-//            (new Event('Today until tomorrow', now()->subDays(1), now()->addDays(1)))
-//                ->displayTime()
-//                ->addBadges('👍')
-//                ->withNotes('these are the event notes'),
-//
-//            (new Event('Today until tomorrow', now()->subDays(2), now()->addDays(2)))
-//                ->displayTime()
-//                ->addBadges('👍')
-//                ->withNotes('these are the event notes'),
-//
-//            (new Event('Today until tomorrow', now()->subDays(3), now()->addDays(3)))
-//                ->displayTime()
-//                ->addBadges('👍')
-//                ->withNotes('these are the event notes'),
-//
-//            (new Event('Today until tomorrow', now()->subDays(4), now()->addDays(4)))
-//                ->displayTime()
-//                ->addBadges('👍')
-//                ->withNotes('these are the event notes'),
-//        ];
-//    }
+    //    protected function nonNovaEvents(): array
+    //    {
+    //        return [
+    //            (new Event('Today until tomorrow', now()->subDays(1), now()->addDays(1)))
+    //                ->displayTime()
+    //                ->addBadges('👍')
+    //                ->withNotes('these are the event notes'),
+    //
+    //            (new Event('Today until tomorrow', now()->subDays(2), now()->addDays(2)))
+    //                ->displayTime()
+    //                ->addBadges('👍')
+    //                ->withNotes('these are the event notes'),
+    //
+    //            (new Event('Today until tomorrow', now()->subDays(3), now()->addDays(3)))
+    //                ->displayTime()
+    //                ->addBadges('👍')
+    //                ->withNotes('these are the event notes'),
+    //
+    //            (new Event('Today until tomorrow', now()->subDays(4), now()->addDays(4)))
+    //                ->displayTime()
+    //                ->addBadges('👍')
+    //                ->withNotes('these are the event notes'),
+    //        ];
+    //    }
 
     public function filters(): array
     {
