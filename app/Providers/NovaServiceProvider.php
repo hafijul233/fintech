@@ -15,6 +15,7 @@ use App\Nova\Liability;
 use App\Nova\Revenue;
 use Badinansoft\LanguageSwitch\LanguageSwitch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\LogViewer\LogViewer;
 use Laravel\Nova\Menu\Menu;
@@ -22,7 +23,6 @@ use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Wdelfuego\NovaCalendar\Interface\CalendarDataProviderInterface;
 use Wdelfuego\NovaCalendar\NovaCalendar;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
@@ -36,7 +36,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::userTimezone(fn (Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+        Nova::userTimezone(fn(Request $request) => ($request->user()) ? $request->user()->timezone : config('app.timezone'))
+            ->withoutNotificationCenter()
             ->mainMenu(function () {
                 return [
                     MenuSection::dashboard(MainDashboard::class)
@@ -98,10 +99,14 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                         MenuItem::dashboard(SignificantDashboard::class)
                     )
                     ->append(
-                        MenuItem::link('My Profile', '/resources/users/'.$request->user()->getKey())
+                        MenuItem::link('My Profile', '/resources/users/' . $request->user()->getKey())
                     );
             })
-            ->style('custom-css', public_path('css/custom.css'));
+            ->style('custom-css', public_path('css/custom.css'))
+            ->footer(function (Request $request) {
+                return Blade::render('<p class="text-center">Copyright © ' . date('Y') . ' <a class="link-default" href="https://hafijulislam.com">Hafijul Islam</a> . All rights reserved.</p>');
+            })
+;
     }
 
     /**
@@ -125,7 +130,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function register()
     {
-        $this->app->bind(CalendarDataProviderInterface::class, function ($app) {
+        $this->app->bind('Wdelfuego\NovaCalendar\Interface\CalendarDataProviderInterface', function ($app) {
             return new CalendarDataProvider();
         });
     }
