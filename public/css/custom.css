@@ -1,3 +1,7 @@
 .margin-1rem {
     margin: 1rem !important;
 }
+/* HIDE UNREGISTER TAG */
+a.font-bold.inline-block.mt-1.text-center.text-red-500.text-xs.uppercase {
+    display: none
+}
